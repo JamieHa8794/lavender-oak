@@ -1,4 +1,4 @@
-const {syncAndSeed, model: {Furniture, User}} = require('./db')
+const {syncAndSeed, model: {Product, User}} = require('./db')
 
 const express = require('express');
 const app = express();
@@ -28,10 +28,10 @@ app.get('/api/users', async (req, res, next)=>{
 
 
 //furniture
-app.get('/api/furniture', async (req, res, next)=>{
+app.get('/api/products', async (req, res, next)=>{
     try{
-        const furniture = await Furniture.findAll();
-        res.send(furniture)
+        const product = await Product.findAll();
+        res.send(product)
     }
     catch(err){
         next(err)
