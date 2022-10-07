@@ -49,7 +49,7 @@ const loading = () =>{
 
 }
 
-const loadUsers = (users) =>{
+const _loadUsers = (users) =>{
     return {
         type: LOAD_USERS,
         users
@@ -57,7 +57,7 @@ const loadUsers = (users) =>{
 
 }
 
-const loadProducts = (products) =>{
+const _loadProducts = (products) =>{
     return {
         type: LOAD_PRODUCTS,
         products
@@ -68,8 +68,15 @@ const loadProducts = (products) =>{
 
 
 //thunks
+const loadUsers = async () =>{
+    const users = (await axios.get('/api/users')).data;
+    loadUsers(users);
+}
 
-
+const loadProducts = async () =>{
+    const products = (await axios.get('/api/products')).data;
+    loadProducts(products);
+}
 
 
 

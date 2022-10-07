@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import Nav from './Nav'
 import {loading, loadUsers, loadProducts} from './store'
@@ -44,11 +43,9 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        load: async () =>{
-            const users = (await axios.get('/api/users')).data;
-            const products = (await axios.get('/api/products')).data;
-            dispatch(loadUsers(users));
-            dispatch(loadProducts(products));
+        load: () =>{
+            dispatch(loadUsers());
+            dispatch(loadProducts());
             dispatch(loading());
             
         }
