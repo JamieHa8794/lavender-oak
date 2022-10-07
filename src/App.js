@@ -44,8 +44,8 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         load: () =>{
-            dispatch(loadUsers());
-            dispatch(loadProducts());
+            loadUsers();
+            loadProducts();
             dispatch(loading());
             
         }

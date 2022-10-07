@@ -1,5 +1,5 @@
-import { createStore } from "redux";
-
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import thunk from 'redux-thunk'
 
 
 //action constatnts
@@ -15,8 +15,17 @@ const initialState = {
     loading: true
 }
 
+//fix!
 
-const store = createStore((state = initialState, action) =>{
+// const reducer = combineReducers({
+//     users: usersReducers,
+//     products: productsReducers
+// })
+
+// const store = createStore(reducer, applyMiddleware(thunk))
+
+
+const store = createStore((state = initialState, action)=>{
     if(action.type === LOAD){
         state = {...state, loading: false}
     }
@@ -68,14 +77,14 @@ const _loadProducts = (products) =>{
 
 
 //thunks
-const loadUsers = async () =>{
+const loadUsers = async (dispatch) =>{
     const users = (await axios.get('/api/users')).data;
-    loadUsers(users);
+    dispatch(loadUsers(users));
 }
 
-const loadProducts = async () =>{
+const loadProducts = async (dispatch) =>{
     const products = (await axios.get('/api/products')).data;
-    loadProducts(products);
+    dispatch(loadProducts(products));
 }
 
 
