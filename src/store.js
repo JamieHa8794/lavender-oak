@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from 'redux-thunk'
-
+import axios from "axios";
 
 //action constatnts
 const LOAD = 'LOAD'
@@ -9,53 +9,69 @@ const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 
 
 
-const initialState = {
-    users : [],
-    products: [],
-    loading: true
-}
+// const initialState = {
+//     users : [],
+//     products: [],
+//     loading: true
+// }
 
 //fix!
 
-// const reducer = combineReducers({
-//     users: usersReducers,
-//     products: productsReducers
-// })
+//reducers
 
-// const store = createStore(reducer, applyMiddleware(thunk))
-
-
-const store = createStore((state = initialState, action)=>{
+const loadReducers = (state = true, action)=>{
     if(action.type === LOAD){
-        state = {...state, loading: false}
-    }
-    if(action.type === LOAD_USERS){
-        state = {...state, users: action.users}
-    }
-    if(action.type === LOAD_PRODUCTS){
-        state = {...state, products: action.products}
+        state = false
     }
     return state;
+}
+
+const usersReducers = (state = [], action) =>{
+    if(action.type === LOAD_USERS){
+        state = action.users
+    }
+    return state;
+}
+
+const productsReducers = (state = [], action) =>{
+    if(action.type === LOAD_PRODUCTS){
+        state = action.products
+    }
+    return state;
+}
+
+
+
+const reducer = combineReducers({
+    loading: loadReducers,
+    users: usersReducers,
+    products: productsReducers,
 })
 
-
-//reducers
-const usersReducers = () =>{
+const store = createStore(reducer, applyMiddleware(thunk))
 
 
-}
+// const store = createStore((state = initialState, action)=>{
+//     if(action.type === LOAD){
+//         state = {...state, loading: false}
+//     }
+//     if(action.type === LOAD_USERS){
+//         state = {...state, users: action.users}
+//     }
+//     if(action.type === LOAD_PRODUCTS){
+//         state = {...state, products: action.products}
+//     }
+//     return state;
+// })
 
-const productsReducers = () =>{
 
-    
-}
+
 
 //action creators
-const loading = () =>{
+const _loading = () =>{
     return {
-        type: LOAD,
+        type: LOAD
     }
-
 }
 
 const _loadUsers = (users) =>{
@@ -77,17 +93,27 @@ const _loadProducts = (products) =>{
 
 
 //thunks
-const loadUsers = async (dispatch) =>{
-    const users = (await axios.get('/api/users')).data;
-    dispatch(loadUsers(users));
+const loading = (dispatch) =>{
+    return () =>{
+        dispatch(_loading())
+    }
 }
 
-const loadProducts = async (dispatch) =>{
-    const products = (await axios.get('/api/products')).data;
-    dispatch(loadProducts(products));
+
+const loadUsers =  (dispatch) =>{
+    return async ()=>{
+        const users = (await axios.get('/api/users')).data;
+        dispatch(_loadUsers(users));
+    }
 }
 
+const loadProducts = (dispatch) =>{
+    return async ()=>{
+        const products = (await axios.get('/api/products')).data;
+        dispatch(_loadProducts(products));
+    }
+}
 
 
 export default store;
-export {loading,loadUsers, loadProducts}
+export {loading, loadUsers, loadProducts}

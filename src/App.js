@@ -13,9 +13,9 @@ class _App extends Component{
     }
     componentDidMount(){
         this.props.load();
+        console.log(this.props)
     }
     render(){
-        console.log(this.props)
         const {loading} = this.props.state
         if(loading){
             return(
@@ -44,10 +44,9 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         load: () =>{
-            loadUsers();
-            loadProducts();
-            dispatch(loading());
-            
+            dispatch(loadUsers(dispatch)); 
+            dispatch(loadProducts(dispatch));
+            dispatch(loading(dispatch));
         }
     }
 }
