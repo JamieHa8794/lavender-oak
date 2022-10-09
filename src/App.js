@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav'
 import {loading, loadUsers, loadProducts} from './store'
@@ -23,12 +24,14 @@ class _App extends Component{
             )
         }
         return(
-            <div>
-                <Nav/>
-                <Users/>
-                <Products/>
-                <Footer/>
-            </div>
+            <Router>
+                <div>
+                    <Route component={Nav}/>
+                    <Route path='/users' component={Users}/>
+                    <Route path='/products' component={Products}/>
+                    <Route component={Footer}/>
+                </div>
+            </Router>
         )
     }
     

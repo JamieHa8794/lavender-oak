@@ -8,15 +8,6 @@ const LOAD_USERS = 'LOAD_USERS';
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 
 
-
-// const initialState = {
-//     users : [],
-//     products: [],
-//     loading: true
-// }
-
-//fix!
-
 //reducers
 
 const loadReducers = (state = true, action)=>{
@@ -49,22 +40,6 @@ const reducer = combineReducers({
 })
 
 const store = createStore(reducer, applyMiddleware(thunk))
-
-
-// const store = createStore((state = initialState, action)=>{
-//     if(action.type === LOAD){
-//         state = {...state, loading: false}
-//     }
-//     if(action.type === LOAD_USERS){
-//         state = {...state, users: action.users}
-//     }
-//     if(action.type === LOAD_PRODUCTS){
-//         state = {...state, products: action.products}
-//     }
-//     return state;
-// })
-
-
 
 
 //action creators
