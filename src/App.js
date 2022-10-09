@@ -5,6 +5,7 @@ import Nav from './Nav'
 import {loading, loadUsers, loadProducts} from './store'
 import Products from './Products';
 import Users from './Users';
+import Footer from './Footer'
 
 
 class _App extends Component{
@@ -13,7 +14,6 @@ class _App extends Component{
     }
     componentDidMount(){
         this.props.load();
-        console.log(this.props)
     }
     render(){
         const {loading} = this.props.state
@@ -25,9 +25,9 @@ class _App extends Component{
         return(
             <div>
                 <Nav/>
-                <hr/>
                 <Users/>
                 <Products/>
+                <Footer/>
             </div>
         )
     }
