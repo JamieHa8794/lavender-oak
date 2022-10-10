@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const {STRING, TEXT} = Sequelize
+const {STRING, TEXT, UUID, UUIDV4} = Sequelize
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/lavander_oak');
 
 const { data } = require('./data')
@@ -12,7 +12,9 @@ const User = db.define('user', {
 
 const Product = db.define('product', {
     item_id:{
-        type: STRING
+        type: UUID,
+        primaryKey: true, 
+        defaultValue: UUIDV4,
     },
     img:{
         type: STRING
