@@ -4,11 +4,20 @@ import {connect} from 'react-redux'
 const Products = ({products}) =>{
     return(
         <div>
-            <ul>
+            <ul className='products-ul'>
                 {products.map((product, idx) =>{
                     return(
-                        <li key={idx}>
-                            {product.name}
+                        <li key={idx} className='products-li'>
+                            <img src={product.img}/>
+                            <div className='products-name'>
+                                {product.name}
+                            </div>
+                            <div className='products-category'>
+                                {product.category}
+                            </div>
+                            <div className='products-price'>
+                                ${product.price}.00
+                            </div>
                         </li>
                     )
                 })}

@@ -1,12 +1,12 @@
 body{
-    background-color: lavender;
+    background-color: white;
 
     margin: 0px;
 }
 nav{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .nav-logo{
@@ -14,6 +14,28 @@ nav{
     font-family: fantasy;
 }
 
+.products-ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between;
+    align-items: center; */
+}
+
+.products-li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 10px;
+
+    width: 100px;
+}
+
+.products-name{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
 .footer{
