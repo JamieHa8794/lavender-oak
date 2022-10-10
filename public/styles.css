@@ -10,16 +10,20 @@ nav{
     align-items: center;
 }
 .nav-logo{
-    font-size: 30px;
-    font-family: fantasy;
+    width: 150px;
+    height: 100px;
 }
 
 .products-ul{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    flex-grow: 100%;
+
+
+
     justify-content: space-between;
-    padding: 100px;
+    padding: 200px;
 }
 
 .products-li{
@@ -46,7 +50,13 @@ nav{
     justify-content: space-between;
     align-items: center;
 
-    background-color: lightslategray;
+    background-color: white;
 
+    padding-left: 75px;
+    padding-right: 100px;
+}
 
+.footer-logo{
+    width: 175px;
+    height: 150px;
 }

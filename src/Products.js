@@ -2,6 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 const Products = ({products}) =>{
+    products.sort((a, b) => {
+        const idA = a.item_id;
+        const idB = b.item_id
+        if (idA < idB) {
+          return -1;
+        }
+        if (idA > idB) {
+          return 1;
+        }
+        return 0;
+      });
     return(
         <div>
             <ul className='products-ul'>

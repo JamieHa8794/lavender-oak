@@ -4,6 +4,8 @@ import React from 'react';
 const Footer = () =>{
     return(
         <div className='footer'>
+            <img src='./public/logo.png' className='footer-logo'/>
+
             
             {/* Help */}
             <div>
