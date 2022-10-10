@@ -7,7 +7,7 @@ import {loading, loadUsers, loadProducts} from './store'
 import Products from './Products';
 import Users from './Users';
 import Footer from './Footer'
-
+import imgCard from './imgCard';
 
 class _App extends Component{
     constructor(){
@@ -27,6 +27,7 @@ class _App extends Component{
             <Router>
                 <div>
                     <Route component={Nav}/>
+                    <Route component={imgCard}/>
                     <Route path='/users' component={Users}/>
                     <Route path='/products' component={Products}/>
                     <Route component={Footer}/>
