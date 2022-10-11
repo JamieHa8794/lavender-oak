@@ -113,7 +113,6 @@ const syncAndSeed = async () =>{
             })
         }))
         
-        // const [chair, sofa, bed, lamp, rug] = await Promise.all(['chair', 'sofa', 'bed', 'lamp', 'rug'].map(name => Product.create({name})))
         console.log('connected to db')
     }
     catch(err){

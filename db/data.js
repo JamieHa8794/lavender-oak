@@ -150,7 +150,7 @@ const tvStands = tvStandImgs.map(img=>{
   return({
     "img": img,
     "name": faker.lorem.word().toUpperCase(),
-    "category": "TV Stands",
+    "category": "TV Stand",
     "room": "Living Room",
     "color": faker.color.human(),
     "price": Math.ceil((Math.random()*100))+100,
@@ -192,7 +192,7 @@ const diningTables = diningTableImgs.map(img=>{
   return({
     "img": img,
     "name": faker.lorem.word().toUpperCase(),
-    "category": "Dining Tables",
+    "category": "Dining Table",
     "room": "Dining Room",
     "color": faker.color.human(),
     "price": Math.ceil((Math.random()*300))+190,
@@ -246,7 +246,7 @@ const desks = deskImgs.map(img=>{
   return({
     "img": img,
     "name": faker.lorem.word().toUpperCase(),
-    "category": "Desks",
+    "category": "Desk",
     "room": "Study",
     "color": faker.color.human(),
     "price": Math.ceil((Math.random()*150))+50,
@@ -291,7 +291,7 @@ const rugImgs = [
     return({
       "img": img,
       "name": faker.lorem.word().toUpperCase(),
-      "category": "Rugs",
+      "category": "Rug",
       "room": "",
       "color": faker.color.human(),
       "price": Math.ceil((Math.random()*150))+50,
@@ -346,7 +346,7 @@ const diningChairs = diningChairImgs.map(img=>{
   return({
     "img": img,
     "name": faker.lorem.word().toUpperCase(),
-    "category": "Dining Chairs",
+    "category": "Dining Chair",
     "room": "Dining Room",
     "color": faker.color.human(),
     "price": Math.ceil((Math.random()*150))+50,
@@ -395,7 +395,7 @@ const computerChairs = computerChairImgs.map(img=>{
   return({
     "img": img,
     "name": faker.lorem.word().toUpperCase(),
-    "category": "Computer Chairs",
+    "category": "Computer Chair",
     "room": "Study",
     "color": faker.color.human(),
     "price": Math.ceil((Math.random()*150))+50,
@@ -497,7 +497,7 @@ const lampimgs = [
     return({
       "img": img,
       "name": faker.lorem.word().toUpperCase(),
-      "category": "Lamps",
+      "category": "Lamp",
       "room": "",
       "color": faker.color.human(),
       "price": Math.ceil((Math.random()*200))+50,

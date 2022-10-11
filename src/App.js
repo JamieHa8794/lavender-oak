@@ -10,6 +10,7 @@ import Footer from './Footer'
 import imgCard from './imgCard';
 import SingleProduct from './SingleProduct';
 import MoreInfo from './MoreInfo';
+import ByCategory from './ByCategory';
 
 
 
@@ -35,10 +36,11 @@ class _App extends Component{
                     <Route path='/users' component={Users} exact/>
 
 
-                    <Route path='/products' component={imgCard} exact/>
                     <Route path='/products' component={Products} exact/>
-                    <Route path='/products/:id' component={SingleProduct} exact/>
-                    <Route path='/products/:id' component={MoreInfo} exact/>
+                    <Route path='/products/:category' component={imgCard} exact/>
+                    <Route path='/products/:category' component={ByCategory} exact/>
+                    <Route path='/products/:category/:id' component={SingleProduct} exact/>
+                    <Route path='/products/:category/:id' component={MoreInfo} exact/>
 
                     <Route component={Footer}/>
                 </div>

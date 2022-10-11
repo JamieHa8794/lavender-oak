@@ -1,23 +1,30 @@
-import React from 'react';
-import {connect} from 'react-redux'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Products = ({products}) =>{
-    products.sort((a, b) => {
-        const idA = a.item_id;
-        const idB = b.item_id
-        if (idA < idB) {
-          return -1;
-        }
-        if (idA > idB) {
-          return 1;
-        }
-        return 0;
-      });
+
+const ByCategory = ({products, match}) =>{
+    const category = match.params.category;
+    const productsByCategory = products.filter(product => product.category === category)
+    if(!productsByCategory){
+        console.log('here')
+        return(
+        <div>
+            Whoops nothing to see here...
+            <Link to='/products'>Go back to all products...</Link>
+        </div>
+        )
+    }
     return(
         <div>
+            <div className='by-category-back-to-products'>
+                /<Link to='/products'>Products</Link>
+            </div>
+            <div className="byCateory-title">
+                {category}s
+            </div>
             <ul className='products-ul'>
-                {products.map((product, idx) =>{
+                {productsByCategory.map((product, idx) =>{
                     return(
                         <Link key={idx} to={`/products/${product.category}/${product.id}`}>
                         <li className='products-li'>
@@ -38,8 +45,8 @@ const Products = ({products}) =>{
             </ul>
         </div>
     )
-}
 
+}
 
 const mapStateToProps = (state) =>{
     return state;
@@ -49,4 +56,4 @@ const mapStateToProps = (state) =>{
     
 // }
 
-export default connect(mapStateToProps)(Products)
+export default connect(mapStateToProps)(ByCategory)

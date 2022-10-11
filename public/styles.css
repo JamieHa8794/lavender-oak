@@ -33,6 +33,7 @@ nav{
 
 .imgCard-img{
     height: 350px;
+    width: 350px;
 }
 
 .imgCard-textbox{
@@ -62,7 +63,9 @@ nav{
 
 
     justify-content: space-between;
-    padding: 200px;
+    padding-left: 200px;
+    padding-right: 200px;
+
     padding-bottom: 20px;
 }
 
@@ -111,7 +114,24 @@ nav{
 .single-product-short_description{
     text-align: justify;
 }
+.single-product-add-to-cart{
+    width: 100px;
+}
 
+.byCateory-title{
+    padding-left: 100px;
+
+    display: flex;
+    justify-content: center;
+
+
+    font-family: fantasy;
+    font-size: 30px;
+}
+
+.by-category-back-to-products{
+    padding-left: 100px;
+}
 
 .moreinfo-container{
     margin-left: 100px;

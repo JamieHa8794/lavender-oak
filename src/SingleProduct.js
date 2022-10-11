@@ -20,7 +20,7 @@ const SingleProduct = ({products, match}) =>{
     return(
         <div>
             <div className='single-product-back-to-products'>
-                /<Link to='/products'>Products</Link>/<Link to={`/${product.category}`}>{product.category}s</Link>
+                /<Link to='/products'>Products</Link>/<Link to={`/products/${product.category}`}>{product.category}s</Link>
             </div>
             <div className='single-product-container'>
                 <img src={product.img} className='single-product-img'/>
@@ -37,6 +37,7 @@ const SingleProduct = ({products, match}) =>{
                     <div className='single-product-short_description'>
                         {product.short_description}
                     </div>
+                <button className='single-product-add-to-cart'>Add to Cart</button>
                 </div>
             </div>
         </div>
