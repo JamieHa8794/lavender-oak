@@ -8,6 +8,10 @@ import Products from './Products';
 import Users from './Users';
 import Footer from './Footer'
 import imgCard from './imgCard';
+import SingleProduct from './SingleProduct';
+import MoreInfo from './MoreInfo';
+
+
 
 class _App extends Component{
     constructor(){
@@ -27,9 +31,15 @@ class _App extends Component{
             <Router>
                 <div>
                     <Route component={Nav}/>
-                    <Route component={imgCard}/>
+
                     <Route path='/users' component={Users} exact/>
+
+
+                    <Route path='/products' component={imgCard} exact/>
                     <Route path='/products' component={Products} exact/>
+                    <Route path='/products/:id' component={SingleProduct} exact/>
+                    <Route path='/products/:id' component={MoreInfo} exact/>
+
                     <Route component={Footer}/>
                 </div>
             </Router>
