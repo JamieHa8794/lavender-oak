@@ -33,7 +33,7 @@ nav{
 
 .imgCard-img{
     height: 350px;
-    width: 350px;
+    width: 400px;
 }
 
 .imgCard-textbox{
@@ -53,6 +53,32 @@ nav{
 
     font-size: 30px;
 }
+
+
+
+.categories-ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+    padding-left: 200px;
+    padding-right: 200px;
+}
+.categories-li{
+    list-style: none;
+
+    width: 150px;
+
+    padding: 20px;
+}
+.categories-img{
+    width: 175px;
+    height: 125px;
+}
+
+
 
 .products-ul{
     display: flex;

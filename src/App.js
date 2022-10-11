@@ -12,7 +12,7 @@ import SingleProduct from './SingleProduct';
 import MoreInfo from './MoreInfo';
 import ByCategory from './ByCategory';
 import MyProfile from './MyProfile';
-
+import Categories from './Categories';
 
 
 class _App extends Component{
@@ -42,6 +42,9 @@ class _App extends Component{
                     <Route path='/products/:category' component={ByCategory} exact/>
                     <Route path='/products/:category/:id' component={SingleProduct} exact/>
                     <Route path='/products/:category/:id' component={MoreInfo} exact/>
+
+
+                    <Route path='/categories' component={Categories} exact/>
 
                     <Route component={Footer}/>
                 </div>

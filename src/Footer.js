@@ -65,11 +65,11 @@ const Footer = () =>{
             {/* Legal*/}
             <div>
                 <div>
-                    Help
+                    Our Locations
                 </div>
                 <div>
                     <a href=''>
-
+                        
                     </a>
                     <a href=''>
                         
