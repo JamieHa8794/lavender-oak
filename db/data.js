@@ -511,11 +511,79 @@ const lampimgs = [
   })  
 
   
-  const data = beds.concat(sofas, tvStands, diningTables, desks, rugs, diningChairs, computerChairs, endTables, nightstands, lamps)
+  const products = beds.concat(sofas, tvStands, diningTables, desks, rugs, diningChairs, computerChairs, endTables, nightstands, lamps)
 
 
+
+
+
+
+
+const users = [
+  {
+  'userName': 'Chandy',
+  'firstName': 'Chandler',
+  'middleName': "M.",
+  'lastName': "Bing",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+{
+  'userName': 'MonicaG',
+  'firstName': 'Monica',
+  'middleName': "",
+  'lastName': "Geller",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+{
+  'userName': 'Joeyy',
+  'firstName': 'Joey',
+  'middleName': "",
+  'lastName': "Tribianni",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+{
+  'userName': 'Pheebs',
+  'firstName': 'Pheobe',
+  'middleName': "",
+  'lastName': "Buffay",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+{
+  'userName': 'Rosstepher',
+  'firstName': 'Ross',
+  'middleName': "",
+  'lastName': "Geller",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+{
+  'userName': 'Rache',
+  'firstName': 'Rachel',
+  'middleName': "Karen",
+  'lastName': "Green",
+  'phoneNumber': '(123) 456-789',
+  'streetAddress': '123 Address',
+  'city':"New York",
+  'zipCode': "10001",
+},
+]
 
 
 module.exports = {
-    data
+    products,
+    users
 }

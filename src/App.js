@@ -11,6 +11,7 @@ import imgCard from './imgCard';
 import SingleProduct from './SingleProduct';
 import MoreInfo from './MoreInfo';
 import ByCategory from './ByCategory';
+import MyProfile from './MyProfile';
 
 
 
@@ -33,7 +34,7 @@ class _App extends Component{
                 <div>
                     <Route component={Nav}/>
 
-                    <Route path='/users' component={Users} exact/>
+                    <Route path='/myProfile' component={MyProfile} exact/>
 
 
                     <Route path='/products' component={Products} exact/>

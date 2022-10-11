@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const {STRING, TEXT, UUID, UUIDV4} = Sequelize
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/lavander_oak');
 
-const { data } = require('./data')
+const { products, users } = require('./data')
 
 const User = db.define('user', {
     id:{
@@ -94,10 +94,21 @@ const syncAndSeed = async () =>{
     try{
         await db.sync({force: true})
 
-        const [ross, rachel, monica, chandler, pheobe, joey] = await Promise.all(['Ross', 'Rachel', 'Monica', 'Chandler', 'Pheobe', 'Joey'].map(name => User.create({name})))
+
+       await Promise.all(users.map(user=>{
+            User.create({
+                'userName': user.userName,
+                'firstName': user.firstName,
+                'middleName': user.middleName,
+                'lastName': user.lastName,
+                'phoneNumber': user.phoneNumber,
+                'streetAddress': user.streetAddress,
+                'city': user.city,
+                'zipCode': user.zipCode,
+            })
+       })) 
         
-        
-        await Promise.all(data.map(product =>{
+        await Promise.all(products.map(product =>{
             Product.create({
                 name: product.name,
                 img: product.img,
