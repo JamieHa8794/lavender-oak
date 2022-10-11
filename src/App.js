@@ -28,8 +28,8 @@ class _App extends Component{
                 <div>
                     <Route component={Nav}/>
                     <Route component={imgCard}/>
-                    <Route path='/users' component={Users}/>
-                    <Route path='/products' component={Products}/>
+                    <Route path='/users' component={Users} exact/>
+                    <Route path='/products' component={Products} exact/>
                     <Route component={Footer}/>
                 </div>
             </Router>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom';
 
 const Products = ({products}) =>{
     products.sort((a, b) => {
@@ -18,18 +19,20 @@ const Products = ({products}) =>{
             <ul className='products-ul'>
                 {products.map((product, idx) =>{
                     return(
-                        <li key={idx} className='products-li'>
-                            <img src={product.img}/>
-                            <div className='products-name'>
-                                {product.name}
-                            </div>
-                            <div className='products-category'>
-                                {product.category}
-                            </div>
-                            <div className='products-price'>
-                                ${product.price}.00
-                            </div>
+                        <Link key={idx} to={`/products/${product.id}`}>
+                        <li className='products-li'>
+                                <img src={product.img}/>
+                                <div className='products-name'>
+                                    {product.name}
+                                </div>
+                                <div className='products-category'>
+                                    {product.category}
+                                </div>
+                                <div className='products-price'>
+                                    ${product.price}.00
+                                </div>
                         </li>
+                        </Link>
                     )
                 })}
             </ul>

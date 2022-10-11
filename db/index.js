@@ -5,13 +5,39 @@ const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/lavan
 const { data } = require('./data')
 
 const User = db.define('user', {
-    name: {
+    id:{
+        type: UUID,
+        primaryKey: true, 
+        defaultValue: UUIDV4, 
+    },
+    userName: {
         type: STRING
-    }
+    },
+    firstName: {
+        type: STRING
+    },
+    middleName: {
+        type: STRING
+    },
+    lastName: {
+        type: STRING
+    },
+    phoneNumber: {
+        type: STRING
+    },
+    streetAddress: {
+        type: STRING
+    },
+    city: {
+        type: STRING
+    },
+    zipCode: {
+        type: STRING
+    },
 })
 
 const Product = db.define('product', {
-    item_id:{
+    id:{
         type: UUID,
         primaryKey: true, 
         defaultValue: UUIDV4,
@@ -50,6 +76,19 @@ const Product = db.define('product', {
         type: STRING
     },
 })
+
+const Cart = db.define('cart', {
+    id:{
+        type: UUID,
+        primaryKey: true, 
+        defaultValue: UUIDV4,
+    },
+})
+
+User.hasMany(Cart);
+Product.hasMany(Cart);
+
+
 
 const syncAndSeed = async () =>{
     try{
