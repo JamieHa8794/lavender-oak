@@ -97,14 +97,14 @@ const syncAndSeed = async () =>{
 
        await Promise.all(users.map(user=>{
             User.create({
-                'userName': user.userName,
-                'firstName': user.firstName,
-                'middleName': user.middleName,
-                'lastName': user.lastName,
-                'phoneNumber': user.phoneNumber,
-                'streetAddress': user.streetAddress,
-                'city': user.city,
-                'zipCode': user.zipCode,
+                userName: user.userName,
+                firstName: user.firstName,
+                middleName: user.middleName,
+                lastName: user.lastName,
+                phoneNumber: user.phoneNumber,
+                streetAddress: user.streetAddress,
+                city: user.city,
+                zipCode: user.zipCode,
             })
        })) 
         

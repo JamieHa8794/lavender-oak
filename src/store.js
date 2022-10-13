@@ -5,9 +5,9 @@ import axios from "axios";
 //action constatnts
 const LOAD = 'LOAD'
 const LOAD_USERS = 'LOAD_USERS';
-const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
-const LOAD_CARTS = 'LOAD_CARTS'
-
+const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+const LOAD_CARTS = 'LOAD_CARTS';
+const ADD_TO_CART = 'ADD_TO_CART';
 
 //reducers
 
@@ -36,6 +36,9 @@ const productsReducers = (state = [], action) =>{
 const cartsReducers = (state = [], action) =>{
     if(action.type === LOAD_CARTS){
         state = action.carts
+    }
+    if(action.type === ADD_TO_CART){
+        state = [...state, action.cartItem]
     }
     return state;
 }
@@ -82,6 +85,12 @@ const _loadCarts = (carts) =>{
     }
 }
 
+const _addToCart = (cartItem) =>{
+    return{
+        type: ADD_TO_CART,
+        cartItem
+    }
+}
 
 
 //thunks
@@ -113,6 +122,14 @@ const loadCarts = () =>{
     }
 }
 
+const addToCart = (userId, productId) =>{
+    return async (dispatch) =>{
+        console.log(userId, productId)
+        const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
+        console.log(cartItem)
+        dispatch(_addToCart(cartItem));
+    }
+}
 
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart}
