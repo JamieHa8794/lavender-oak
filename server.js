@@ -7,6 +7,7 @@ const path = require('path');
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
 app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use(express.json())
 
 app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html')))
 
@@ -51,10 +52,13 @@ app.get('/api/carts', async (req, res, next)=>{
 
 app.post('/api/carts', async (req, res, next) =>{
     try{
-        
+        res.status(201).send(await Cart.create({
+            userId: req.body.userId,
+            productId: req.body.productId
+        }))
     }
     catch(err){
-
+        next(err)
     }
 })
 

@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 
 
 const SingleProduct = ({products, match}) =>{
-    const id = match.params.id;
-    console.log(id)
-    const product = products.find(product => product.id === id)
+    const productId = match.params.id;
+    console.log(productId)
+    const product = products.find(product => product.id === productId)
     console.log(product)
+
+    const user = {
+        id: 1
+    }
+
     if(!product){
         console.log('here')
         return(
@@ -16,6 +21,10 @@ const SingleProduct = ({products, match}) =>{
             <Link to='/products'>Go back to all products...</Link>
         </div>
         )
+    }
+
+    const onClick = (event) =>{
+        addToCart(user.id, product.id)
     }
     return(
         <div>
@@ -37,7 +46,7 @@ const SingleProduct = ({products, match}) =>{
                     <div className='single-product-short_description'>
                         {product.short_description}
                     </div>
-                <button className='single-product-add-to-cart'>Add to Cart</button>
+                <button onClick={onClick} className='single-product-add-to-cart'>Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -50,8 +59,12 @@ const mapStateToProps = (state) =>{
     return state;
 }
 
-// const mapDispatchToProps = () =>{
-    
+// const mapDispatchToProps = (dispatch) =>{
+        // return{
+        //     addToCart : () =>{
+        //         dispatch(addToCart(dispatch, userId, productId))
+        //     }
+        // }
 // }
 
 export default connect(mapStateToProps)(SingleProduct)

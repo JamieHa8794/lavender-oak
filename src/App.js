@@ -66,11 +66,11 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         load: () =>{
-            dispatch(loadUsers(dispatch)); 
-            dispatch(loadProducts(dispatch));
-            dispatch(loadCarts(dispatch));
+            dispatch(loadUsers()); 
+            dispatch(loadProducts());
+            dispatch(loadCarts());
 
-            dispatch(loading(dispatch));
+            dispatch(loading());
         }
     }
 }

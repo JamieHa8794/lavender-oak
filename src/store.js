@@ -85,29 +85,29 @@ const _loadCarts = (carts) =>{
 
 
 //thunks
-const loading = (dispatch) =>{
-    return () =>{
+const loading = () =>{
+    return (dispatch) =>{
         dispatch(_loading())
     }
 }
 
 
-const loadUsers =  (dispatch) =>{
-    return async ()=>{
+const loadUsers =  () =>{
+    return async (dispatch)=>{
         const users = (await axios.get('/api/users')).data;
         dispatch(_loadUsers(users));
     }
 }
 
-const loadProducts = (dispatch) =>{
-    return async ()=>{
+const loadProducts = () =>{
+    return async (dispatch)=>{
         const products = (await axios.get('/api/products')).data;
         dispatch(_loadProducts(products));
     }
 }
 
-const loadCarts = (dispatch) =>{
-    return async () =>{
+const loadCarts = () =>{
+    return async (dispatch) =>{
         const carts = (await axios.get('/api/carts')).data;
         dispatch(_loadCarts(carts));
     }
