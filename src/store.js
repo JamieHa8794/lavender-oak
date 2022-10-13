@@ -6,6 +6,7 @@ import axios from "axios";
 const LOAD = 'LOAD'
 const LOAD_USERS = 'LOAD_USERS';
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
+const LOAD_CARTS = 'LOAD_CARTS'
 
 
 //reducers
@@ -32,11 +33,20 @@ const productsReducers = (state = [], action) =>{
 }
 
 
+const cartsReducers = (state = [], action) =>{
+    if(action.type === LOAD_CARTS){
+        state = action.carts
+    }
+    return state;
+}
+
+
 
 const reducer = combineReducers({
     loading: loadReducers,
     users: usersReducers,
     products: productsReducers,
+    carts: cartsReducers
 })
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -65,6 +75,13 @@ const _loadProducts = (products) =>{
 
 }
 
+const _loadCarts = (carts) =>{
+    return{
+        type: LOAD_CARTS,
+        carts
+    }
+}
+
 
 
 //thunks
@@ -89,6 +106,13 @@ const loadProducts = (dispatch) =>{
     }
 }
 
+const loadCarts = (dispatch) =>{
+    return async () =>{
+        const carts = (await axios.get('/api/carts')).data;
+        dispatch(_loadCarts(carts));
+    }
+}
+
 
 export default store;
-export {loading, loadUsers, loadProducts}
+export {loading, loadUsers, loadProducts, loadCarts}

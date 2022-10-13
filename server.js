@@ -1,9 +1,8 @@
-const {syncAndSeed, model: {Product, User}} = require('./db')
+const {syncAndSeed, model: {Product, User, Cart}} = require('./db')
 
 const express = require('express');
 const app = express();
-const path = require('path')
-
+const path = require('path');
 
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
@@ -27,7 +26,7 @@ app.get('/api/users', async (req, res, next)=>{
 
 
 
-//furniture
+//products
 app.get('/api/products', async (req, res, next)=>{
     try{
         const product = await Product.findAll();
@@ -39,8 +38,25 @@ app.get('/api/products', async (req, res, next)=>{
 })
 
 
+//cart
+app.get('/api/carts', async (req, res, next)=>{
+    try{
+        const cart = await Cart.findAll();
+        res.send(cart)
+    }
+    catch(err){
+        next(err)
+    }
+})
 
+app.post('/api/carts', async (req, res, next) =>{
+    try{
+        
+    }
+    catch(err){
 
+    }
+})
 
 const init = async () =>{
     try{

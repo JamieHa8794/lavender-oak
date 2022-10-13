@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav'
-import {loading, loadUsers, loadProducts} from './store'
+import {loading, loadUsers, loadProducts, loadCarts} from './store'
 import Products from './Products';
-import Users from './Users';
 import Footer from './Footer'
 import imgCard from './imgCard';
 import SingleProduct from './SingleProduct';
@@ -13,7 +12,7 @@ import MoreInfo from './MoreInfo';
 import ByCategory from './ByCategory';
 import MyProfile from './MyProfile';
 import Categories from './Categories';
-
+import Cart from './Cart';
 
 class _App extends Component{
     constructor(){
@@ -46,6 +45,9 @@ class _App extends Component{
 
                     <Route path='/categories' component={Categories} exact/>
 
+                    <Route path='/cart' component={Cart} exact/>
+
+
                     <Route component={Footer}/>
                 </div>
             </Router>
@@ -66,6 +68,8 @@ const mapDispatchToProps = (dispatch) =>{
         load: () =>{
             dispatch(loadUsers(dispatch)); 
             dispatch(loadProducts(dispatch));
+            dispatch(loadCarts(dispatch));
+
             dispatch(loading(dispatch));
         }
     }

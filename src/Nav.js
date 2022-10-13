@@ -11,6 +11,9 @@ const Nav = () =>{
             <Link to='/Products'>Products</Link>
             <Link to='/Categories'>Categories</Link>
             <Link to='/MyProfile'>My Profile</Link>
+            <Link to='/Cart'>Cart</Link>
+
+
 
         </nav>
     )

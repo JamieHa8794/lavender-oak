@@ -136,7 +136,8 @@ module.exports = {
     syncAndSeed,
     model: {
         Product,
-        User
+        User,
+        Cart
     }
 }
 
