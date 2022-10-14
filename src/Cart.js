@@ -5,21 +5,28 @@ import { connect } from 'react-redux';
 const Cart = ({carts, products})=>{
 
     
-    const userId = 'e20feb6c-e0d7-4ca2-95c6-27a1a201f527';
+    const userId = '09cd8e34-66ad-47c9-8802-5e05b338d898';
 
     const cartItems = carts.filter(cartItem => cartItem.userId == userId);
     
 
     const productList = [];
+    const productCount = {}
     cartItems.map(cartItem =>{
         products.map(product =>{
             if(cartItem.productId == product.id){
-                productList.push(product);
+                if(!productCount[product.name]){
+                    productCount[product.name] = 0;
+                    productList.push(product)
+                }
+                productCount[product.name]++;
             }
         })
     })
 
+
     console.log(productList)
+    console.log(productCount)
 
     let sum = 0;
 
@@ -37,30 +44,47 @@ const Cart = ({carts, products})=>{
         )
     }
     return(
-        <div>
-            <div>
-                Items in Cart: 
-            </div>
-            <ul>
-                {productList.map(product =>{
-                    return(
-                        <li className='cart-items-li'>
-                            <img src={product.img} className='cart-items-img'/>
-                            <div className='cart-items-product-name'>
-                                {product.name}
-                            </div>
-                            <div>
-                                ${product.price}.00
-                            </div>
-                        </li>
-                    )
-                })}
-            </ul>
-
+        <div className='cart-container'>
             <div>
                 <div>
-                    Subtotal: {sum ? `$${sum}.00` : 0}
+                    Items in Cart: 
                 </div>
+                <ul>
+                    {productList.map((product, idx) =>{
+                        return(
+                            <li key={idx} className='cart-items-li'>
+                                <img src={product.img} className='cart-items-img'/>
+                                <div className='cart-items-product-name'>
+                                    {product.name}
+                                </div>
+                                <div>
+                                    ${product.price}.00
+                                </div>
+                                <div>
+                                    {productCount[product.name]}
+                                </div>
+                                <button onClick></button>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <div className='cart-summary-container'>
+                    <div className='cart-summary-summary'>
+                        Summary:
+                    </div>
+                    <div>
+                        Subtotal: {sum ? `$${sum}.00` : 0}
+                    </div>
+                    <div>
+                        Taxes: {sum ? `$${(sum * 0.08875).toFixed(2)}` : 0}
+                    </div>
+                    <div>
+                        Shipping: $49.99
+                    </div>
+                    <div>
+                        Total: {sum ? `$${((sum * 1.08875).toFixed(2)*1)+(49.99*1)}` : 0}
+                    </div>
             </div>
         </div>
     )

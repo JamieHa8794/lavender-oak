@@ -188,14 +188,27 @@ nav{
     text-align: justify;
 }
 
+
+.cart-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
 .cart-items-li{
     list-style: none;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     width: 500px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    border-bottom: grey solid;
 }
 
 .cart-items-img{
@@ -203,7 +216,16 @@ nav{
     height: 75px;
 }
 
+.cart-summary-container{
+    font-size: 18px;
+    width: 200px;
+    height: 200px;
 
+    border: solid black;
+}
+.cart-summary-summary{
+    font-size: 30px;
+}
 
 .footer{
     display: flex;

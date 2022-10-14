@@ -13,9 +13,9 @@ class SingleProduct extends Component{
     }
     onClick(){
         const user = {
-            id: 'e20feb6c-e0d7-4ca2-95c6-27a1a201f527'
+            id: '09cd8e34-66ad-47c9-8802-5e05b338d898'
         }
-        const {products, match} = this.props
+        const {match} = this.props
         const productId = match.params.id;
 
 
@@ -32,7 +32,7 @@ class SingleProduct extends Component{
         console.log(productId)
         const product = products.find(product => product.id === productId)
         console.log(product)
-        
+
         if(!product){
             console.log('here')
             return(
