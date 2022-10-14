@@ -188,6 +188,22 @@ nav{
     text-align: justify;
 }
 
+.cart-items-li{
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 500px;
+}
+
+.cart-items-img{
+    width: 100px;
+    height: 75px;
+}
+
+
 
 .footer{
     display: flex;
