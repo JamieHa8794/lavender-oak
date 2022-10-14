@@ -13,7 +13,7 @@ class SingleProduct extends Component{
     }
     onClick(){
         const user = {
-            id: 'a7afa506-20b1-4de5-8133-2de6616399e5'
+            id: '9efa514d-7448-4f8f-8854-478e2611e68c'
         }
         const {match} = this.props
         const productId = match.params.id;

@@ -83,9 +83,12 @@ const Cart = db.define('cart', {
         primaryKey: true, 
         defaultValue: UUIDV4,
     },
+    userId:{
+        type: STRING,
+    }
 })
 
-User.hasMany(Cart);
+// User.hasMany(Cart);
 Product.hasMany(Cart);
 
 

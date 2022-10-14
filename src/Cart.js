@@ -6,11 +6,25 @@ import { connect } from 'react-redux';
 class Cart extends Component{
     constructor(){
         super();
+        this.subtract = this.subtract.bind(this);
+        this.add = this.add.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
+    subtract(event){
+        console.log(event.target.value)
+    }
+    add(event){
+        console.log(event.target.value)
+    }
+    removeItem(event){
+        console.log(event.target.value)
+    }
+
     render(){
         const {carts, products} = this.props;
+        const {subtract, add, removeItem} = this
 
-        const userId = 'a7afa506-20b1-4de5-8133-2de6616399e5';
+        const userId = '9efa514d-7448-4f8f-8854-478e2611e68c';
 
         const cartItems = carts.filter(cartItem => cartItem.userId == userId);
         
@@ -28,10 +42,6 @@ class Cart extends Component{
                 }
             })
         })
-    
-    
-        console.log(productList)
-        console.log(productCount)
     
         let sum = 0;
     
@@ -65,10 +75,14 @@ class Cart extends Component{
                                 <div>
                                     ${product.price}.00
                                 </div>
-                                <div>
-                                    {productCount[product.name]}
+                                <div className='cart-items-count-container'>
+                                    <button onClick={subtract} value={product.id} className='cart-items-count-subtract'>-</button>
+                                    <div className='cart-items-count-count'>
+                                        {productCount[product.name]}
+                                    </div>
+                                    <button onClick={add}  value={product.id} className='cart-items-count-add'>+</button>
                                 </div>
-                                <button onClick></button>
+                                <button onClick={removeItem} value={product.id}>Remove Item</button>
                             </li>
                         )
                     })}

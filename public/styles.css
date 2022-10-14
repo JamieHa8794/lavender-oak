@@ -204,7 +204,7 @@ nav{
     justify-content: space-between;
     align-items: center;
 
-    width: 500px;
+    width: 600px;
     padding-top: 20px;
     padding-bottom: 20px;
 
@@ -214,6 +214,17 @@ nav{
 .cart-items-img{
     width: 100px;
     height: 75px;
+}
+
+.cart-items-count-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.cart-items-count-count{
+    padding-left: 15px;
+    padding-right: 15px;
+
 }
 
 .cart-summary-container{
