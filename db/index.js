@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const {STRING, TEXT, UUID, UUIDV4} = Sequelize
+const {STRING, TEXT, INTEGER, UUID, UUIDV4} = Sequelize
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/lavander_oak');
 
 const { products, users } = require('./data')

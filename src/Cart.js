@@ -1,49 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-const Cart = ({carts, products})=>{
 
-    
-    const userId = '09cd8e34-66ad-47c9-8802-5e05b338d898';
-
-    const cartItems = carts.filter(cartItem => cartItem.userId == userId);
-    
-
-    const productList = [];
-    const productCount = {}
-    cartItems.map(cartItem =>{
-        products.map(product =>{
-            if(cartItem.productId == product.id){
-                if(!productCount[product.name]){
-                    productCount[product.name] = 0;
-                    productList.push(product)
-                }
-                productCount[product.name]++;
-            }
-        })
-    })
-
-
-    console.log(productList)
-    console.log(productCount)
-
-    let sum = 0;
-
-    productList.map(product =>{
-        console.log(sum)
-        sum = sum + (product.price *1)
-    })
-    
-
-    if(cartItems.length == 0){
-        return(
-            <div>
-                Cart is empty
-            </div>
-        )
+class Cart extends Component{
+    constructor(){
+        super();
     }
-    return(
+    render(){
+        const {carts, products} = this.props;
+
+        const userId = 'a7afa506-20b1-4de5-8133-2de6616399e5';
+
+        const cartItems = carts.filter(cartItem => cartItem.userId == userId);
+        
+    
+        const productList = [];
+        const productCount = {}
+        cartItems.map(cartItem =>{
+            products.map(product =>{
+                if(cartItem.productId == product.id){
+                    if(!productCount[product.name]){
+                        productCount[product.name] = 0;
+                        productList.push(product)
+                    }
+                    productCount[product.name]++;
+                }
+            })
+        })
+    
+    
+        console.log(productList)
+        console.log(productCount)
+    
+        let sum = 0;
+    
+        productList.map(product =>{
+            console.log(sum)
+            sum = sum + (product.price *1)
+        })
+
+
+        if(cartItems.length == 0){
+            return(
+                <div>
+                    Cart is empty
+                </div>
+            )
+        }
+        return(
         <div className='cart-container'>
             <div>
                 <div>
@@ -87,9 +92,9 @@ const Cart = ({carts, products})=>{
                     </div>
             </div>
         </div>
-    )
+        )
+    }
 }
-
 
 
 

@@ -55,7 +55,7 @@ app.post('/api/carts', async (req, res, next) =>{
         console.log(req.body)
         res.status(201).send(await Cart.create({
             userId: req.body.userId,
-            productId: req.body.productId
+            productId: req.body.productId,
         }))
     }
     catch(err){
