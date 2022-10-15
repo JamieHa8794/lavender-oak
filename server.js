@@ -3,6 +3,7 @@ const {syncAndSeed, model: {Product, User, Cart}} = require('./db')
 const express = require('express');
 const app = express();
 const path = require('path');
+const { nextTick } = require('process');
 
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
@@ -52,16 +53,30 @@ app.get('/api/carts', async (req, res, next)=>{
 
 app.post('/api/carts', async (req, res, next) =>{
     try{
-        console.log(req.body)
         res.status(201).send(await Cart.create({
             userId: req.body.userId,
             productId: req.body.productId,
+            count: 1
         }))
     }
     catch(err){
         next(err)
     }
 })
+
+app.delete('/api/carts/:id', async (req, res, next)=>{
+    try{
+        const cartItem = await Cart.findByPk(req.params.id)
+        await cartItem.destroy();
+        res.sendStatus(204);
+    }
+    catch(err){
+        next(err)
+    }
+})
+
+
+
 
 const init = async () =>{
     try{

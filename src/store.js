@@ -8,6 +8,7 @@ const LOAD_USERS = 'LOAD_USERS';
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 const LOAD_CARTS = 'LOAD_CARTS';
 const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 
 //reducers
 
@@ -39,6 +40,9 @@ const cartsReducers = (state = [], action) =>{
     }
     if(action.type === ADD_TO_CART){
         state = [...state, action.cartItem]
+    }
+    if(action.type === REMOVE_CART_ITEM){
+        state = state.filter(cartItem => cartItem.id !== action.cartItem.id)
     }
     return state;
 }
@@ -92,6 +96,12 @@ const _addToCart = (cartItem) =>{
     }
 }
 
+const _removeFromCart = (cartItem) =>{
+    return{
+        type: REMOVE_CART_ITEM,
+        cartItem
+    }
+}
 
 //thunks
 const loading = () =>{
@@ -124,12 +134,18 @@ const loadCarts = () =>{
 
 const addToCart = (userId, productId) =>{
     return async (dispatch) =>{
-        console.log(userId, productId)
         const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
-        console.log(cartItem)
         dispatch(_addToCart(cartItem));
     }
 }
 
+const removeFromCart = (cartItem, history) =>{
+    return async (dispatch) =>{
+        await axios.delete(`/api/carts/${cartItem.id}`)
+        dispatch(_removeFromCart(cartItem))
+        history.push('/cart')
+    }
+}
+
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart, removeFromCart}

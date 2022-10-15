@@ -15,14 +15,21 @@ class SingleProduct extends Component{
         const user = {
             id: '9efa514d-7448-4f8f-8854-478e2611e68c'
         }
-        const {match} = this.props
+        const {match, addToCart, carts} = this.props
         const productId = match.params.id;
 
+        const cartItem = carts.find(cartItem => cartItem.productId === productId)
 
-        const {addToCart} = this.props;
-
+        if(cartItem){
+            console.log('its already in there...', cartItem)
+            
+        }
         addToCart(user.id, productId)
         console.log(user.id, productId) 
+
+        
+
+
     }
     render(){
         const {products, match} = this.props
@@ -81,7 +88,6 @@ const mapDispatchToProps = (dispatch) =>{
         return{
             addToCart : (userId, productId) =>{
                 dispatch(addToCart(userId, productId))
-                console.log('here')
             }
         }
 }

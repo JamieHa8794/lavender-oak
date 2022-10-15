@@ -85,6 +85,9 @@ const Cart = db.define('cart', {
     },
     userId:{
         type: STRING,
+    },
+    count: {
+        type: INTEGER
     }
 })
 
