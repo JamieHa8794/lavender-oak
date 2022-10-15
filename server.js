@@ -64,6 +64,20 @@ app.post('/api/carts', async (req, res, next) =>{
     }
 })
 
+app.put('/api/carts/:id', async (req, res, next) =>{
+    try{
+        const cartItem = await Cart.findByPk(req.params.id)
+        console.log(req.body.count)
+        res.send(await cartItem.update({
+            count: req.body.count
+        }))
+        console.log(cartItem)
+    }
+    catch(err){
+        next(err)
+    }
+})
+
 app.delete('/api/carts/:id', async (req, res, next)=>{
     try{
         const cartItem = await Cart.findByPk(req.params.id)

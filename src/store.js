@@ -8,6 +8,7 @@ const LOAD_USERS = 'LOAD_USERS';
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 const LOAD_CARTS = 'LOAD_CARTS';
 const ADD_TO_CART = 'ADD_TO_CART';
+const UPDATE_CART = 'UPDATE_CART';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 
 //reducers
@@ -40,6 +41,9 @@ const cartsReducers = (state = [], action) =>{
     }
     if(action.type === ADD_TO_CART){
         state = [...state, action.cartItem]
+    }
+    if(action.type === UPDATE_CART){
+        state = state.map(cartItem => cartItem.id !== action.cartItem.id ? cartItem : action.cartItem )
     }
     if(action.type === REMOVE_CART_ITEM){
         state = state.filter(cartItem => cartItem.id !== action.cartItem.id)
@@ -96,6 +100,13 @@ const _addToCart = (cartItem) =>{
     }
 }
 
+const _updateCart = (cartItem) =>{
+    return{
+        type: UPDATE_CART,
+        cartItem
+    }
+}
+
 const _removeFromCart = (cartItem) =>{
     return{
         type: REMOVE_CART_ITEM,
@@ -139,6 +150,14 @@ const addToCart = (userId, productId) =>{
     }
 }
 
+const updateCart = (_cartItem, count, history) =>{
+    return async (dispatch) =>{
+        const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
+        console.log(cartItem)
+        dispatch(_updateCart(cartItem))
+    }
+}
+
 const removeFromCart = (cartItem, history) =>{
     return async (dispatch) =>{
         await axios.delete(`/api/carts/${cartItem.id}`)
@@ -148,4 +167,4 @@ const removeFromCart = (cartItem, history) =>{
 }
 
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart, removeFromCart}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart}
