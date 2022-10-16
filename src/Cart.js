@@ -76,9 +76,11 @@ class Cart extends Component{
         console.log(this.props)
         let sum = 0;
     
-        // productList.map(product =>{
-        //     sum = sum + (product.price *1)
-        // })
+
+        cartItems.map(cartItem =>{
+            const product = products.find(product => product.id === cartItem.productId)
+            sum = sum + (product.price *1)
+        })
 
         if(cartItems.length == 0){
             return(
