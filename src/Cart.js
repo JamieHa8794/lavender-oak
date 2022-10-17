@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {removeFromCart} from './store';
+import {updateCart, removeFromCart} from './store';
 
 
 
@@ -13,19 +13,20 @@ class Cart extends Component{
         this.removeFromCart = this.removeFromCart.bind(this);
     }
     subtract(event){
-        console.log(event.target.value)
-        const {carts, history, removeFromCart} = this.props;
+        const {carts, history, updateCart} = this.props;
         const cartItem = carts.find(item => item.productId === event.target.value)
-        console.log('cartItem', cartItem)
-        removeFromCart(cartItem, history)
+        const count = cartItem.count -1;
+        updateCart(cartItem, count, history)
     }
     add(event){
-        console.log(event.target.value) 
+        const {carts, history, updateCart} = this.props;
+        const cartItem = carts.find(item => item.productId === event.target.value)
+        const count = cartItem.count + 1;
+        updateCart(cartItem, count, history)
     }
     removeFromCart(event){
         const {carts, history, removeFromCart} = this.props;
         const cartItem = carts.find(item => item.productId === event.target.value)
-        console.log('cartItem', cartItem)
         removeFromCart(cartItem, history)
     }
     render(){
@@ -43,37 +44,17 @@ class Cart extends Component{
                 </div>
             )
         }
-        
-        // const productList = [];
-        // // const productCount = {};
-        // cartItems.map(cartItem =>{
-        //     products.map(product =>{
-        //         if(cartItem.productId == product.id){
-        //             // if(!productCount[product.name]){
-        //                 // productCount[product.name] = 0;
-        //                 productList.push(product)
-        //             // }
-        //             // productCount[product.name]++;
-        //         }
-        //     })
-        // })
     
 
         const productList = {};
-        // const productCount = {};
         cartItems.map(cartItem =>{
             products.map(product =>{
                 if(cartItem.productId == product.id){
-                    // if(!productCount[product.name]){
-                        // productCount[product.name] = 0;
                         productList[product.id] = product;
-                    // }
-                    // productCount[product.name]++;
                 }
             })
         })
 
-        console.log(this.props)
         let sum = 0;
     
 
@@ -109,7 +90,6 @@ class Cart extends Component{
                                 <div className='cart-items-count-container'>
                                     <button onClick={subtract} value={productList[cartItem.productId].id} className='cart-items-count-subtract'>-</button>
                                     <div className='cart-items-count-count'>
-                                        {/* {productCount[product.name]} */}
                                         {cartItem.count}
                                     </div>
                                     <button onClick={add}  value={productList[cartItem.productId].id} className='cart-items-count-add'>+</button>
@@ -151,38 +131,13 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         removeFromCart: (cartItem, history) =>{
-            console.log('here')
-            console.log(cartItem)
             dispatch(removeFromCart(cartItem, history))
+        },
+        updateCart : (cartItem, count, history) =>{
+            dispatch(updateCart(cartItem, count, history))
         }
     }   
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
-
-
-
-
-// {productList.map((product, idx) =>{
-//     return(
-//         <li key={idx} className='cart-items-li'>
-//             <img src={product.img} className='cart-items-img'/>
-//             <div className='cart-items-product-name'>
-//                 {product.name}
-//             </div>
-//             <div>
-//                 ${product.price}.00
-//             </div>
-//             <div className='cart-items-count-container'>
-//                 <button onClick={subtract} value={product.id} className='cart-items-count-subtract'>-</button>
-//                 <div className='cart-items-count-count'>
-//                     {/* {productCount[product.name]} */}
-//                     {product.count}
-//                 </div>
-//                 <button onClick={add}  value={product.id} className='cart-items-count-add'>+</button>
-//             </div>
-//             <button onClick={removeFromCart} value={product.id}>Remove Item</button>
-//         </li>
-//     )
-// })}

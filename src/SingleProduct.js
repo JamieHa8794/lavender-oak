@@ -24,7 +24,6 @@ class SingleProduct extends Component{
 
         if(cartItem){
             const count = cartItem.count + 1
-            console.log('its already in there...', cartItem)
             updateCart(cartItem, count, history)
         }
         else{
@@ -40,7 +39,6 @@ class SingleProduct extends Component{
 
 
         if(!product){
-            console.log('here')
             return(
             <div>
                 Whoops nothing to see here...

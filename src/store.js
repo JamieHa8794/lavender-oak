@@ -153,7 +153,6 @@ const addToCart = (userId, productId) =>{
 const updateCart = (_cartItem, count, history) =>{
     return async (dispatch) =>{
         const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
-        console.log(cartItem)
         dispatch(_updateCart(cartItem))
     }
 }
