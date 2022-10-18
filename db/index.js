@@ -2,6 +2,9 @@ const Sequelize = require('sequelize');
 const {STRING, TEXT, INTEGER, UUID, UUIDV4} = Sequelize
 const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/lavander_oak');
 
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 const { products, users } = require('./data')
 
 const User = db.define('user', {
@@ -10,7 +13,10 @@ const User = db.define('user', {
         primaryKey: true, 
         defaultValue: UUIDV4, 
     },
-    userName: {
+    username: {
+        type: STRING
+    },
+    password:{
         type: STRING
     },
     firstName: {
@@ -35,6 +41,41 @@ const User = db.define('user', {
         type: STRING
     },
 })
+
+
+User.addHook('beforeSave', async function(user){
+    if(user._changed.has('password')){
+        user.password = await bcrypt.hash(user.password, 10)
+    }
+})
+
+User.authenticate = async function ({username, password}){
+    const user = await User.findOne({
+        where: {username}
+    });
+    if(user && await bcrypt.compare(password, user.password)){
+        return jwt.sign({id: user.id}, process.env.JWT);
+    }
+}
+
+User.byToken = async function (token){
+    try{
+        const {id} = await jwt.verify(token, process.env.JWT);
+        const user = await User.findByPk(id);
+        if(user){
+            return user;
+        }
+        const error = Error('The username and password does not match');
+        error.status = 401;
+        throw error;
+    }
+    catch(err){
+        const error = Error('The username and password does not match');
+        error.status = 401;
+        throw error
+    }
+}
+
 
 const Product = db.define('product', {
     id:{
@@ -103,7 +144,8 @@ const syncAndSeed = async () =>{
 
        await Promise.all(users.map(user=>{
             User.create({
-                userName: user.userName,
+                username: user.username,
+                password: user.password,
                 firstName: user.firstName,
                 middleName: user.middleName,
                 lastName: user.lastName,

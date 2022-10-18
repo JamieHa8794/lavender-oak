@@ -521,7 +521,8 @@ const lampimgs = [
 
 const users = [
   {
-  'userName': 'Chandy',
+  'username': 'Chandy',
+  'password': 'chandler_pw',
   'firstName': 'Chandler',
   'middleName': "M.",
   'lastName': "Bing",
@@ -531,7 +532,8 @@ const users = [
   'zipCode': "10001",
 },
 {
-  'userName': 'MonicaG',
+  'username': 'MonicaG',
+  'password': 'monica_pw',
   'firstName': 'Monica',
   'middleName': "",
   'lastName': "Geller",
@@ -541,7 +543,8 @@ const users = [
   'zipCode': "10001",
 },
 {
-  'userName': 'Joeyy',
+  'username': 'Joeyy',
+  'password': 'joey_pw',
   'firstName': 'Joey',
   'middleName': "",
   'lastName': "Tribianni",
@@ -551,7 +554,8 @@ const users = [
   'zipCode': "10001",
 },
 {
-  'userName': 'Pheebs',
+  'username': 'Pheebs',
+  'password': 'pheobe_pw',
   'firstName': 'Pheobe',
   'middleName': "",
   'lastName': "Buffay",
@@ -561,8 +565,9 @@ const users = [
   'zipCode': "10001",
 },
 {
-  'userName': 'Rosstepher',
-  'firstName': 'Ross',
+  'username': 'Rosstepher',
+  'password': 'ross_pw',
+  'firstame': 'Ross',
   'middleName': "",
   'lastName': "Geller",
   'phoneNumber': '(123) 456-789',
@@ -571,7 +576,8 @@ const users = [
   'zipCode': "10001",
 },
 {
-  'userName': 'Rache',
+  'username': 'Rache',
+  'password': 'rachel_pw',
   'firstName': 'Rachel',
   'middleName': "Karen",
   'lastName': "Green",
