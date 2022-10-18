@@ -43,7 +43,6 @@ const Categories = ({products}) =>{
         return 0;
       });
     
-    console.log(alphaCategoryList)
     return(
         <div>
            <ul className='categories-ul'>

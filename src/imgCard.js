@@ -20,9 +20,6 @@ const imgCardImgs = {
 const imgCard = ({products, match}) =>{
     const category = match.params.category;
     const productsByCategory = products.filter(product => product.category === category)
-    console.log(imgCardImgs)
-    console.log(category)
-    console.log(imgCardImgs[category])
 
     return(
         <div className='imgCard'>

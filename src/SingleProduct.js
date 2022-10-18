@@ -37,7 +37,6 @@ class SingleProduct extends Component{
         const productId = match.params.id;
         const product = products.find(product => product.id === productId)
 
-
         if(!product){
             return(
             <div>
@@ -46,6 +45,7 @@ class SingleProduct extends Component{
             </div>
             )
         }   
+
         return(
             <div>
             <div className='single-product-back-to-products'>
