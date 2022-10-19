@@ -567,7 +567,7 @@ const users = [
 {
   'username': 'Rosstepher',
   'password': 'ross_pw',
-  'firstame': 'Ross',
+  'firstName': 'Ross',
   'middleName': "",
   'lastName': "Geller",
   'phoneNumber': '(123) 456-789',

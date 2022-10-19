@@ -3,7 +3,6 @@ const {syncAndSeed, model: {Product, User, Cart}} = require('./db')
 const express = require('express');
 const app = express();
 const path = require('path');
-const { nextTick } = require('process');
 
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
@@ -88,6 +87,29 @@ app.delete('/api/carts/:id', async (req, res, next)=>{
         next(err)
     }
 })
+
+
+//auth
+app.get('/api/auth', async (req, res, next)=>{
+    try{
+        res.send(await User.byToken(req.headers.authorization))
+    }
+    catch(err){
+        next(err)
+    }
+})
+
+
+
+app.post('/api/auth', async (req, res, next)=>{
+    try{
+        res.send({ token: await User.authenticate(req.body)})
+    }
+    catch(err){
+        next(err)
+    }
+})
+
 
 
 
