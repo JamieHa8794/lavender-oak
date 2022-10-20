@@ -92,32 +92,45 @@ class _App extends Component{
         this.state = {
             auth: {}
         }
-        // this.longin = this.longin.bind(this)
+        this.longin = this.longin.bind(this)
+        this.logout = this.logout.bind(this)
+
     }
-    // componentDidMount(){
-    //     this.props.load();
-    // }
-    async longin(credentials){
-        console.log(credentials)
-        const {token} = (await(axios.post('/api/auth', credentials))).data;
+    async componentDidMount(){
+        const token = window.localStorage.getItem('token')
+        if(token){
+            this.exchangeToken(token);
+        }
+
+        this.props.load();
+    }
+    async exchangeToken(token){
         const user = (await(axios.get('/api/auth', {
             headers: {
                 authorization: token
             }
         }))).data;
-        console.log(user)
+        this.setState({auth: user})
+    }
+    async longin(credentials){
+        const {token} = (await(axios.post('/api/auth', credentials))).data;
+        window.localStorage.setItem('token', token)
+        this.exchangeToken(token);
+    }
+    logout(){
+        window.localStorage.removeItem('token');
+        this.setState({auth: {}})
     }
     render(){
         const {loading} = this.props.state
         const {auth} = this.state;
-        const {longin} = this
+        const {longin, logout} = this
 
         if(!auth.id){
             return(
                 <div className='auth-container'>
                     {
                         users.map(user =>{
-                            console.log(user)
                             const credentials = {username: user.username, password: user.password}
                             return(
                                 <button key={user.id} onClick={()=>longin(credentials)}>{user.username}</button>
@@ -128,7 +141,6 @@ class _App extends Component{
             )
         }
 
-
         if(loading){
             return(
                 <h1>loading...</h1>
@@ -138,7 +150,7 @@ class _App extends Component{
             <Router>
                 <div>
                     <Route component={Nav}/>
-
+                    <button onClick={logout}>Log Out</button>
                     <Route path='/myProfile' component={MyProfile} exact/>
 
 
