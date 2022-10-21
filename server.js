@@ -112,8 +112,6 @@ app.post('/api/auth', async (req, res, next)=>{
 
 
 
-
-
 const init = async () =>{
     try{
         await syncAndSeed();

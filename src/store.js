@@ -10,7 +10,8 @@ const LOAD_CARTS = 'LOAD_CARTS';
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_CART = 'UPDATE_CART';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
-
+const LOG_IN = 'LOG_IN'
+const LOG_OUT = 'LOG_OUT'
 //reducers
 
 const loadReducers = (state = true, action)=>{
@@ -34,7 +35,6 @@ const productsReducers = (state = [], action) =>{
     return state;
 }
 
-
 const cartsReducers = (state = [], action) =>{
     if(action.type === LOAD_CARTS){
         state = action.carts
@@ -51,13 +51,24 @@ const cartsReducers = (state = [], action) =>{
     return state;
 }
 
+const authReducer = (state = {}, action) =>{
+    if(action.type === LOG_IN){
+        state = action.auth
+    }
+    if(action.type === LOG_OUT){
+        state = {}
+    }
+    return state;
+}
+
 
 
 const reducer = combineReducers({
     loading: loadReducers,
     users: usersReducers,
     products: productsReducers,
-    carts: cartsReducers
+    carts: cartsReducers,
+    auth: authReducer,
 })
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -114,6 +125,19 @@ const _removeFromCart = (cartItem) =>{
     }
 }
 
+const _login = (auth) =>{
+    return{
+        type: LOG_IN,
+        auth
+    }
+}
+
+const _logout = () =>{
+    return{
+        type: LOG_OUT,
+    }
+}
+
 //thunks
 const loading = () =>{
     return (dispatch) =>{
@@ -165,5 +189,37 @@ const removeFromCart = (cartItem, history) =>{
     }
 }
 
+const login = (credentials) =>{
+    return async (dispatch) =>{
+        const {token} = (await(axios.post('/api/auth', credentials))).data;
+        window.localStorage.setItem('token', token)
+        exchangeToken();
+        console.log(token)
+        // dispatch(_login(authItem))
+    }
+}
+
+const exchangeToken = () =>{
+    return async (dispatch) =>{
+        const token = window.localStorage.getItem('token')
+        if(token){
+            const user = (await(axios.get('/api/auth', {
+                headers: {
+                    authorization: token
+                }
+            }))).data;
+            dispatch(_login(user))
+        }
+    }
+}
+
+const logout = () =>{
+    console.log('log out pressed')
+    return (dispatch) =>{
+        window.localStorage.removeItem('token');
+        dispatch(_logout());
+    }
+}
+
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart, exchangeToken, logout}

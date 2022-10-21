@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav'
-import {loading, loadUsers, loadProducts, loadCarts} from './store'
+import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, logout} from './store'
 import Products from './Products';
 import Footer from './Footer'
 import imgCard from './imgCard';
@@ -13,6 +13,11 @@ import ByCategory from './ByCategory';
 import MyProfile from './MyProfile';
 import Categories from './Categories';
 import Cart from './Cart';
+import LoginForm from './LoginForm';
+
+
+
+
 import axios from 'axios';
 
 
@@ -93,37 +98,41 @@ class _App extends Component{
             auth: {}
         }
         this.longin = this.longin.bind(this)
-        this.logout = this.logout.bind(this)
+        // this.logout = this.logout.bind(this)
 
     }
     async componentDidMount(){
-        this.exchangeToken();
+        this.props.exchangeToken();
+        // this.exchangeToken();
         this.props.load();
     }
-    async exchangeToken(){
-        const token = window.localStorage.getItem('token')
-        if(token){
-            const user = (await(axios.get('/api/auth', {
-                headers: {
-                    authorization: token
-                }
-            }))).data;
-            this.setState({auth: user})
-        }
+    componentDidUpdate(prevProps){
+        console.log(prevProps)
+        console.log('props', this.props)
     }
+    // async exchangeToken(){
+    //     const token = window.localStorage.getItem('token')
+    //     if(token){
+    //         const user = (await(axios.get('/api/auth', {
+    //             headers: {
+    //                 authorization: token
+    //             }
+    //         }))).data;
+    //         this.setState({auth: user})
+    //     }
+    // }
     async longin(credentials){
         const {token} = (await(axios.post('/api/auth', credentials))).data;
         window.localStorage.setItem('token', token)
-        this.exchangeToken();
+        this.props.exchangeToken();
     }
-    logout(){
-        window.localStorage.removeItem('token');
-        this.setState({auth: {}})
-    }
+    // logout(){
+    //     this.props.logout();
+    // }
     render(){
-        const {loading} = this.props.state
-        const {auth} = this.state;
-        const {longin, logout} = this
+        const {loading, auth} = this.props.state
+        const {logout} = this.props
+        const {longin} = this
 
         if(!auth.id){
             return(
@@ -152,6 +161,7 @@ class _App extends Component{
                     <button onClick={logout}>Log Out</button>
                     <Route path='/myProfile' component={MyProfile} exact/>
 
+                    <Route path='/login' component={LoginForm} exact/>
 
                     <Route path='/products' component={Products} exact/>
                     <Route path='/products/:category' component={imgCard} exact/>
@@ -188,6 +198,12 @@ const mapDispatchToProps = (dispatch) =>{
             dispatch(loadCarts());
 
             dispatch(loading());
+        },
+        exchangeToken: () =>{
+            dispatch(exchangeToken());
+        },
+        logout: () =>{
+            dispatch(logout());
         }
     }
 }
