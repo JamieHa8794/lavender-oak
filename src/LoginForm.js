@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import {login} from './store'
+
+
 class LoginForm extends Component{
     constructor(){
         super();
@@ -14,14 +17,14 @@ class LoginForm extends Component{
     onChange(event){
         const change = this.state;
         change[event.target.name] = event.target.value
-        console.log(change)
         this.setState(change)
     }
     onSubmit(event){
         event.preventDefault();
 
-        const state = this.state
-        console.log(state)
+        const {login} = this.props;
+        const credentials = this.state
+        login(credentials)
     }
     render(){
         const {onSubmit, onChange} = this
@@ -49,12 +52,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>{
     return{
         login: (credentials) =>{
-            dispatch(longin(credentials))
-        }
+            dispatch(login(credentials))
+        },
     }
 }
 
 
 
 
-export default connect()(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
