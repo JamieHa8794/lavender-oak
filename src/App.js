@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav'
-import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, logout} from './store'
+import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, login, logout} from './store'
 import Products from './Products';
 import Footer from './Footer'
 import imgCard from './imgCard';
@@ -97,42 +97,17 @@ class _App extends Component{
         this.state = {
             auth: {}
         }
-        this.longin = this.longin.bind(this)
-        // this.logout = this.logout.bind(this)
+
 
     }
     async componentDidMount(){
         this.props.exchangeToken();
-        // this.exchangeToken();
         this.props.load();
     }
-    componentDidUpdate(prevProps){
-        console.log(prevProps)
-        console.log('props', this.props)
-    }
-    // async exchangeToken(){
-    //     const token = window.localStorage.getItem('token')
-    //     if(token){
-    //         const user = (await(axios.get('/api/auth', {
-    //             headers: {
-    //                 authorization: token
-    //             }
-    //         }))).data;
-    //         this.setState({auth: user})
-    //     }
-    // }
-    async longin(credentials){
-        const {token} = (await(axios.post('/api/auth', credentials))).data;
-        window.localStorage.setItem('token', token)
-        this.props.exchangeToken();
-    }
-    // logout(){
-    //     this.props.logout();
-    // }
+
     render(){
         const {loading, auth} = this.props.state
-        const {logout} = this.props
-        const {longin} = this
+        const {login, logout} = this.props
 
         if(!auth.id){
             return(
@@ -141,7 +116,7 @@ class _App extends Component{
                         users.map(user =>{
                             const credentials = {username: user.username, password: user.password}
                             return(
-                                <button key={user.id} onClick={()=>longin(credentials)}>{user.username}</button>
+                                <button key={user.id} onClick={()=>login(credentials)}>{user.username}</button>
                             );
                         })
                     }
@@ -201,6 +176,9 @@ const mapDispatchToProps = (dispatch) =>{
         },
         exchangeToken: () =>{
             dispatch(exchangeToken());
+        },
+        login: (credentials) =>{
+            dispatch(login(credentials))
         },
         logout: () =>{
             dispatch(logout());

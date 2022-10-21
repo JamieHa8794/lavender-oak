@@ -193,9 +193,7 @@ const login = (credentials) =>{
     return async (dispatch) =>{
         const {token} = (await(axios.post('/api/auth', credentials))).data;
         window.localStorage.setItem('token', token)
-        exchangeToken();
-        console.log(token)
-        // dispatch(_login(authItem))
+        dispatch(exchangeToken());
     }
 }
 
@@ -214,7 +212,6 @@ const exchangeToken = () =>{
 }
 
 const logout = () =>{
-    console.log('log out pressed')
     return (dispatch) =>{
         window.localStorage.removeItem('token');
         dispatch(_logout());
@@ -222,4 +219,4 @@ const logout = () =>{
 }
 
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart, exchangeToken, logout}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart, exchangeToken, login, logout}
