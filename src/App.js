@@ -97,25 +97,24 @@ class _App extends Component{
 
     }
     async componentDidMount(){
-        const token = window.localStorage.getItem('token')
-        if(token){
-            this.exchangeToken(token);
-        }
-
+        this.exchangeToken();
         this.props.load();
     }
-    async exchangeToken(token){
-        const user = (await(axios.get('/api/auth', {
-            headers: {
-                authorization: token
-            }
-        }))).data;
-        this.setState({auth: user})
+    async exchangeToken(){
+        const token = window.localStorage.getItem('token')
+        if(token){
+            const user = (await(axios.get('/api/auth', {
+                headers: {
+                    authorization: token
+                }
+            }))).data;
+            this.setState({auth: user})
+        }
     }
     async longin(credentials){
         const {token} = (await(axios.post('/api/auth', credentials))).data;
         window.localStorage.setItem('token', token)
-        this.exchangeToken(token);
+        this.exchangeToken();
     }
     logout(){
         window.localStorage.removeItem('token');
