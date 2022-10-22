@@ -189,15 +189,15 @@ const removeFromCart = (cartItem, history) =>{
     }
 }
 
-const login = (credentials) =>{
+const login = (credentials, history) =>{
     return async (dispatch) =>{
         const {token} = (await(axios.post('/api/auth', credentials))).data;
         window.localStorage.setItem('token', token)
-        dispatch(exchangeToken());
+        dispatch(exchangeToken(history));
     }
 }
 
-const exchangeToken = () =>{
+const exchangeToken = (history) =>{
     return async (dispatch) =>{
         const token = window.localStorage.getItem('token')
         if(token){
@@ -207,14 +207,16 @@ const exchangeToken = () =>{
                 }
             }))).data;
             dispatch(_login(user))
+            history.push('/');
         }
     }
 }
 
-const logout = () =>{
+const logout = (history) =>{
     return (dispatch) =>{
         window.localStorage.removeItem('token');
         dispatch(_logout());
+        history.push('/');
     }
 }
 

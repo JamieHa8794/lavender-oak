@@ -22,9 +22,9 @@ class LoginForm extends Component{
     onSubmit(event){
         event.preventDefault();
 
-        const {login} = this.props;
+        const {login, history} = this.props;
         const credentials = this.state
-        login(credentials)
+        login(credentials, history)
     }
     render(){
         const {onSubmit, onChange} = this
@@ -51,8 +51,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) =>{
     return{
-        login: (credentials) =>{
-            dispatch(login(credentials))
+        login: (credentials, history) =>{
+            dispatch(login(credentials, history))
         },
     }
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav'
-import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, login, logout} from './store'
+import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, login} from './store'
 import Products from './Products';
 import Footer from './Footer'
 import imgCard from './imgCard';
@@ -22,19 +22,14 @@ class _App extends Component{
         super();
     }
     async componentDidMount(){
-        this.props.exchangeToken();
+        const {history} = this.props;
+
+        this.props.exchangeToken(history);
         this.props.load();
     }
 
     render(){
-        const {loading, auth} = this.props.state
-        const {login, logout} = this.props
-
-        if(!auth.id){
-            return(
-                <LoginForm/>
-            )
-        }
+        const {loading, auth} = this.props.state;
 
         if(loading){
             return(
@@ -45,7 +40,6 @@ class _App extends Component{
             <Router>
                 <div>
                     <Route component={Nav}/>
-                    <button onClick={logout}>Log Out</button>
                     <Route path='/myProfile' component={MyProfile} exact/>
 
                     <Route path='/login' component={LoginForm} exact/>
@@ -87,13 +81,7 @@ const mapDispatchToProps = (dispatch) =>{
             dispatch(loading());
         },
         exchangeToken: () =>{
-            dispatch(exchangeToken());
-        },
-        login: (credentials) =>{
-            dispatch(login(credentials))
-        },
-        logout: () =>{
-            dispatch(logout());
+            dispatch(exchangeToken(history));
         }
     }
 }
