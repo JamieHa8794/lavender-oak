@@ -16,11 +16,9 @@ class Nav extends Component{
     }
     render(){
         const {auth} = this.props.state;
-        console.log(auth)
         const {onClick} = this
         
         if(Object.keys(auth).length === 0){
-            console.log('here',auth)
             return(
                 <nav>
                 <img src='./public/logo.png' className='nav-logo'/>
