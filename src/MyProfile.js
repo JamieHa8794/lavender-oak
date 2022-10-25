@@ -4,18 +4,17 @@ import { Link } from "react-router-dom";
 import {faker} from '@faker-js/faker'
 
 
-const MyProfile = ({users}) =>{
+const MyProfile = ({users, auth}) =>{
+    console.log(users, auth)
     if(!users){
         return(
         <div>
             Whoops.. no users here
         </div>)
     }
-    const id = '91562a34-d828-4bf0-838e-e09e13b5ae83'
+    const id = auth.id
 
     const user = users.find(user => user.id === id)
-
-
 
 
     if(!user){
