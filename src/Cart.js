@@ -30,13 +30,14 @@ class Cart extends Component{
         removeFromCart(cartItem, history)
     }
     render(){
-        const {carts, products} = this.props;
+        const {carts, products, auth} = this.props;
         const {subtract, add, removeFromCart} = this
 
-        const userId = '9efa514d-7448-4f8f-8854-478e2611e68c';
+        const userId = auth.id;
 
         const cartItems = carts.filter(cartItem => cartItem.userId == userId);
-        
+        console.log(userId)
+        console.log(carts)
         if(carts.length === 0 || products.length === 0 ){
             return(
                 <div>

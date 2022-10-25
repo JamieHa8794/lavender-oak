@@ -14,6 +14,7 @@ import MyProfile from './MyProfile';
 import Categories from './Categories';
 import Cart from './Cart';
 import LoginForm from './LoginForm';
+import EditProfile from './EditProfile';
 
 
 
@@ -22,9 +23,7 @@ class _App extends Component{
         super();
     }
     async componentDidMount(){
-        const {history} = this.props;
-
-        this.props.exchangeToken(history);
+        this.props.exchangeToken();
         this.props.load();
     }
 
@@ -41,6 +40,7 @@ class _App extends Component{
                 <div>
                     <Route component={Nav}/>
                     <Route path='/myProfile' component={MyProfile} exact/>
+                    <Route path='/myProfile/editInfo' component={EditProfile} exact/>
 
                     <Route path='/login' component={LoginForm} exact/>
 
@@ -81,7 +81,7 @@ const mapDispatchToProps = (dispatch) =>{
             dispatch(loading());
         },
         exchangeToken: () =>{
-            dispatch(exchangeToken(history));
+            dispatch(exchangeToken());
         }
     }
 }

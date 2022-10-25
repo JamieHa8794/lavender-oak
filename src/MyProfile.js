@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {faker} from '@faker-js/faker'
+
 
 
 const MyProfile = ({users, auth}) =>{
@@ -25,6 +25,7 @@ const MyProfile = ({users, auth}) =>{
     }
     return(
         <div className="myProfile-container">
+            <Link to='/myProfile/editInfo'>Edit Personal Info</Link>
             <img src={user.img} className='myProfile-img'/>
             <div className="myProfile-info-container">
                 <div className="myProfile-info-firstName">
@@ -50,9 +51,6 @@ const MyProfile = ({users, auth}) =>{
                         {user.zipCode}
                     </div>
                 </div>
-                <div>
-                    {user.id}
-                </div>
             </div>
         </div>
     )
@@ -63,9 +61,6 @@ const mapStateToProps = (state) =>{
     return state;
 }
 
-// const mapDispatchToProps = () =>{
-    
-// }
 
 
 

@@ -14,10 +14,7 @@ class SingleProduct extends Component{
     }
 
     onClick(){
-        const user = {
-            id: '9efa514d-7448-4f8f-8854-478e2611e68c'
-        }
-        const {match, carts, history, addToCart, updateCart} = this.props
+        const {match, carts, history, addToCart, updateCart, auth} = this.props
         const productId = match.params.id;
 
         const cartItem = carts.find(cartItem => cartItem.productId === productId)
@@ -27,7 +24,7 @@ class SingleProduct extends Component{
             updateCart(cartItem, count, history)
         }
         else{
-            addToCart(user.id, productId)
+            addToCart(auth.id, productId)
         }
     }
     render(){
