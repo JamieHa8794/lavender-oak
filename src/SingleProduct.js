@@ -19,12 +19,24 @@ class SingleProduct extends Component{
 
         const cartItem = carts.find(cartItem => cartItem.productId === productId)
 
+        //FIX
+        // if(!auth.id){
+        //     const user = {
+        //         id: 1
+        //     }
+        // }
+        // else{
+        //     const user = {
+        //         id: auth.id
+        //     }
+        // }
+
         if(cartItem){
             const count = cartItem.count + 1
             updateCart(cartItem, count, history)
         }
         else{
-            addToCart(auth.id, productId)
+            addToCart(user.id, productId)
         }
     }
     render(){
