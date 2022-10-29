@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {updateCart, removeFromCart} from './store';
-
+// import {updateCart, removeFromCart} from './store';
+import {decreaseCart, increaseCart, removeFromCart} from './store'
 
 
 class Cart extends Component{
@@ -13,21 +13,21 @@ class Cart extends Component{
         this.removeFromCart = this.removeFromCart.bind(this);
     }
     subtract(event){
-        const {carts, history, updateCart} = this.props;
+        const {carts, history, decreaseCart} = this.props;
+
         const cartItem = carts.find(item => item.productId === event.target.value)
-        const count = cartItem.count -1;
-        updateCart(cartItem, count, history)
+
+        decreaseCart(cartItem, history)
     }
     add(event){
-        const {carts, history, updateCart} = this.props;
+        const {carts, history, increaseCart} = this.props;
         const cartItem = carts.find(item => item.productId === event.target.value)
-        const count = cartItem.count + 1;
-        updateCart(cartItem, count, history)
+        increaseCart(cartItem, history)
     }
     removeFromCart(event){
-        const {carts, history, removeFromCart} = this.props;
+        const {carts, removeFromCart} = this.props;
         const cartItem = carts.find(item => item.productId === event.target.value)
-        removeFromCart(cartItem, history)
+        removeFromCart(cartItem)
     }
     render(){
         
@@ -171,11 +171,17 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        removeFromCart: (cartItem, history) =>{
-            dispatch(removeFromCart(cartItem, history))
+        removeFromCart: (cartItem) =>{
+            dispatch(removeFromCart(cartItem))
         },
         updateCart : (cartItem, count, history) =>{
             dispatch(updateCart(cartItem, count, history))
+        },
+        decreaseCart : (cartItem, history) =>{
+            dispatch(decreaseCart(cartItem, history))
+        },
+        increaseCart : (cartItem, history) =>{
+            dispatch(increaseCart(cartItem, history))
         }
     }   
 }

@@ -167,12 +167,6 @@ const loadCarts = () =>{
     }
 }
 
-// const addToCart = (userId, productId) =>{
-//     return async (dispatch) =>{
-//         const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
-//         dispatch(_addToCart(cartItem));
-//     }
-// }
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
@@ -187,18 +181,37 @@ const addToCart = (productId) =>{
     }
 }
 
-const updateCart = (_cartItem, count, history) =>{
-    return async (dispatch) =>{
+
+const increaseCart = (_cartItem, history) =>{
+    return async (dispatch, getState) =>{
+
+        const carts = getState().carts
+        const count = carts.find(cart => cart.id === _cartItem.id).count + 1;
+
         const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
         dispatch(_updateCart(cartItem))
     }
 }
 
-const removeFromCart = (cartItem, history) =>{
+const decreaseCart = (_cartItem, history) =>{
+    return async (dispatch, getState) =>{
+
+        const carts = getState().carts
+        const count = carts.find(cart => cart.id === _cartItem.id).count - 1;
+        if(count === 0){
+            dispatch(removeFromCart(_cartItem))
+            return;
+        }
+        const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
+        dispatch(_updateCart(cartItem))
+    }
+}
+
+
+const removeFromCart = (cartItem) =>{
     return async (dispatch) =>{
         await axios.delete(`/api/carts/${cartItem.id}`)
         dispatch(_removeFromCart(cartItem))
-        history.push('/cart')
     }
 }
 
@@ -234,4 +247,5 @@ const logout = (history) =>{
 }
 
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart, removeFromCart, exchangeToken, login, logout}
+// export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart,  removeFromCart, exchangeToken, login, logout}
+export {loading, loadUsers, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout}

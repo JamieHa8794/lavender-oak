@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {addToCart, updateCart} from './store'
+import {addToCart, increaseCart, updateCart} from './store'
 
 
 
@@ -14,7 +14,8 @@ class SingleProduct extends Component{
     }
 
     onClick(){
-        const {match, carts, history, addToCart, updateCart, auth} = this.props
+        const {match, carts, history, addToCart, increaseCart, auth} = this.props
+
         const productId = match.params.id;
 
         const cartItem = carts.find(cartItem => cartItem.productId === productId)
@@ -25,11 +26,9 @@ class SingleProduct extends Component{
 
 
         if(cartItem){
-            const count = cartItem.count + 1
-            updateCart(cartItem, count, history)
+            increaseCart(cartItem, history)
         }
         else{
-            // addToCart(user.id, productId)
             addToCart(productId)
         }
     }
@@ -86,14 +85,11 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
         return{
-            // addToCart : (userId, productId) =>{
-            //     dispatch(addToCart(userId, productId))
-            // },
             addToCart: (productId) =>{
                 dispatch(addToCart(productId))
             },
-            updateCart : (cartItem, count, history) =>{
-                dispatch(updateCart(cartItem, count, history))
+            increaseCart : (cartItem, history) =>{
+                dispatch(increaseCart(cartItem, history))
             }
         }
 }
