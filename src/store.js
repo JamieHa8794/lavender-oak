@@ -170,19 +170,39 @@ const loadCarts = () =>{
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
-        if(getState().auth){
+
+        if(Object.keys(getState().auth).length){
             const userId = getState().auth.id
+            console.log(userId)
+
+            if(getState().carts.find(cartItem => cartItem.productId === productId)){
+                const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
+                dispatch(increaseCart(cartItem))
+                return;
+            }
+
             const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
             dispatch(_addToCart(cartItem));
         }
         else{
+            const localCart = JSON.parse(window.localStorage.getItem('cart'))
+            const localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
+            if(!localCartItem){
+                localCart.push({
+                    'productId': productId,
+                    'count': 1
+                })
+                window.localStorage.setItem('cart', JSON.stringify(localCart))
+            }
+            else{
 
+            }
         }
     }
 }
 
 
-const increaseCart = (_cartItem, history) =>{
+const increaseCart = (_cartItem) =>{
     return async (dispatch, getState) =>{
 
         const carts = getState().carts
@@ -247,5 +267,4 @@ const logout = (history) =>{
 }
 
 export default store;
-// export {loading, loadUsers, loadProducts, loadCarts, addToCart, updateCart,  removeFromCart, exchangeToken, login, logout}
 export {loading, loadUsers, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout}

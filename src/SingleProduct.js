@@ -14,23 +14,12 @@ class SingleProduct extends Component{
     }
 
     onClick(){
-        const {match, carts, history, addToCart, increaseCart, auth} = this.props
-
+        const {match, addToCart} = this.props
+        
         const productId = match.params.id;
 
-        const cartItem = carts.find(cartItem => cartItem.productId === productId)
+        addToCart(productId)
 
-        const user = {
-            id: auth.id
-        }
-
-
-        if(cartItem){
-            increaseCart(cartItem, history)
-        }
-        else{
-            addToCart(productId)
-        }
     }
     render(){
         const {products, match} = this.props
@@ -88,8 +77,8 @@ const mapDispatchToProps = (dispatch) =>{
             addToCart: (productId) =>{
                 dispatch(addToCart(productId))
             },
-            increaseCart : (cartItem, history) =>{
-                dispatch(increaseCart(cartItem, history))
+            increaseCart : (cartItem) =>{
+                dispatch(increaseCart(cartItem))
             }
         }
 }

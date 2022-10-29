@@ -35,13 +35,13 @@ class Cart extends Component{
     //     //TESTING FOR LOCAL CART
 
 
-    //     const localCartItems = [
-    //         {'productId' : 123456789, 'count': 1},
-    //         {'productId' : 987654321, 'count': 1},
-    //     ]
+        const localCartItems = [
+            {'productId' : '3f08415f-89b3-4250-ae95-d42d19e8fbe7','count': 1},
+            {'productId' : 987654321, 'count': 1},
+        ]
 
         
-    //     window.localStorage.setItem('cart', JSON.stringify(localCartItems))
+        window.localStorage.setItem('cart', JSON.stringify(localCartItems))
 
     //    const localcartItems = JSON.parse(window.localStorage.getItem('cart'))
 
@@ -180,8 +180,8 @@ const mapDispatchToProps = (dispatch) =>{
         decreaseCart : (cartItem, history) =>{
             dispatch(decreaseCart(cartItem, history))
         },
-        increaseCart : (cartItem, history) =>{
-            dispatch(increaseCart(cartItem, history))
+        increaseCart : (cartItem) =>{
+            dispatch(increaseCart(cartItem))
         }
     }   
 }
