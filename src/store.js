@@ -167,10 +167,23 @@ const loadCarts = () =>{
     }
 }
 
-const addToCart = (userId, productId) =>{
-    return async (dispatch) =>{
-        const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
-        dispatch(_addToCart(cartItem));
+// const addToCart = (userId, productId) =>{
+//     return async (dispatch) =>{
+//         const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
+//         dispatch(_addToCart(cartItem));
+//     }
+// }
+
+const addToCart = (productId) =>{
+    return async (dispatch, getState) =>{
+        if(getState().auth){
+            const userId = getState().auth.id
+            const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
+            dispatch(_addToCart(cartItem));
+        }
+        else{
+
+        }
     }
 }
 

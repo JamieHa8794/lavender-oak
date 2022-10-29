@@ -32,36 +32,36 @@ class Cart extends Component{
     render(){
         
 
-        //TESTING FOR LOCAL CART
+    //     //TESTING FOR LOCAL CART
 
 
-        const localCartItems = [
-            {'productId' : 123456789, 'count': 1},
-            {'productId' : 987654321, 'count': 1},
-        ]
+    //     const localCartItems = [
+    //         {'productId' : 123456789, 'count': 1},
+    //         {'productId' : 987654321, 'count': 1},
+    //     ]
 
         
-        window.localStorage.setItem('cart', JSON.stringify(localCartItems))
+    //     window.localStorage.setItem('cart', JSON.stringify(localCartItems))
 
-       const localcartItems = JSON.parse(window.localStorage.getItem('cart'))
+    //    const localcartItems = JSON.parse(window.localStorage.getItem('cart'))
 
-        const productId = '987654321'
-        const localcartItem = localcartItems.find(cartItem => (cartItem.productId * 1) === (productId * 1))
-        if(!localcartItem){
-            localcartItems.push({'productId' : productId, 'count': 0})
-        }
-        const updatedlocalCart = localcartItems.map(cartItem =>{
-            if((cartItem.productId * 1) === (productId * 1)){
-                cartItem.count = cartItem.count + 1;
-            }
-            return(cartItem)
-        })
+    //     const productId = '987654321'
+    //     const localcartItem = localcartItems.find(cartItem => (cartItem.productId * 1) === (productId * 1))
+    //     if(!localcartItem){
+    //         localcartItems.push({'productId' : productId, 'count': 0})
+    //     }
+    //     const updatedlocalCart = localcartItems.map(cartItem =>{
+    //         if((cartItem.productId * 1) === (productId * 1)){
+    //             cartItem.count = cartItem.count + 1;
+    //         }
+    //         return(cartItem)
+    //     })
 
-        console.log(updatedlocalCart)
+    //     console.log(updatedlocalCart)
 
-        window.localStorage.setItem('cart', JSON.stringify(updatedlocalCart))
+    //     window.localStorage.setItem('cart', JSON.stringify(updatedlocalCart))
 
-        //TESTING FOR LOCAL CART
+    //     //TESTING FOR LOCAL CART
             
         
         

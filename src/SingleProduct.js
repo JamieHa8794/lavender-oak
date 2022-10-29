@@ -29,7 +29,8 @@ class SingleProduct extends Component{
             updateCart(cartItem, count, history)
         }
         else{
-            addToCart(user.id, productId)
+            // addToCart(user.id, productId)
+            addToCart(productId)
         }
     }
     render(){
@@ -85,8 +86,11 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
         return{
-            addToCart : (userId, productId) =>{
-                dispatch(addToCart(userId, productId))
+            // addToCart : (userId, productId) =>{
+            //     dispatch(addToCart(userId, productId))
+            // },
+            addToCart: (productId) =>{
+                dispatch(addToCart(productId))
             },
             updateCart : (cartItem, count, history) =>{
                 dispatch(updateCart(cartItem, count, history))
