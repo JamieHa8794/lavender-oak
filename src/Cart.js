@@ -30,14 +30,51 @@ class Cart extends Component{
         removeFromCart(cartItem, history)
     }
     render(){
+        
+
+        //TESTING FOR LOCAL CART
+
+
+        const localCartItems = [
+            {'productId' : 123456789, 'count': 1},
+            {'productId' : 987654321, 'count': 1},
+        ]
+
+        
+        window.localStorage.setItem('cart', JSON.stringify(localCartItems))
+
+       const localcartItems = JSON.parse(window.localStorage.getItem('cart'))
+
+        const productId = '987654321'
+        const localcartItem = localcartItems.find(cartItem => (cartItem.productId * 1) === (productId * 1))
+        if(!localcartItem){
+            localcartItems.push({'productId' : productId, 'count': 0})
+        }
+        const updatedlocalCart = localcartItems.map(cartItem =>{
+            if((cartItem.productId * 1) === (productId * 1)){
+                cartItem.count = cartItem.count + 1;
+            }
+            return(cartItem)
+        })
+
+        console.log(updatedlocalCart)
+
+        window.localStorage.setItem('cart', JSON.stringify(updatedlocalCart))
+
+        //TESTING FOR LOCAL CART
+            
+        
+        
+        
+        
+        
         const {carts, products, auth} = this.props;
         const {subtract, add, removeFromCart} = this
 
         const userId = auth.id;
 
         const cartItems = carts.filter(cartItem => cartItem.userId == userId);
-        console.log(userId)
-        console.log(carts)
+
         if(carts.length === 0 || products.length === 0 ){
             return(
                 <div>
@@ -64,6 +101,8 @@ class Cart extends Component{
 
             sum = sum + (cartItem.count * product.price *1)
         })
+
+
 
         if(cartItems.length == 0){
             return(
