@@ -161,13 +161,17 @@ const loadProducts = () =>{
 }
 
 const loadCarts = () =>{
-    return async (dispatch) =>{
+    return async (dispatch, getState) =>{
+        if(!getState().auth.id){
+            console.log('here')
+            dispatch(getLocalCart())
+        }
         const carts = (await axios.get('/api/carts')).data;
         dispatch(_loadCarts(carts));
     }
 }
 
-const clearLocalCart = () =>{
+const resetLocalCart = () =>{
     return (dispatch) =>{
         const localCartItems = []
         window.localStorage.setItem('cart', JSON.stringify(localCartItems))
@@ -176,14 +180,21 @@ const clearLocalCart = () =>{
 
 const getLocalCart = () =>{
     return (dispatch) =>{
-
+        const localCart = window.localStorage.getItem('cart')
+        if(!localCart){
+            dispatch(resetLocalCart())
+            return;
+        }
+        else{
+            return JSON.parse(localCart);
+        }
     }
 }
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
 
-        if(Object.keys(getState().auth).length){
+        if(getState().auth.id){
             const userId = getState().auth.id
             console.log(userId)
 
@@ -198,7 +209,7 @@ const addToCart = (productId) =>{
         }
         else{
             const localCart = JSON.parse(window.localStorage.getItem('cart'))
-            const localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
+            let localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
             if(!localCartItem){
                 localCart.push({
                     'productId': productId,
@@ -207,11 +218,13 @@ const addToCart = (productId) =>{
                 window.localStorage.setItem('cart', JSON.stringify(localCart))
             }
             else{
-
+                console.log(localCartItem)
+                localCartItem.count = localCartItem.count + 1;
             }
         }
     }
 }
+
 
 
 const increaseCart = (_cartItem) =>{
