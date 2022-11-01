@@ -220,6 +220,7 @@ const addToCart = (productId) =>{
             else{
                 console.log(localCartItem)
                 localCartItem.count = localCartItem.count + 1;
+                window.localStorage.setItem('cart', JSON.stringify(localCart))
             }
         }
     }
