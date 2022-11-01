@@ -167,6 +167,18 @@ const loadCarts = () =>{
     }
 }
 
+const clearLocalCart = () =>{
+    return (dispatch) =>{
+        const localCartItems = []
+        window.localStorage.setItem('cart', JSON.stringify(localCartItems))
+    }
+}
+
+const getLocalCart = () =>{
+    return (dispatch) =>{
+
+    }
+}
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{

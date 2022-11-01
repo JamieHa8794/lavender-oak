@@ -30,44 +30,6 @@ class Cart extends Component{
         removeFromCart(cartItem)
     }
     render(){
-        
-
-    //     //TESTING FOR LOCAL CART
-
-
-        const localCartItems = [
-            {'productId' : '3f08415f-89b3-4250-ae95-d42d19e8fbe7','count': 1},
-            {'productId' : 987654321, 'count': 1},
-        ]
-
-        
-        window.localStorage.setItem('cart', JSON.stringify(localCartItems))
-
-    //    const localcartItems = JSON.parse(window.localStorage.getItem('cart'))
-
-    //     const productId = '987654321'
-    //     const localcartItem = localcartItems.find(cartItem => (cartItem.productId * 1) === (productId * 1))
-    //     if(!localcartItem){
-    //         localcartItems.push({'productId' : productId, 'count': 0})
-    //     }
-    //     const updatedlocalCart = localcartItems.map(cartItem =>{
-    //         if((cartItem.productId * 1) === (productId * 1)){
-    //             cartItem.count = cartItem.count + 1;
-    //         }
-    //         return(cartItem)
-    //     })
-
-    //     console.log(updatedlocalCart)
-
-    //     window.localStorage.setItem('cart', JSON.stringify(updatedlocalCart))
-
-    //     //TESTING FOR LOCAL CART
-            
-        
-        
-        
-        
-        
         const {carts, products, auth} = this.props;
         const {subtract, add, removeFromCart} = this
 
