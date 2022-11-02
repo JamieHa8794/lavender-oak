@@ -35,9 +35,20 @@ class Cart extends Component{
 
         const userId = auth.id;
 
-        const cartItems = carts.filter(cartItem => cartItem.userId == userId);
+        if(!userId){
+            console.log(JSON.parse(window.localStorage.getItem('cart')))
+            var cartItems = JSON.parse(window.localStorage.getItem('cart'))
+        
+        }
+        else{
+            var cartItems = carts.filter(cartItem => cartItem.userId == userId);
+        }
 
-        if(carts.length === 0 || products.length === 0 ){
+        console.log('cartItems', cartItems)
+        
+
+
+        if(cartItems.length === 0 || products.length === 0 ){
             return(
                 <div>
                     Cart is empty
@@ -48,8 +59,9 @@ class Cart extends Component{
 
         const productList = {};
         cartItems.map(cartItem =>{
+            console.log(cartItem.productId)
             products.map(product =>{
-                if(cartItem.productId == product.id){
+                if(cartItem.productId == product.id ){
                         productList[product.id] = product;
                 }
             })

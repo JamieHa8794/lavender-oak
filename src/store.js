@@ -191,6 +191,24 @@ const getLocalCart = () =>{
     }
 }
 
+const addToLocalCart = (productId) =>{
+    return (dispatch) => {
+        const localCart = JSON.parse(window.localStorage.getItem('cart'))
+        let localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
+        if(!localCartItem){
+            localCart.push({
+                'productId': productId,
+                'count': 1
+            })
+            window.localStorage.setItem('cart', JSON.stringify(localCart))
+        }
+        else{
+            localCartItem.count = localCartItem.count + 1;
+            window.localStorage.setItem('cart', JSON.stringify(localCart))
+        }
+    }
+}
+
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
 
@@ -208,20 +226,7 @@ const addToCart = (productId) =>{
             dispatch(_addToCart(cartItem));
         }
         else{
-            const localCart = JSON.parse(window.localStorage.getItem('cart'))
-            let localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
-            if(!localCartItem){
-                localCart.push({
-                    'productId': productId,
-                    'count': 1
-                })
-                window.localStorage.setItem('cart', JSON.stringify(localCart))
-            }
-            else{
-                console.log(localCartItem)
-                localCartItem.count = localCartItem.count + 1;
-                window.localStorage.setItem('cart', JSON.stringify(localCart))
-            }
+            dispatch(addToLocalCart(productId));
         }
     }
 }
