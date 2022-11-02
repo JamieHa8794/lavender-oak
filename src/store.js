@@ -43,10 +43,10 @@ const cartsReducers = (state = [], action) =>{
         state = [...state, action.cartItem]
     }
     if(action.type === UPDATE_CART){
-        state = state.map(cartItem => cartItem.id !== action.cartItem.id ? cartItem : action.cartItem )
+        state = state.map(cartItem => cartItem.productId !== action.cartItem.productId ? cartItem : action.cartItem )
     }
     if(action.type === REMOVE_CART_ITEM){
-        state = state.filter(cartItem => cartItem.id !== action.cartItem.id)
+        state = state.filter(cartItem => cartItem.productId !== action.cartItem.productId)
     }
     return state;
 }
@@ -164,10 +164,14 @@ const loadCarts = () =>{
     return async (dispatch, getState) =>{
         if(!getState().auth.id){
             console.log('here')
-            dispatch(getLocalCart())
+            const carts = dispatch(getLocalCart())
+            dispatch(_loadCarts(carts))
         }
-        const carts = (await axios.get('/api/carts')).data;
-        dispatch(_loadCarts(carts));
+        else{
+            const userId = getState().auth.id;
+            const carts = (await axios.get('/api/carts', {userId})).data;
+            dispatch(_loadCarts(carts));
+        }
     }
 }
 
@@ -186,26 +190,38 @@ const getLocalCart = () =>{
             return;
         }
         else{
+            dispatch(_loadCarts(JSON.parse(localCart)))
             return JSON.parse(localCart);
         }
     }
 }
+
+const setLocalCart = (cart) =>{
+    return (dispatch) =>{
+        window.localStorage.setItem('cart', JSON.stringify(cart))
+    }
+}
+
 
 const addToLocalCart = (productId) =>{
     return (dispatch) => {
         const localCart = JSON.parse(window.localStorage.getItem('cart'))
         let localCartItem = localCart.find(localCartItem => localCartItem.productId === productId)
         if(!localCartItem){
-            localCart.push({
+            const localCartItem = {
                 'productId': productId,
                 'count': 1
-            })
+            }
+            localCart.push(localCartItem)
             window.localStorage.setItem('cart', JSON.stringify(localCart))
+            dispatch(_addToCart(localCartItem))
         }
         else{
             localCartItem.count = localCartItem.count + 1;
-            window.localStorage.setItem('cart', JSON.stringify(localCart))
+            dispatch(setLocalCart(localCart))
+            dispatch(_updateCart(localCartItem))
         }
+
     }
 }
 
@@ -232,15 +248,23 @@ const addToCart = (productId) =>{
 }
 
 
-
 const increaseCart = (_cartItem) =>{
     return async (dispatch, getState) =>{
-
-        const carts = getState().carts
-        const count = carts.find(cart => cart.id === _cartItem.id).count + 1;
-
-        const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
-        dispatch(_updateCart(cartItem))
+        if(getState().auth.id){
+            const carts = getState().carts
+            const count = carts.find(cart => cart.id === _cartItem.id).count + 1;
+    
+            const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
+            dispatch(_updateCart(cartItem))
+            return;
+        }
+        // else{
+        //     const localCart = dispatch(getLocalCart())
+        //     const localCartItem = localCart.find(cartItem => cartItem.id == _cartItem.productId)
+        //     console.log(localCart)
+        //     localCartItem.count = localCartItem.count + 1;
+        //     dispatch(setLocalCart(localCart))
+        // }
     }
 }
 
