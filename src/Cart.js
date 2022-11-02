@@ -20,12 +20,6 @@ class Cart extends Component{
         decreaseCart(cartItem, history)
     }
     add(event){
-
-        /*carts doesnt exisit in local cart. Need to adjust the logic... 
-        looking up the product and sending that works. 
-        Also, need to update state cart inorder for an update to show up.. maybe change load cart logic
-        */
-
         const {carts, history, increaseCart} = this.props;
         const cartItem = carts.find(item => item.productId === event.target.value)
         increaseCart(cartItem, history)
@@ -41,17 +35,6 @@ class Cart extends Component{
 
         console.log(carts);
         const userId = auth.id;
-
-        // if(!userId){
-        //     console.log(JSON.parse(window.localStorage.getItem('cart')))
-        //     var cartItems = JSON.parse(window.localStorage.getItem('cart'))
-        
-        // }
-        // else{
-        //     var cartItems = carts.filter(cartItem => cartItem.userId == userId);
-        // }
-
-        // const cartItems = carts.filter(cartItem => cartItem.userId == userId);
 
         const cartItems = carts;
         console.log('cartItems', cartItems)

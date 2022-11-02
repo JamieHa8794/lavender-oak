@@ -230,8 +230,6 @@ const addToCart = (productId) =>{
 
         if(getState().auth.id){
             const userId = getState().auth.id
-            console.log(userId)
-
             if(getState().carts.find(cartItem => cartItem.productId === productId)){
                 const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
                 dispatch(increaseCart(cartItem))
@@ -250,21 +248,23 @@ const addToCart = (productId) =>{
 
 const increaseCart = (_cartItem) =>{
     return async (dispatch, getState) =>{
+        
         if(getState().auth.id){
             const carts = getState().carts
-            const count = carts.find(cart => cart.id === _cartItem.id).count + 1;
-    
+            const count = carts.find(cart => cart.productId === _cartItem.productId).count + 1;
             const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
             dispatch(_updateCart(cartItem))
             return;
         }
-        // else{
-        //     const localCart = dispatch(getLocalCart())
-        //     const localCartItem = localCart.find(cartItem => cartItem.id == _cartItem.productId)
-        //     console.log(localCart)
-        //     localCartItem.count = localCartItem.count + 1;
-        //     dispatch(setLocalCart(localCart))
-        // }
+        else{
+            const cart = dispatch(getLocalCart())
+            const cartItem = cart.find(cart => cart.productId === _cartItem.productId)
+            cartItem.count = cartItem.count + 1;
+            dispatch(setLocalCart(cart))
+            dispatch(_updateCart(cartItem))
+        }
+
+
     }
 }
 
