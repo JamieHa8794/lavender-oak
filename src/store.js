@@ -199,7 +199,7 @@ const getLocalCart = () =>{
             return;
         }
         else{
-            dispatch(_loadCarts(JSON.parse(localCart)))
+            // dispatch(_loadCarts(JSON.parse(localCart)))
             return JSON.parse(localCart);
         }
     }
@@ -236,13 +236,10 @@ const addToLocalCart = (productId) =>{
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
-        console.log(getState())
         if(getState().auth.id){
             const userId = getState().auth.id
-            console.log(userId)
             if(getState().carts.find(cartItem => cartItem.productId === productId)){
                 const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
-                console.log('here', cartItem)
                 dispatch(increaseCart(cartItem))
                 return;
             }
@@ -361,7 +358,7 @@ const exchangeToken = (history) =>{
                     }
                 })
             }
-
+            dispatch(resetLocalCart())
             history.push('/');
         }
     }
