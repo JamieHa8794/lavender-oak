@@ -271,14 +271,30 @@ const increaseCart = (_cartItem) =>{
 const decreaseCart = (_cartItem, history) =>{
     return async (dispatch, getState) =>{
 
-        const carts = getState().carts
-        const count = carts.find(cart => cart.id === _cartItem.id).count - 1;
-        if(count === 0){
-            dispatch(removeFromCart(_cartItem))
+        if(getState().auth.id){
+            const carts = getState().carts
+            const count = carts.find(cart => cart.productId === _cartItem.productId).count - 1;
+            if(count === 0){
+                dispatch(removeFromCart(_cartItem))
+                return;
+            }
+            const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
+            dispatch(_updateCart(cartItem))
             return;
         }
-        const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
-        dispatch(_updateCart(cartItem))
+        else{
+            const cart = dispatch(getLocalCart())
+            const cartItem = cart.find(cart => cart.productId === _cartItem.productId)
+            cartItem.count = cartItem.count - 1;
+            if(cartItem.count === 0){
+                dispatch(_removeFromCart(cartItem))
+                console.log(cart)
+                const idx = cart.findIndex(cart => cart.productId === _cartItem.productId)
+                cart.splice(idx, 1);
+            }
+            dispatch(setLocalCart(cart))
+            dispatch(_updateCart(cartItem))
+        }
     }
 }
 
