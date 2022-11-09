@@ -298,10 +298,20 @@ const decreaseCart = (_cartItem, history) =>{
 }
 
 
-const removeFromCart = (cartItem) =>{
-    return async (dispatch) =>{
-        await axios.delete(`/api/carts/${cartItem.id}`)
-        dispatch(_removeFromCart(cartItem))
+const removeFromCart = (_cartItem) =>{
+    return async (dispatch, getState) =>{
+        if(getState().auth.id){
+            await axios.delete(`/api/carts/${cartItem.id}`)
+            dispatch(_removeFromCart(_cartItem))
+        }
+        else{
+            const cart = dispatch(getLocalCart())
+            const cartItem = cart.find(cart => cart.productId === _cartItem.productId)
+            dispatch(_removeFromCart(cartItem))
+            const idx = cart.findIndex(cart => cart.productId === _cartItem.productId)
+            cart.splice(idx, 1);
+            dispatch(setLocalCart(cart))
+        }
     }
 }
 
