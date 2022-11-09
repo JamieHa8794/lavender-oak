@@ -10,8 +10,9 @@ const LOAD_CARTS = 'LOAD_CARTS';
 const ADD_TO_CART = 'ADD_TO_CART';
 const UPDATE_CART = 'UPDATE_CART';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
-const LOG_IN = 'LOG_IN'
-const LOG_OUT = 'LOG_OUT'
+const CLEAR_CART = 'CLEAR_CART';
+const LOG_IN = 'LOG_IN';
+const LOG_OUT = 'LOG_OUT';
 //reducers
 
 const loadReducers = (state = true, action)=>{
@@ -37,16 +38,19 @@ const productsReducers = (state = [], action) =>{
 
 const cartsReducers = (state = [], action) =>{
     if(action.type === LOAD_CARTS){
-        state = action.carts
+        state = action.carts;
     }
     if(action.type === ADD_TO_CART){
-        state = [...state, action.cartItem]
+        state = [...state, action.cartItem];
     }
     if(action.type === UPDATE_CART){
-        state = state.map(cartItem => cartItem.productId !== action.cartItem.productId ? cartItem : action.cartItem )
+        state = state.map(cartItem => cartItem.productId !== action.cartItem.productId ? cartItem : action.cartItem );
     }
     if(action.type === REMOVE_CART_ITEM){
-        state = state.filter(cartItem => cartItem.productId !== action.cartItem.productId)
+        state = state.filter(cartItem => cartItem.productId !== action.cartItem.productId);
+    }
+    if(action.type === CLEAR_CART){
+        state = [];
     }
     return state;
 }
@@ -125,6 +129,12 @@ const _removeFromCart = (cartItem) =>{
     }
 }
 
+const _clearCart = () =>{
+    return {
+        type: CLEAR_CART
+    }
+}
+
 const _login = (auth) =>{
     return{
         type: LOG_IN,
@@ -163,7 +173,6 @@ const loadProducts = () =>{
 const loadCarts = () =>{
     return async (dispatch, getState) =>{
         if(!getState().auth.id){
-            console.log('here')
             const carts = dispatch(getLocalCart())
             dispatch(_loadCarts(carts))
         }
@@ -227,11 +236,13 @@ const addToLocalCart = (productId) =>{
 
 const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
-
+        console.log(getState())
         if(getState().auth.id){
             const userId = getState().auth.id
+            console.log(userId)
             if(getState().carts.find(cartItem => cartItem.productId === productId)){
                 const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
+                console.log('here', cartItem)
                 dispatch(increaseCart(cartItem))
                 return;
             }
@@ -301,7 +312,7 @@ const decreaseCart = (_cartItem, history) =>{
 const removeFromCart = (_cartItem) =>{
     return async (dispatch, getState) =>{
         if(getState().auth.id){
-            await axios.delete(`/api/carts/${cartItem.id}`)
+            await axios.delete(`/api/carts/${_cartItem.id}`)
             dispatch(_removeFromCart(_cartItem))
         }
         else{
@@ -315,8 +326,14 @@ const removeFromCart = (_cartItem) =>{
     }
 }
 
+const clearCart = () =>{
+    return (dispatch) =>{
+        dispatch(_clearCart())
+    }
+}
+
 const login = (credentials, history) =>{
-    return async (dispatch) =>{
+    return async (dispatch, getState) =>{
         const {token} = (await(axios.post('/api/auth', credentials))).data;
         window.localStorage.setItem('token', token)
         dispatch(exchangeToken(history));
@@ -324,7 +341,7 @@ const login = (credentials, history) =>{
 }
 
 const exchangeToken = (history) =>{
-    return async (dispatch) =>{
+    return async (dispatch, getState) =>{
         const token = window.localStorage.getItem('token')
         if(token){
             const user = (await(axios.get('/api/auth', {
@@ -333,6 +350,18 @@ const exchangeToken = (history) =>{
                 }
             }))).data;
             dispatch(_login(user))
+            dispatch(clearCart())
+            dispatch(loadCarts())
+            const localCart = dispatch(getLocalCart());
+            if(localCart.length){
+                localCart.forEach(cartItem =>{
+                    for(let i = cartItem.count; i--; i>0){
+                        console.log(cartItem)
+                        dispatch(addToCart(cartItem.productId))
+                    }
+                })
+            }
+
             history.push('/');
         }
     }
@@ -342,6 +371,7 @@ const logout = (history) =>{
     return (dispatch) =>{
         window.localStorage.removeItem('token');
         dispatch(_logout());
+        dispatch(clearCart())
         history.push('/');
     }
 }

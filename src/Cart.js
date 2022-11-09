@@ -38,7 +38,6 @@ class Cart extends Component{
         const cartItems = carts;
         
 
-
         if(cartItems.length === 0 || products.length === 0 ){
             return(
                 <div>
