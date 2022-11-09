@@ -288,7 +288,6 @@ const decreaseCart = (_cartItem, history) =>{
             cartItem.count = cartItem.count - 1;
             if(cartItem.count === 0){
                 dispatch(_removeFromCart(cartItem))
-                console.log(cart)
                 const idx = cart.findIndex(cart => cart.productId === _cartItem.productId)
                 cart.splice(idx, 1);
             }

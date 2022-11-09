@@ -33,11 +33,9 @@ class Cart extends Component{
         const {carts, products, auth} = this.props;
         const {subtract, add, removeFromCart} = this
 
-        console.log(carts);
         const userId = auth.id;
 
         const cartItems = carts;
-        console.log('cartItems', cartItems)
         
 
 
@@ -52,7 +50,6 @@ class Cart extends Component{
 
         const productList = {};
         cartItems.map(cartItem =>{
-            console.log(cartItem.productId)
             products.map(product =>{
                 if(cartItem.productId == product.id ){
                         productList[product.id] = product;
