@@ -238,14 +238,23 @@ const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
         if(getState().auth.id){
             const userId = getState().auth.id
+            console.log('1')
+            console.log(getState().carts)
+
+
             if(getState().carts.find(cartItem => cartItem.productId === productId)){
                 const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
-                dispatch(increaseCart(cartItem))
+                console.log('here', cartItem)
+                await dispatch(increaseCart(cartItem))
                 return;
             }
-
-            const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
-            dispatch(_addToCart(cartItem));
+            else{
+                console.log('2')
+                const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
+                console.log(cartItem)
+                dispatch(_addToCart(cartItem));
+            }
+            console.log('3')
         }
         else{
             dispatch(addToLocalCart(productId));
@@ -350,13 +359,16 @@ const exchangeToken = (history) =>{
             dispatch(clearCart())
             dispatch(loadCarts())
             const localCart = dispatch(getLocalCart());
+
             if(localCart.length){
-                localCart.forEach(cartItem =>{
-                    for(let i = cartItem.count; i--; i>0){
+                console.log(localCart)
+                for( const cartItem of localCart){
+                    for(let i = cartItem.count; i>0; i--){
                         console.log(cartItem)
-                        dispatch(addToCart(cartItem.productId))
+                        await dispatch(addToCart(cartItem.productId))
+                        console.log('i', i)
                     }
-                })
+                }
             }
             dispatch(resetLocalCart())
             history.push('/');
