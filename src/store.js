@@ -269,6 +269,7 @@ const increaseCart = (_cartItem) =>{
             const carts = getState().carts
             const count = carts.find(cart => cart.productId === _cartItem.productId).count + 1;
             console.log('count', count)
+            console.log('cartItem Id', _cartItem.id)
             const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
             console.log('increaseCart - cartItem',cartItem)
             dispatch(_updateCart(cartItem))
@@ -356,10 +357,10 @@ const exchangeToken = (history) =>{
                     authorization: token
                 }
             }))).data;
-            dispatch(_login(user))
-            dispatch(clearCart())
-            dispatch(loadCarts())
-            const localCart = dispatch(getLocalCart());
+            await dispatch(_login(user))
+            await dispatch(clearCart())
+            await dispatch(loadCarts())
+            const localCart = await dispatch(getLocalCart());
 
             if(localCart.length){
                 console.log(localCart)
@@ -371,7 +372,7 @@ const exchangeToken = (history) =>{
                     }
                 }
             }
-            dispatch(resetLocalCart())
+            await dispatch(resetLocalCart())
             history.push('/');
         }
     }
