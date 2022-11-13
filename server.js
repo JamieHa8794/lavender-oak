@@ -39,10 +39,15 @@ app.get('/api/products', async (req, res, next)=>{
 })
 
 
-// //cart
+
+// cart
 // app.get('/api/carts', async (req, res, next)=>{
 //     try{
-//         const cart = await Cart.findAll();
+//         const _userId = req.body.userId
+//         console.log('_userId', _userId)
+//         const cart = await Cart.findAll({
+//             WHERE: {_userId}
+//         });
 //         res.send(cart)
 //     }
 //     catch(err){
@@ -51,12 +56,13 @@ app.get('/api/products', async (req, res, next)=>{
 // })
 
 
-// cart
-app.get('/api/carts', async (req, res, next)=>{
+app.get('/api/carts/:userId', async (req, res, next)=>{
     try{
+        const _userId = req.params.userId
+        console.log('_userId', _userId)
         const cart = await Cart.findAll({
-            WHERE: {
-                userId: req.body.userId
+            where: {
+                userId: _userId
             }
         });
         res.send(cart)

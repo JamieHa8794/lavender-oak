@@ -174,12 +174,14 @@ const loadCarts = () =>{
     return async (dispatch, getState) =>{
         if(!getState().auth.id){
             const carts = dispatch(getLocalCart())
-            dispatch(_loadCarts(carts))
+            await dispatch(_loadCarts(carts))
         }
         else{
             const userId = getState().auth.id;
-            const carts = (await axios.get('/api/carts', {userId})).data;
-            dispatch(_loadCarts(carts));
+            console.log(userId)
+            const carts = (await axios.get(`/api/carts/${userId}`)).data;
+            console.log(carts)
+            await dispatch(_loadCarts(carts));
         }
     }
 }
@@ -238,22 +240,16 @@ const addToCart = (productId) =>{
     return async (dispatch, getState) =>{
         if(getState().auth.id){
             const userId = getState().auth.id
-            console.log('1')
-            console.log(getState().carts)
 
 
             if(getState().carts.find(cartItem => cartItem.productId === productId)){
                 const cartItem = getState().carts.find(cartItem => cartItem.productId === productId)
-                console.log('here', cartItem)
                 await dispatch(increaseCart(cartItem))
             }
             else{
-                console.log('2')
                 const cartItem = (await axios.post('/api/carts', {userId, productId})).data;
-                console.log(cartItem)
                 dispatch(_addToCart(cartItem));
             }
-            console.log('3')
         }
         else{
             dispatch(addToLocalCart(productId));
@@ -268,10 +264,7 @@ const increaseCart = (_cartItem) =>{
         if(getState().auth.id){
             const carts = getState().carts
             const count = carts.find(cart => cart.productId === _cartItem.productId).count + 1;
-            console.log('count', count)
-            console.log('cartItem Id', _cartItem.id)
             const cartItem = (await axios.put(`/api/carts/${_cartItem.id}`, {count})).data;
-            console.log('increaseCart - cartItem',cartItem)
             dispatch(_updateCart(cartItem))
             return;
         }
@@ -358,10 +351,15 @@ const exchangeToken = (history) =>{
                 }
             }))).data;
             await dispatch(_login(user))
+            console.log('exchangeToken cart - before clear', getState())
             await dispatch(clearCart())
+            console.log('exchangeToken cart - after clear', getState())
+
             await dispatch(loadCarts())
+
             const localCart = await dispatch(getLocalCart());
 
+            console.log('exchangeToken cart', getState())
             if(localCart.length){
                 console.log(localCart)
                 for( const cartItem of localCart){
