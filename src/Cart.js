@@ -61,8 +61,9 @@ class Cart extends Component{
 
         cartItems.map(cartItem =>{
             const product = products.find(product => product.id === cartItem.productId)
-
-            sum = sum + (cartItem.count * product.price *1)
+            if(product){
+                sum = sum + (cartItem.count * product.price *1)
+            }
         })
 
 

@@ -178,9 +178,7 @@ const loadCarts = () =>{
         }
         else{
             const userId = getState().auth.id;
-            console.log(userId)
             const carts = (await axios.get(`/api/carts/${userId}`)).data;
-            console.log(carts)
             await dispatch(_loadCarts(carts));
         }
     }
@@ -351,22 +349,16 @@ const exchangeToken = (history) =>{
                 }
             }))).data;
             await dispatch(_login(user))
-            console.log('exchangeToken cart - before clear', getState())
             await dispatch(clearCart())
-            console.log('exchangeToken cart - after clear', getState())
 
             await dispatch(loadCarts())
 
             const localCart = await dispatch(getLocalCart());
 
-            console.log('exchangeToken cart', getState())
             if(localCart.length){
-                console.log(localCart)
                 for( const cartItem of localCart){
                     for(let i = cartItem.count; i>0; i--){
-                        console.log(cartItem)
                         await dispatch(addToCart(cartItem.productId))
-                        console.log('i', i)
                     }
                 }
             }

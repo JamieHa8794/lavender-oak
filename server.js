@@ -39,27 +39,9 @@ app.get('/api/products', async (req, res, next)=>{
 })
 
 
-
-// cart
-// app.get('/api/carts', async (req, res, next)=>{
-//     try{
-//         const _userId = req.body.userId
-//         console.log('_userId', _userId)
-//         const cart = await Cart.findAll({
-//             WHERE: {_userId}
-//         });
-//         res.send(cart)
-//     }
-//     catch(err){
-//         next(err)
-//     }
-// })
-
-
 app.get('/api/carts/:userId', async (req, res, next)=>{
     try{
         const _userId = req.params.userId
-        console.log('_userId', _userId)
         const cart = await Cart.findAll({
             where: {
                 userId: _userId
@@ -90,7 +72,6 @@ app.post('/api/carts', async (req, res, next) =>{
 app.put('/api/carts/:id', async (req, res, next) =>{
     try{
         const cartItem = await Cart.findByPk(req.params.id)
-        console.log(req.body.count)
         res.send(await cartItem.update({
             count: req.body.count
         }))
