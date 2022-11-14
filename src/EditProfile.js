@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import {updateUserInfo} from './store';
+
 class EditProfile extends Component{
     constructor(props){
         super(props);
@@ -17,8 +19,24 @@ class EditProfile extends Component{
             // state: auth ? auth.state : '',
             zipCode: auth ? auth.zipCode : ''
         }
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+
     }
-    onChange () {
+    onChange(event) {
+        const change = {}
+        change[event.target.name] = event.target.value
+        this.setState(change)
+        console.log(this.state)
+    }
+    onSubmit(event){
+        event.preventDefault();
+        const {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode} = this.state;
+        const {history} = this.props;
+
+
+        updateUserInfo(history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode)
+
 
     }
     componentDidUpdate(prevProps){
@@ -38,18 +56,19 @@ class EditProfile extends Component{
     }
     render(){
         const {firstName, middleName, lastName, phoneNumber, streetAddress, city, state, zipCode} = this.state
-        const {onChange} = this
+        const {onChange, onSubmit} = this
         return(
             <div>
                 <form>
-                    <input value={firstName ? firstName : ''}  onChange={onChange}></input>
-                    <input value={middleName ? middleName : ''} onChange={onChange}></input>
-                    <input value={lastName ? lastName : ''} onChange={onChange}></input>
-                    <input value={phoneNumber ? phoneNumber : ''} onChange={onChange}></input>
-                    <input value={streetAddress ? streetAddress : ''} onChange={onChange}></input>
-                    <input value={city ? city : ''} onChange={onChange}></input>
+                    <input name='firstName' value={firstName ? firstName : ''}  onChange={onChange}></input>
+                    <input name='middleName' value={middleName ? middleName : ''} onChange={onChange}></input>
+                    <input name='lastName' value={lastName ? lastName : ''} onChange={onChange}></input>
+                    <input name='phoneNumber' value={phoneNumber ? phoneNumber : ''} onChange={onChange}></input>
+                    <input name='streetAddress' value={streetAddress ? streetAddress : ''} onChange={onChange}></input>
+                    <input name='city' value={city ? city : ''} onChange={onChange}></input>
                     {/* <input value={state}></input> */}
-                    <input value={zipCode ? zipCode : ''} onChange={onChange}></input>
+                    <input name='zipCode' value={zipCode ? zipCode : ''} onChange={onChange}></input>
+                    <button onClick={onSubmit}> Save </button>
                 </form>
             </div>
         )
@@ -64,7 +83,9 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-
+        updateUserInfo : (dispatch) =>{
+            dispatch(updateUserInfo(history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode))
+        }
     }
 }
 

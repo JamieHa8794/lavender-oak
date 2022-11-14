@@ -26,6 +26,26 @@ app.get('/api/users', async (req, res, next)=>{
 })
 
 
+app.put('/api/users/:id', async (req, res, next)=>{
+    try{
+        const userId = req.params.id
+        const user = await User.findByPk(userId);
+        res.send(await user.update({
+            firstName: req.body.firstName,
+            middleName: req.body.middleName, 
+            lastName: req.body.lastName, 
+            phoneNumber: req.body.phoneNumber, 
+            streetAddress: req.body.streetAddress, 
+            city: req.body.city, 
+            zipCode: req.body.zipCode
+        }))
+        console.log(user)
+    }
+    catch(err){
+        next(err)
+    }
+})
+
 
 //products
 app.get('/api/products', async (req, res, next)=>{

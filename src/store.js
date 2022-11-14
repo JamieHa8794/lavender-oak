@@ -13,6 +13,10 @@ const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 const CLEAR_CART = 'CLEAR_CART';
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
+const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
+
+
+
 //reducers
 
 const loadReducers = (state = true, action)=>{
@@ -25,6 +29,9 @@ const loadReducers = (state = true, action)=>{
 const usersReducers = (state = [], action) =>{
     if(action.type === LOAD_USERS){
         state = action.users
+    }
+    if(action.type === UPDATE_USER_INFO){
+        state = state.map(user => user.id !== action.user.id ? user : action.user)
     }
     return state;
 }
@@ -148,6 +155,14 @@ const _logout = () =>{
     }
 }
 
+const _updateUserId = (user) =>{
+    return{
+        type: UPDATE_USER_INFO,
+        user
+    }
+}
+
+
 //thunks
 const loading = () =>{
     return (dispatch) =>{
@@ -162,6 +177,17 @@ const loadUsers =  () =>{
         dispatch(_loadUsers(users));
     }
 }
+
+const updateUserInfo = (history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode) =>{
+    return async (dispatch, getState)=>{
+        const userId = getState().auth.id;
+        const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode}))
+        dispatch(_updateUserId(user))
+        history.push('/myProfile');
+    }
+}
+
+
 
 const loadProducts = () =>{
     return async (dispatch)=>{
@@ -378,4 +404,4 @@ const logout = (history) =>{
 }
 
 export default store;
-export {loading, loadUsers, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout}
+export {loading, loadUsers, updateUserInfo, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout}
