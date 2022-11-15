@@ -181,8 +181,10 @@ const loadUsers =  () =>{
 const updateUserInfo = (history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode) =>{
     return async (dispatch, getState)=>{
         const userId = getState().auth.id;
-        const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode}))
+        const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode})).data;
         dispatch(_updateUserId(user))
+        dispatch(_login(user))
+        console.log(user)
         history.push('/myProfile');
     }
 }

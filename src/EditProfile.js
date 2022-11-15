@@ -32,15 +32,18 @@ class EditProfile extends Component{
     onSubmit(event){
         event.preventDefault();
         const {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode} = this.state;
-        const {history} = this.props;
+        const {history, updateUserInfo} = this.props;
 
-
+        console.log(firstName)
         updateUserInfo(history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode)
 
 
     }
     componentDidUpdate(prevProps){
         const {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode} = this.props.state.auth
+        console.log('auth', this.props.state.auth)
+        console.log('user', this.props.state.users)
+        console.log(firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode)
         if(prevProps !== this.props){
             this.setState({
                 firstName, 
@@ -83,7 +86,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        updateUserInfo : (dispatch) =>{
+        updateUserInfo : (history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode) =>{
             dispatch(updateUserInfo(history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode))
         }
     }
