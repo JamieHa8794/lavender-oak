@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 
 const MyProfile = ({users, auth}) =>{
-    console.log(users, auth)
     if(!users){
         return(
         <div>

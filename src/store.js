@@ -184,7 +184,6 @@ const updateUserInfo = (history, firstName, middleName, lastName, phoneNumber, s
         const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode})).data;
         dispatch(_updateUserId(user))
         dispatch(_login(user))
-        console.log(user)
         history.push('/myProfile');
     }
 }

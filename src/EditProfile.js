@@ -8,7 +8,6 @@ class EditProfile extends Component{
         super(props);
 
         const {auth} = this.props.state;
-        console.log(this.props.state)
         this.state = {
             firstName: auth ? auth.firstName : '',
             middleName: auth ? auth.middleName : '',
@@ -27,23 +26,19 @@ class EditProfile extends Component{
         const change = {}
         change[event.target.name] = event.target.value
         this.setState(change)
-        console.log(this.state)
     }
     onSubmit(event){
         event.preventDefault();
         const {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode} = this.state;
         const {history, updateUserInfo} = this.props;
 
-        console.log(firstName)
         updateUserInfo(history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode)
 
 
     }
     componentDidUpdate(prevProps){
         const {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode} = this.props.state.auth
-        console.log('auth', this.props.state.auth)
-        console.log('user', this.props.state.users)
-        console.log(firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode)
+
         if(prevProps !== this.props){
             this.setState({
                 firstName, 

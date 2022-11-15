@@ -39,7 +39,6 @@ app.put('/api/users/:id', async (req, res, next)=>{
             city: req.body.city, 
             zipCode: req.body.zipCode
         }))
-        console.log(user)
     }
     catch(err){
         next(err)
@@ -95,7 +94,6 @@ app.put('/api/carts/:id', async (req, res, next) =>{
         res.send(await cartItem.update({
             count: req.body.count
         }))
-        console.log(cartItem)
     }
     catch(err){
         next(err)
