@@ -84,6 +84,11 @@ class Cart extends Component{
                 </div>
             )
         }
+
+
+        console.log('cartItems', cartItems);
+        console.log('productList', productList);
+
         return(
         <div className='cart-container'>
             <div>

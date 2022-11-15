@@ -19,20 +19,16 @@ const Products = ({products, match:{params}}) =>{
     const pageNumbersCount = products.length ? Math.ceil(products.length/20) : 1;
     const pageNumbers = new Array(pageNumbersCount).fill(0)
     
-
-    const currentPage = params.pageNumber ? params.pageNumber : 0
-    console.log(currentPage)
-
-
+    const currentPage = params.pageNumber ? params.pageNumber : 1
 
     return(
-        <div>
-            <div className='pageNumber-container'>
+        <div className='products'>
+            <div className='products-pageNumber-container'>
                 <ul>
                     {/* <Link to='/products'>View All</Link> */}
                     {pageNumbers.map((pageNumber, idx) =>{
                         return(
-                            <Link to={`/products/${idx+1}`}>{idx+1}</Link>
+                            <Link className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
                             )
                         })}
                 </ul>
@@ -79,6 +75,16 @@ const Products = ({products, match:{params}}) =>{
                     }
                 })}
             </ul>
+            <div className='products-pageNumber-container'>
+                <ul>
+                    {/* <Link to='/products'>View All</Link> */}
+                    {pageNumbers.map((pageNumber, idx) =>{
+                        return(
+                            <Link className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
+                            )
+                        })}
+                </ul>
+            </div>
         </div>
     )
 }

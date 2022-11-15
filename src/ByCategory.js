@@ -26,7 +26,7 @@ const ByCategory = ({products, match}) =>{
             <ul className='products-ul'>
                 {productsByCategory.map((product, idx) =>{
                     return(
-                        <Link key={idx} to={`/products/${product.category}/${product.id}`}>
+                        <Link key={idx} to={`/products/category/${product.category}/${product.id}`}>
                         <li className='products-li'>
                                 <img src={product.img}/>
                                 <div className='products-name'>

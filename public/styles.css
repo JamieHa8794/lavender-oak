@@ -95,7 +95,11 @@ nav{
     height: 125px;
 }
 
-
+.products{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .products-ul{
     display: flex;
@@ -127,6 +131,12 @@ nav{
     flex-wrap: wrap;
     word-break:break-all;
 }
+
+.products-pageNumber-number{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
 
 .single-product-back-to-products{
     padding-left: 100px;
