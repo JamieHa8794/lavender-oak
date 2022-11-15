@@ -40,7 +40,7 @@ class SingleProduct extends Component{
         return(
             <div>
             <div className='single-product-back-to-products'>
-                /<Link to='/products'>Products</Link>/<Link to={`/products/${product.category}`}>{product.category}s</Link>
+                /<Link to='/products'>Products</Link>/<Link to={`/products/category/${product.category}`}>{product.category}s</Link>
             </div>
             <div className='single-product-container'>
                 <img src={product.img} className='single-product-img'/>

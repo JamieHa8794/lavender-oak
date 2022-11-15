@@ -49,7 +49,7 @@ const Categories = ({products}) =>{
                 {alphaCategoryList.map((category, idx) =>{
                     return(
                         <li className='categories-li' key={idx}>
-                            <Link to={`/products/${category}`}>
+                            <Link to={`/products/category/${category}`}>
                                 <img src={CategoryListImgs[category]}  className='categories-img'/>
                                 <div className='categories-category'>
                                 {category}s

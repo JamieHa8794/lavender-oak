@@ -45,10 +45,14 @@ class _App extends Component{
                     <Route path='/login' component={LoginForm} exact/>
 
                     <Route path='/products' component={Products} exact/>
-                    <Route path='/products/:category' component={imgCard} exact/>
-                    <Route path='/products/:category' component={ByCategory} exact/>
-                    <Route path='/products/:category/:id' component={SingleProduct} exact/>
-                    <Route path='/products/:category/:id' component={MoreInfo} exact/>
+
+                    <Route path='/products/:pageNumber' component={Products} exact/>
+
+
+                    <Route path='/products/category/:category' component={imgCard} exact/>
+                    <Route path='/products/category/:category' component={ByCategory} exact/>
+                    <Route path='/products/category/:category/:id' component={SingleProduct} exact/>
+                    <Route path='/products/category/:category/:id' component={MoreInfo} exact/>
 
 
                     <Route path='/categories' component={Categories} exact/>

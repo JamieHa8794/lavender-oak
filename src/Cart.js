@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 // import {updateCart, removeFromCart} from './store';
 import {decreaseCart, increaseCart, removeFromCart} from './store'
 
@@ -11,6 +13,7 @@ class Cart extends Component{
         this.subtract = this.subtract.bind(this);
         this.add = this.add.bind(this);
         this.removeFromCart = this.removeFromCart.bind(this);
+        this.checkOut = this.checkOut.bind(this);
     }
     subtract(event){
         const {carts, history, decreaseCart} = this.props;
@@ -29,9 +32,15 @@ class Cart extends Component{
         const cartItem = carts.find(item => item.productId === event.target.value)
         removeFromCart(cartItem)
     }
+    checkOut(event){
+        const {history} = this.props;
+
+
+        history.push('/checkOut')
+    }
     render(){
         const {carts, products, auth} = this.props;
-        const {subtract, add, removeFromCart} = this
+        const {subtract, add, removeFromCart, checkOut} = this
 
         const userId = auth.id;
 
@@ -122,6 +131,7 @@ class Cart extends Component{
                         Total: {sum ? `$${((sum * 1.08875).toFixed(2)*1)+(49.99*1)}` : 0}
                     </div>
             </div>
+            <button onClick={checkOut}>Check Out</button>
         </div>
         )
     }
