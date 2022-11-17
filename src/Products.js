@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 
+
 const Products = ({products, match:{params}}) =>{
     products.sort((a, b) => {
         const idA = a.item_id;
@@ -24,11 +25,12 @@ const Products = ({products, match:{params}}) =>{
     return(
         <div className='products'>
             <div className='products-pageNumber-container'>
-                <ul>
+                <div className='products-pageNumber-page'>Page: </div>
+                <ul className='products-pageNumber-ul'>
                     {/* <Link to='/products'>View All</Link> */}
                     {pageNumbers.map((pageNumber, idx) =>{
                         return(
-                            <Link className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
+                            <Link key={idx} className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
                             )
                         })}
                 </ul>
@@ -57,9 +59,9 @@ const Products = ({products, match:{params}}) =>{
 
                     if(idx > (currentPage-1)*20-1 && idx < ((currentPage-1)*20 + 20)){
                         return(
-                            <Link key={idx} to={`/products/category/${product.category}/${product.id}`}>
+                            <Link className='products-link' key={idx} to={`/products/category/${product.category}/${product.id}`}>
                             <li className='products-li'>
-                                    <img src={product.img}/>
+                                    <img className='products-img' src={product.img}/>
                                     <div className='products-name'>
                                         {product.name}
                                     </div>
@@ -80,7 +82,7 @@ const Products = ({products, match:{params}}) =>{
                     {/* <Link to='/products'>View All</Link> */}
                     {pageNumbers.map((pageNumber, idx) =>{
                         return(
-                            <Link className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
+                            <Link key={idx} className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
                             )
                         })}
                 </ul>

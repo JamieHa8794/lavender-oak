@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import {updateUserInfo} from './store';
 
+import Button from '@mui/material/Button';
+
+
 class EditProfile extends Component{
     constructor(props){
         super(props);
@@ -66,7 +69,7 @@ class EditProfile extends Component{
                     <input name='city' value={city ? city : ''} onChange={onChange}></input>
                     {/* <input value={state}></input> */}
                     <input name='zipCode' value={zipCode ? zipCode : ''} onChange={onChange}></input>
-                    <button onClick={onSubmit}> Save </button>
+                    <Button onClick={onSubmit} variant="contained"> Save </Button>
                 </form>
             </div>
         )
