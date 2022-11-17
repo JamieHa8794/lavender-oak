@@ -24,6 +24,31 @@ const Products = ({products, match:{params}}) =>{
 
     return(
         <div className='products'>
+
+            <div className='products-imgCard-container'>
+                <div className='products-imgCard-container-sub'>
+                    <div className='products-imgCard-container-sub-box-1'></div>
+                    <img className='products-imgCard-img' src='https://www.ikea.com/images/a-light-grey-slattum-upholstered-bed-and-white-nordli-chests-3b97d440fc5abb6b33ebb5a5a8ebca5b.jpg?f=sg'/>
+                </div>
+                <div className='products-imgCard-container-sub'>
+                    <img className='products-imgCard-img' src='https://www.ikea.com/images/a-living-room-with-two-light-colored-sofas-and-a-light-rug-bc1e60af6e519d9a467bcc2aa55780c5.jpg?f=sg'/>
+                    <div className='products-imgCard-container-sub-box-2'></div>
+                </div>
+                <div className='products-imgCard-container-sub'>
+                    <div className='products-imgCard-container-sub-box-1'></div>
+                    <img className='products-imgCard-img' src='https://www.ikea.com/images/a-lush-outdoor-space-with-a-dark-grey-viholmen-dining-furnit-8ed9fb1bc02e4f87e87d419d1c9b03cf.jpg?f=sg'/>
+                </div>
+                {/* <img className='products-imgCard-img' src=''/>
+                <img className='products-imgCard-img' src=''/>
+                <img className='products-imgCard-img' src=''/> */}
+            
+            </div>
+
+
+
+
+            <div className='products-barrier'></div>
+
             <div className='products-pageNumber-container'>
                 <div className='products-pageNumber-page'>Page: </div>
                 <ul className='products-pageNumber-ul'>

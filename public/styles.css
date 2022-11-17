@@ -95,6 +95,33 @@ nav{
     height: 125px;
 }
 
+
+.products-imgCard-container{
+    padding-left: 200px;
+    padding-right: 200px;
+
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.products-imgCard-container-sub{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+}
+.products-imgCard-container-sub-box-1{
+    background-color: #C49C67;
+    height: 275px;
+}
+.products-imgCard-container-sub-box-2{
+    background-color: #d2b48c;
+    height: 275px;
+}
+.products-imgCard-img{
+    width: 450px;
+    height: 275px;
+}
 .products{
     display: flex;
     flex-direction: column;
@@ -144,6 +171,13 @@ nav{
 .products-price{
     font-size: 18px;
     font-family: Cursive;
+}
+
+.products-barrier{
+    margin-bottom: 25px;
+    border-bottom: solid black;
+    opacity: 25%;
+    width: 800px;
 }
 
 .products-pageNumber-container{
@@ -222,31 +256,8 @@ nav{
 .moreinfo-container{
     margin-left: 100px;
     margin-right: 100px;
+}
 
-    padding: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-
-    background-color: #d9d9d9;
-}
-.moreinfo-product-description{
-    font-size: 20px;
-}
-.moreinfo-product-description-description{
-    text-align: justify;
-}
-.moreinfo-how-to-care{
-    font-size: 20px;
-}
-.moreinfo-how-to-care-description{
-    text-align: justify;
-}
-.moreinfo-reviews{
-    font-size: 20px;
-}
-.moreinfo-reviews-description{
-    text-align: justify;
-}
 
 
 .cart-container{

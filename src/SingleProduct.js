@@ -5,7 +5,6 @@ import {addToCart, increaseCart, updateCart} from './store'
 
 
 
-
 class SingleProduct extends Component{
     constructor(props){
         super(props)
