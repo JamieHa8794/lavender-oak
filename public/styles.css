@@ -36,6 +36,13 @@ nav{
 
 }
 
+.home-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+
 .imgCard{
     background-color: rgb(229, 144, 70);
 
@@ -77,7 +84,7 @@ nav{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 
 
     padding-left: 200px;

@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
-import Nav from './Nav'
 import {loading, loadUsers, loadProducts, loadCarts, exchangeToken, login} from './store'
+
+
+import Nav from './Nav';
+import Home from './Home';
 import Products from './Products';
 import Footer from './Footer'
 import imgCard from './imgCard';
@@ -39,6 +42,9 @@ class _App extends Component{
             <Router>
                 <div>
                     <Route component={Nav}/>
+
+                    <Route path='/' component={Home} exact/>
+
                     <Route path='/myProfile' component={MyProfile} exact/>
                     <Route path='/myProfile/editInfo' component={EditProfile} exact/>
 
