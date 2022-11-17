@@ -14,14 +14,11 @@ const Home = () =>{
           img: 'https://www.ikea.com/ext/ingkadam/m/6b3af000fd8b959a/original/PH185916.jpg?f=xl',
           title: 'Storage',
         },
-        {
-            img: 'https://www.ikea.com/images/some-clothes-hang-from-two-landkrabba-racks-with-5-hooks-in--65b2873b134d12fd7859b30252c1a9d3.jpg?f=sg',
-            title: 'Hallway',
-        },
+
        
         {
-            img: 'https://www.ikea.com/ext/ingkadam/m/30571fa5621ca6e9/original/PH169350-crop001.jpg?f=xl',
-            title: 'Blue Curtains',
+            img: 'https://www.ikea.com/ext/ingkadam/m/1216e28c8d27f812/original/PH175972-crop001.jpg?f=xl',
+            title: 'Outdoor Patio',
         },
         {
             img: 'https://www.ikea.com/ext/ingkadam/m/e64dd0abb0275d4/original/PH184191.jpg?f=xl',
@@ -36,32 +33,38 @@ const Home = () =>{
             title: 'Rustic and Charming Dining Room',
         },
         {
-            img: 'https://www.ikea.com/ext/ingkadam/m/4dc545fc826f36dd/original/PH181179-crop001.jpg?f=xl',
-            title: 'Red Couch',
+            img: 'https://www.ikea.com/global/assets/navigation/images/outdoor-tables-700191.jpeg?imwidth=300',
+            title: 'Outdoor Table',
+        },  
+        {
+            img: 'https://www.ikea.com/images/flisat-series-500819ea86f14b6ba283ca058b9a61f2.jpg?f=l',
+            title: 'Childrens Room',
+        },
+        {
+            img: 'https://www.ikea.com/ext/ingkadam/m/30571fa5621ca6e9/original/PH169350-crop001.jpg?f=xl',
+            title: 'Blue Curtains',
         },
         {
             img: 'https://www.ikea.com/ext/ingkadam/m/315454bb252665c0/original/PH183955-crop001.jpg?f=xl',
             title: 'Bright Single Seater',
         },
         {
-            img: 'https://www.ikea.com/images/flisat-series-500819ea86f14b6ba283ca058b9a61f2.jpg?f=l',
-            title: 'Childrens Room',
+            img: 'https://www.ikea.com/images/some-clothes-hang-from-two-landkrabba-racks-with-5-hooks-in--65b2873b134d12fd7859b30252c1a9d3.jpg?f=sg',
+            title: 'Hallway',
         },
-
         {
             img: 'https://www.ikea.com/ext/ingkadam/m/6b93a92915b8438d/original/PH188023.jpg?f=xl',
             title: 'Vase of Flowers',
         },
-        {
-            img: 'https://www.ikea.com/ext/ingkadam/m/1216e28c8d27f812/original/PH175972-crop001.jpg?f=xl',
-            title: 'Outdoor Patio',
-        },
-        
 
         {
-            img: 'https://www.ikea.com/ext/ingkadam/m/36115184ce5dcbf0/original/PH157837-crop001.jpg?f=xl',
+            img: 'https://www.ikea.com/ext/ingkadam/m/12d4625b0044329a/original/PH186974-crop002.jpg?f=xxxl',
             title: 'Green Couch',
         },
+        {
+            img: 'https://www.ikea.com/us/en/images/products/ingatorp-ingolf-table-and-4-chairs-white-hallarp-beige__1117669_pe872751_s5.jpg?f=m',
+            title: 'Dining Room Set',
+        },  
         {
             img: 'https://www.ikea.com/ext/ingkadam/m/20035c1b44b9a3cd/original/PH178596.jpg?f=xl',
             title: 'Pink Toilet',
@@ -79,6 +82,14 @@ const Home = () =>{
             title: 'Home Office',
         },
         {
+            img: 'https://www.ikea.com/images/bright-voxtorp-ikea-kitchen-with-highgloss-beige-cabinets-st-745fee3e2fd46450e775fd7ec081c8fa.jpg?f=xxxs',
+            title: 'White Cabinets Kitchen',
+        },  
+        {
+            img: 'https://www.ikea.com/ext/ingkadam/m/4dc545fc826f36dd/original/PH181179-crop001.jpg?f=xl',
+            title: 'Red Couch',
+        },
+        {
             img: 'https://www.ikea.com/images/sektion-kitchen-2f66a330517c163aefc87b5885e1e50d.jpg?f=xxxl',
             title: 'Kitchen',
         },
@@ -86,14 +97,27 @@ const Home = () =>{
             img: 'https://www.ikea.com/images/a-bedroom-with-a-malm-bed-frame-and-bedroom-storage-the-door-781db0a0af23f43f5ddd96630b34575b.jpg?f=s',
             title: 'Restroom',
         },        
+        {
+            img: 'https://www.ikea.com/images/a-beige-linanaes-sofa-with-various-cushions-on-a-light-grey--f453c80650f2e5304d8c5ffa8611059f.jpg?f=xl',
+            title: 'Beige Sofa',
+        },  
+        {
+            img: 'https://www.ikea.com/us/en/images/products/trolldom-duvet-cover-1-pillowcase-f-crib-forest-animal-pattern-green__1007923_pe826593_s5.jpg?f=m',
+            title: 'Green Baby Room',
+        },  
+
+        {
+            img: 'https://www.ikea.com/images/two-trofast-storage-combinations-with-pine-frames-with-toys--1ac1a6ff75c1c699aa567fda20781ed6.jpg?f=xl',
+            title: 'Kids Room',
+        },  
 
       ];
 
 
     return(
         <div className='home-container'>
-            <Box sx={{ width: 750, }}>
-                <ImageList variant="masonry" cols={3} gap={8} >
+            <Box>
+                <ImageList variant="masonry" cols={4} gap={10} >
                     {itemData.map((item) => (
                         <ImageListItem className='home-imageListItem' key={item.img} 
                         sx={{
