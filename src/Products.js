@@ -7,10 +7,9 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 
-const PageNumbers = ({currentPage, history}) =>{
+const PageNumbers = ({pageNumberCount, currentPage, history}) =>{
 
     const onChange = (event, value) =>{
-        console.log(value)
         history.push(`/products/${value}`)
         window.scroll({
             top: 500, 
@@ -20,8 +19,8 @@ const PageNumbers = ({currentPage, history}) =>{
     }
 
     return(
-            // <Pagination count={10} showFirstButton showLastButton 
-            <Pagination count={10}
+            // <Pagination count={pageNumberCount} showFirstButton showLastButton 
+            <Pagination count={pageNumberCount}
             page={currentPage*1}
             onChange={onChange}
             />
@@ -43,8 +42,7 @@ const Products = ({products, match:{params}, history}) =>{
 
 
     
-    const pageNumbersCount = products.length ? Math.ceil(products.length/20) : 1;
-    const pageNumbers = new Array(pageNumbersCount).fill(0)
+    const pageNumbersCount = products.length ? Math.ceil(products.length/30) : 1;
     
     const currentPage = params.pageNumber ? params.pageNumber : 1
 
@@ -77,16 +75,16 @@ const Products = ({products, match:{params}, history}) =>{
 
             <div className='products-barrier'></div>
 
-            <div className='products-pageNumber-container'>
+            {/* <div className='products-pageNumber-container'>
                 <PageNumbers currentPage={currentPage} history={history}/>
-            </div>
+            </div> */}
 
 
             <ul className='products-ul'>
                 {products.map((product, idx) =>{
 
 
-                    if(idx > (currentPage-1)*20-1 && idx < ((currentPage-1)*20 + 20)){
+                    if(idx > (currentPage-1)*30-1 && idx < ((currentPage-1)*30 + 30)){
                         return(
                             <Link className='products-link' key={idx} to={`/products/category/${product.category}/${product.id}`}>
                             <li className='products-li'>
@@ -107,7 +105,7 @@ const Products = ({products, match:{params}, history}) =>{
                 })}
             </ul>
             <div className='products-pageNumber-container'>
-                <PageNumbers currentPage={currentPage} history={history}/>
+                <PageNumbers pageNumberCount={pageNumbersCount} currentPage={currentPage} history={history}/>
             </div>
         </div>
     )
