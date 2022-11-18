@@ -14,8 +14,6 @@ const Home = () =>{
           img: 'https://www.ikea.com/ext/ingkadam/m/6b3af000fd8b959a/original/PH185916.jpg?f=xl',
           title: 'Storage',
         },
-
-       
         {
             img: 'https://www.ikea.com/ext/ingkadam/m/1216e28c8d27f812/original/PH175972-crop001.jpg?f=xl',
             title: 'Outdoor Patio',
@@ -116,26 +114,69 @@ const Home = () =>{
 
     return(
         <div className='home-container'>
-            <Box>
-                <ImageList variant="masonry" cols={4} gap={10} >
-                    {itemData.map((item) => (
-                        <ImageListItem className='home-imageListItem' key={item.img} 
-                        sx={{
-                            '& .MuiImageListItem-img': {
-                              height: 'fit-content',
-                            },
-                          }}
-                        >
-                            <img
-                            src={`${item.img}?w=10&fit=crop&auto=format`}
-                            srcSet={`${item.img}?w=10&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item.title}
-                            loading="lazy"
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
-            </Box>
+            <div className='home-cards-container'>
+                <div className='home-card-box-container'>
+                    <div className='home-card-box-text-heading'>
+                        Tis' The Season!
+                    </div>
+                    <div className='home-card-box-text-body'>
+                        Grab the perfect decorations today.
+                    </div>
+                    <div className='home-holiday-box-img-container'>
+                        <img className='home-holiday-box-img' src='https://www.ikea.com/us/en/images/products/vinterfint-decoration-set-of-8-winter-village__1155371_ph187707_s5.jpg?f=xl'/>
+                        <img className='home-holiday-box-img' src='https://www.ikea.com/us/en/images/products/vinterfint-ornament-floral-pattern-mixed-colors__1155843_ph187761_s5.jpg?f=m'/>
+                        <img className='home-holiday-box-img' src='https://www.ikea.com/us/en/images/products/vinterfint-decoration-santa-claus-sitting-red__1153588_ph187680_s5.jpg?f=m'/>
+                    </div>
+                    <div className='home-card-hr'></div>
+                </div>
+                <div className='home-card-box-container'>
+                    <div className='home-card-box-text-heading'>
+                        Different Styles?
+                    </div>
+                    <div className='home-card-box-text-body'>
+                        We can help design a different type of bedroom for all personalities.
+                    </div>
+                    <div className='home-card-box-img-container'>
+                        <img className='home-bedroom-box-img' src='https://www.ikea.com/images/a-slaekt-bed-with-in-blue-bed-linen-in-front-of-a-window-in--6db3656ed8c7f33067bcc1fc541fe753.jpg?f=xl'/>
+                        <img className='home-bedroom-box-img' src='https://www.ikea.com/images/a-sunny-neutral-toned-bedroom-with-a-kleppstad-bed-covered-i-90f96ca7b3020af7b8625ab888bbfc86.jpg?f=xl'/>
+                        <img className='home-bedroom-box-img' src='https://www.ikea.com/images/a-tuffing-bunk-bed-in-a-childrens-room-with-a-football-and-t-d4fadd3a99c65081e26e5f0a27a6185c.jpg?f=xl'/>
+                        <img className='home-bedroom-box-img' src='https://www.ikea.com/images/a-light-beige-sofa-bed-made-as-a-bed-with-gray-bedding-behin-59a3ee9f6cff9a186181923f64fd5b87.jpg?f=xl'/>
+
+
+                    </div>
+                    <div className='home-card-hr'></div>
+
+                </div>
+            </div>
+            <div>
+                <div className='home-card-box-text-heading'>
+                    Not sure what you're looking for?
+                </div>
+                <div className='home-card-box-text-body'>
+                    Browse through our lookbook to get ideas on your next home decoration project. 
+                </div>
+                <Box>
+                    <ImageList variant="masonry" cols={4} gap={10} >
+                        {itemData.map((item) => (
+                            <ImageListItem className='home-imageListItem' key={item.img} 
+                            sx={{
+                                '& .MuiImageListItem-img': {
+                                height: 'fit-content',
+                                },
+                            }}
+                            >
+                                <img
+                                src={`${item.img}?w=10&fit=crop&auto=format`}
+                                srcSet={`${item.img}?w=10&fit=crop&auto=format&dpr=2 2x`}
+                                alt={item.title}
+                                loading="lazy"
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
+                </Box>
+            </div>
+
         </div>
     )
 }

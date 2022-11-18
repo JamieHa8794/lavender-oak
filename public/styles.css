@@ -38,17 +38,73 @@ nav{
 
 .home-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     margin-left: 100px;
     margin-right: 100px;
+
+    /* opacity: 85%; */
+}
+.home-cards-container{
+    display: flex;
+    flex-direction: column; 
+
+}
+.home-card-box-container{
+    display: flex;
+    flex-direction: column; 
+
+}
+
+.home-card-box-img-container{
+    display: flex;
+    flex-direction: row;
+
+
+
+    /* height: 500px;
+    width: 400px; */
+}
+.home-card-box-text-heading{
+    font-size: 35px;
+    font-family: fantasy;
+}
+.home-card-box-text-body{
+    font-size: 18px;
+    padding-left: 50px;
+    font-family:'Times New Roman', Times, serif;
+
+}
+.home-card-hr{
+    border-bottom: solid black 2px;
+    
+    margin-left: 200px;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    
+    
+    width: 800px;
+    opacity: 10%;
+}
+
+
+
+.home-holiday-box-img{
+    height: 500px;
+    width: 400px;
+}
+.home-bedroom-box-img{
+    height: 200px;
+    width: 400px;
+
+    padding: 10px;
 }
 
 
 
 .imgCard{
     background-color: rgb(229, 144, 70);
-
 
     margin-left: 100px;
     margin-right: 100px;
