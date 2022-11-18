@@ -3,7 +3,32 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 
 
-const Products = ({products, match:{params}}) =>{
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+
+const PageNumbers = ({currentPage, history}) =>{
+
+    const onChange = (event, value) =>{
+        console.log(value)
+        history.push(`/products/${value}`)
+        window.scroll({
+            top: 500, 
+            left: 0, 
+            behavior: 'smooth'
+          });
+    }
+
+    return(
+            // <Pagination count={10} showFirstButton showLastButton 
+            <Pagination count={10}
+            page={currentPage*1}
+            onChange={onChange}
+            />
+    )
+}
+
+const Products = ({products, match:{params}, history}) =>{
     products.sort((a, b) => {
         const idA = a.item_id;
         const idB = b.item_id
@@ -17,10 +42,13 @@ const Products = ({products, match:{params}}) =>{
       });
 
 
+    
     const pageNumbersCount = products.length ? Math.ceil(products.length/20) : 1;
     const pageNumbers = new Array(pageNumbersCount).fill(0)
     
     const currentPage = params.pageNumber ? params.pageNumber : 1
+
+
 
     return(
         <div className='products'>
@@ -50,37 +78,13 @@ const Products = ({products, match:{params}}) =>{
             <div className='products-barrier'></div>
 
             <div className='products-pageNumber-container'>
-                <div className='products-pageNumber-page'>Page: </div>
-                <ul className='products-pageNumber-ul'>
-                    {/* <Link to='/products'>View All</Link> */}
-                    {pageNumbers.map((pageNumber, idx) =>{
-                        return(
-                            <Link key={idx} className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
-                            )
-                        })}
-                </ul>
+                <PageNumbers currentPage={currentPage} history={history}/>
             </div>
+
+
             <ul className='products-ul'>
                 {products.map((product, idx) =>{
 
-                    // if(currentPage === 0){
-                    //     return(
-                    //         <Link key={idx} to={`/products/category/${product.category}/${product.id}`}>
-                    //         <li className='products-li'>
-                    //                 <img src={product.img}/>
-                    //                 <div className='products-name'>
-                    //                     {product.name}
-                    //                 </div>
-                    //                 <div className='products-category'>
-                    //                     {product.category}
-                    //                 </div>
-                    //                 <div className='products-price'>
-                    //                     ${product.price}.00
-                    //                 </div>
-                    //         </li>
-                    //         </Link>
-                    //     )
-                    // }
 
                     if(idx > (currentPage-1)*20-1 && idx < ((currentPage-1)*20 + 20)){
                         return(
@@ -103,14 +107,7 @@ const Products = ({products, match:{params}}) =>{
                 })}
             </ul>
             <div className='products-pageNumber-container'>
-                <ul>
-                    {/* <Link to='/products'>View All</Link> */}
-                    {pageNumbers.map((pageNumber, idx) =>{
-                        return(
-                            <Link key={idx} className='products-pageNumber-number' to={`/products/${idx+1}`}>{idx+1}</Link>
-                            )
-                        })}
-                </ul>
+                <PageNumbers currentPage={currentPage} history={history}/>
             </div>
         </div>
     )
