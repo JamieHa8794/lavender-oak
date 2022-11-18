@@ -43,9 +43,48 @@ const Categories = ({products}) =>{
         return 0;
       });
     
+
     return(
         <div>
-           <ul className='categories-ul'>
+
+
+
+        <div className="categories-container">
+                {alphaCategoryList.map((category, idx) =>{
+                    if(idx < 3){
+                        return(
+                            <div className="categories-catergory-container">
+                                <div className="categories-category-title">
+                                    {category}s
+                                </div>
+                                <div className="categories-category-sub">
+                                    <img className='categories-category-img' src={CategoryListImgs[category]} />
+                
+                                    <div className="categories-category-sub-items">
+                                        {products.filter(product => product.category === category).map((product, idx) =>{
+                                            if(idx < 6){
+                                                return(
+                                                    <div className="categories-category-sub-items-product-container">
+                                                        <Link to={`products/category/${category}/${product.id}`}>
+                                                        <img className="categories-category-sub-items-product-img" src={product.img}/>
+                                                        <div className="categories-category-sub-items-product-name">{product.name}</div>
+                                                        </Link>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+    
+    
+                                <div className="categories-border"></div>
+                            </div>  
+                        )
+                    }
+                })}
+        </div>
+        <div>
+            <ul className='categories-ul'>
                 {alphaCategoryList.map((category, idx) =>{
                     return(
                         <li className='categories-li' key={idx}>
@@ -58,10 +97,11 @@ const Categories = ({products}) =>{
                         </li>
                     )
                 })}
-           </ul>
+            </ul>
         </div>
-    )
+        </div>
 
+    )
 }
 
 const mapStateToProps = (state) =>{

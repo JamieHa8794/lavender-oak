@@ -29,8 +29,8 @@ const PageNumbers = ({pageNumberCount, currentPage, history}) =>{
 
 const Products = ({products, match:{params}, history}) =>{
     products.sort((a, b) => {
-        const idA = a.item_id;
-        const idB = b.item_id
+        const idA = a.id;
+        const idB = b.id
         if (idA < idB) {
           return -1;
         }
