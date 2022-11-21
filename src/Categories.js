@@ -49,7 +49,7 @@ const Categories = ({products}) =>{
 
 
 
-        <div className="categories-container">
+        {/* <div className="categories-container">
                 {alphaCategoryList.map((category, idx) =>{
                     if(idx < 3){
                         return(
@@ -82,7 +82,38 @@ const Categories = ({products}) =>{
                         )
                     }
                 })}
+        </div> */}
+
+        <div className='categories-card-container'>
+            <div className="categories-card-text">
+                <div className="categories-card-text-heading">
+                    Beds
+                </div>
+                <div className="categories-card-text-body">
+                    Beds are great. Come buy one.
+                </div>
+            </div>
+            <div className="categories-card-box">
+                <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/idanaes-upholstered-bed-frame-gunnared-dark-gray__0975283_pe812720_s5.jpg?f=xl'/>
+                <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/tufjord-upholstered-bed-frame-gunnared-blue__1150685_pe884655_s5.jpg?f=xl'/>
+            </div>
+            <div className="categories-border"></div>
         </div>
+
+        <div className='categories-card-container'>
+            <div className="categories-card-text">
+                <div className="categories-card-text-heading">
+                </div>
+                <div className="categories-card-text-body">
+                </div>
+            </div>
+            <div className="categories-card-box">
+                <img className="categories-card-box-img-single" src='https://www.ikea.com/images/a-light-blue-sofa-with-colorful-cushions-on-top-93909c13e1c93a77f1e069b06e60d73d.jpg?f=xxxl'/>
+                {/* <img className="categories-card-box-img" src=''/> */}
+            </div>
+            <div className="categories-border"></div>
+        </div>
+
         <div>
             <ul className='categories-ul'>
                 {alphaCategoryList.map((category, idx) =>{

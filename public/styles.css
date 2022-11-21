@@ -173,7 +173,7 @@ nav{
 }
 
 
-.categories-container{
+/* .categories-container{
     display: flex;
     flex-direction: column;
 
@@ -201,7 +201,45 @@ nav{
     flex-direction: column;
 
     padding: 20px;
+} */
+
+
+
+.categories-card-container{
+    display: flex;
+    flex-direction: column;
+
+
+    margin-left: 100px;
+    margin-right: 100px;
+
 }
+
+
+
+.categories-card-text-heading{
+    font-size: 35px;
+    font-family: fantasy;
+}
+.categories-card-text-body{
+    font-size: 18px;
+    padding-left: 50px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.categories-card-box-img-double{
+    width: 525px;
+    height: auto;
+
+    padding: 10px;
+}
+
+.categories-card-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 .categories-border{
     border-bottom: solid black 2.5px;
@@ -214,6 +252,14 @@ nav{
     opacity: 15%;
 }
 
+.categories-card-box-img-single{
+    width: 1060px;
+    height: auto;
+
+    padding: 10px;
+
+    opacity: 90%;
+}
 
 
 
