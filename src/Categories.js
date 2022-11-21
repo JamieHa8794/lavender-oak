@@ -45,91 +45,106 @@ const Categories = ({products}) =>{
     
 
     return(
-        <div>
+        <div className="main-box">
 
 
 
-        {/* <div className="categories-container">
-                {alphaCategoryList.map((category, idx) =>{
-                    if(idx < 3){
-                        return(
-                            <div className="categories-catergory-container">
-                                <div className="categories-category-title">
-                                    {category}s
-                                </div>
-                                <div className="categories-category-sub">
-                                    <img className='categories-category-img' src={CategoryListImgs[category]} />
-                
-                                    <div className="categories-category-sub-items">
-                                        {products.filter(product => product.category === category).map((product, idx) =>{
-                                            if(idx < 6){
-                                                return(
-                                                    <div className="categories-category-sub-items-product-container">
-                                                        <Link to={`products/category/${category}/${product.id}`}>
-                                                        <img className="categories-category-sub-items-product-img" src={product.img}/>
-                                                        <div className="categories-category-sub-items-product-name">{product.name}</div>
-                                                        </Link>
-                                                    </div>
-                                                )
-                                            }
-                                        })}
+            {/* <div className="categories-container">
+                    {alphaCategoryList.map((category, idx) =>{
+                        if(idx < 3){
+                            return(
+                                <div className="categories-catergory-container">
+                                    <div className="categories-category-title">
+                                        {category}s
                                     </div>
-                                </div>
-    
-    
-                                <div className="categories-border"></div>
-                            </div>  
+                                    <div className="categories-category-sub">
+                                        <img className='categories-category-img' src={CategoryListImgs[category]} />
+                    
+                                        <div className="categories-category-sub-items">
+                                            {products.filter(product => product.category === category).map((product, idx) =>{
+                                                if(idx < 6){
+                                                    return(
+                                                        <div className="categories-category-sub-items-product-container">
+                                                            <Link to={`products/category/${category}/${product.id}`}>
+                                                            <img className="categories-category-sub-items-product-img" src={product.img}/>
+                                                            <div className="categories-category-sub-items-product-name">{product.name}</div>
+                                                            </Link>
+                                                        </div>
+                                                    )
+                                                }
+                                            })}
+                                        </div>
+                                    </div>
+        
+        
+                                    <div className="categories-border"></div>
+                                </div>  
+                            )
+                        }
+                    })}
+            </div> */}
+
+            <div className='categories-card-container'>
+                <div className="categories-card-text">
+                    <div className="categories-card-text-heading">
+                    </div>
+                    <div className="categories-card-text-body">
+                    </div>
+                </div>
+                <div className="categories-card-box">
+                    <img className="categories-card-box-img-single" src='https://www.ikea.com/images/a-light-blue-sofa-with-colorful-cushions-on-top-93909c13e1c93a77f1e069b06e60d73d.jpg?f=xxxl'/>
+                    {/* <img className="categories-card-box-img" src=''/> */}
+                </div>
+                <div className="categories-border"></div>
+            </div>
+
+            <div className="categories-text-container">
+                <div className="categories-text-heading">
+                    Shop All Categories
+                </div>
+            </div>
+
+
+
+
+
+
+            <div>
+                <ul className='categories-ul'>
+                    {alphaCategoryList.map((category, idx) =>{
+                        return(
+                            <li className='categories-li' key={idx}>
+                                <Link to={`/products/category/${category}`}>
+                                    <img src={CategoryListImgs[category]}  className='categories-img'/>
+                                    <div className='categories-category'>
+                                    {category}s
+                                    </div>                            
+                                </Link>
+                            </li>
                         )
-                    }
-                })}
-        </div> */}
+                    })}
+                </ul>
+            </div>
 
-        <div className='categories-card-container'>
-            <div className="categories-card-text">
-                <div className="categories-card-text-heading">
-                    Beds
+            <div className='categories-card-container'>
+                <div className="categories-card-text">
+                    <div className="categories-card-text-heading">
+                        Beds
+                    </div>
+                    <div className="categories-card-text-body">
+                        Beds are great. Come buy one.
+                    </div>
                 </div>
-                <div className="categories-card-text-body">
-                    Beds are great. Come buy one.
+                <div className="categories-card-box">
+                    <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/idanaes-upholstered-bed-frame-gunnared-dark-gray__0975283_pe812720_s5.jpg?f=xl'/>
+                    <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/tufjord-upholstered-bed-frame-gunnared-blue__1150685_pe884655_s5.jpg?f=xl'/>
                 </div>
+                <div className="categories-border"></div>
             </div>
-            <div className="categories-card-box">
-                <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/idanaes-upholstered-bed-frame-gunnared-dark-gray__0975283_pe812720_s5.jpg?f=xl'/>
-                <img className="categories-card-box-img-double" src='https://www.ikea.com/us/en/images/products/tufjord-upholstered-bed-frame-gunnared-blue__1150685_pe884655_s5.jpg?f=xl'/>
-            </div>
-            <div className="categories-border"></div>
-        </div>
 
-        <div className='categories-card-container'>
-            <div className="categories-card-text">
-                <div className="categories-card-text-heading">
-                </div>
-                <div className="categories-card-text-body">
-                </div>
-            </div>
-            <div className="categories-card-box">
-                <img className="categories-card-box-img-single" src='https://www.ikea.com/images/a-light-blue-sofa-with-colorful-cushions-on-top-93909c13e1c93a77f1e069b06e60d73d.jpg?f=xxxl'/>
-                {/* <img className="categories-card-box-img" src=''/> */}
-            </div>
-            <div className="categories-border"></div>
-        </div>
 
-        <div>
-            <ul className='categories-ul'>
-                {alphaCategoryList.map((category, idx) =>{
-                    return(
-                        <li className='categories-li' key={idx}>
-                            <Link to={`/products/category/${category}`}>
-                                <img src={CategoryListImgs[category]}  className='categories-img'/>
-                                <div className='categories-category'>
-                                {category}s
-                                </div>                            
-                            </Link>
-                        </li>
-                    )
-                })}
-            </ul>
-        </div>
+
+
         </div>
 
     )

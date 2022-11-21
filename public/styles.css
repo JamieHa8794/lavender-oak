@@ -36,13 +36,21 @@ nav{
 
 }
 
+.main-box{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+
+
+
 .home-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    margin-left: 100px;
-    margin-right: 100px;
+
 
     /* opacity: 85%; */
 }
@@ -60,7 +68,7 @@ nav{
 .home-card-box-img-container{
     display: flex;
     flex-direction: row;
-
+    justify-content: space-between;
 
 
     /* height: 500px;
@@ -91,14 +99,19 @@ nav{
 
 
 .home-holiday-box-img{
-    height: 500px;
-    width: 400px;
+    height: auto;
+    width: 33%;
+    /* height: 500px;
+    width: 400px; */
 }
 .home-bedroom-box-img{
-    height: 200px;
-    width: 400px;
+    height: auto;
+    width: calc(25% - 10px);
 
-    padding: 10px;
+    /* height: 200px;
+    width: 400px; */
+
+    padding: 5px;
 }
 
 
@@ -145,22 +158,33 @@ nav{
     flex-wrap: wrap;
     justify-content: space-between;
 
-
-    padding-left: 200px;
-    padding-right: 200px;
+    padding: 0;
 }
 .categories-li{
     list-style: none;
 
     width: 150px;
+    height: 200px;
 
     padding: 20px;
 }
 .categories-img{
     width: 200px;
     height: 150px;
+
+    /* width: 100%;
+    height: auto; */
 }
 
+
+.categories-text-container{
+    display: flex;
+    justify-content: center;
+}
+.categories-text-heading{
+    font-size: 50px;
+    font-family: fantasy;
+}
 
 
 .categories-category-img{
@@ -210,8 +234,8 @@ nav{
     flex-direction: column;
 
 
-    margin-left: 100px;
-    margin-right: 100px;
+    /* margin-left: 100px;
+    margin-right: 100px; */
 
 }
 
@@ -228,8 +252,8 @@ nav{
 }
 
 .categories-card-box-img-double{
-    width: 525px;
     height: auto;
+    width: calc(50% - 10px);
 
     padding: 10px;
 }
@@ -253,10 +277,8 @@ nav{
 }
 
 .categories-card-box-img-single{
-    width: 1060px;
+    width: 100%;
     height: auto;
-
-    padding: 10px;
 
     opacity: 90%;
 }
@@ -305,6 +327,7 @@ nav{
 
 
     justify-content: space-between;
+    
     padding-left: 80x;
     padding-right: 80px;
 
