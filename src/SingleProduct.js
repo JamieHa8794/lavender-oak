@@ -37,7 +37,7 @@ class SingleProduct extends Component{
         }   
 
         return(
-            <div>
+            <div className="main-box">
             <div className='single-product-back-to-products'>
                 /<Link to='/products'>Products</Link>/<Link to={`/products/category/${product.category}`}>{product.category}s</Link>
             </div>
