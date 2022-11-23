@@ -196,6 +196,10 @@ nav{
     height: 100px;
 }
 
+.categories-imageList{
+    opacity: 95%;
+}
+
 
 /* .categories-container{
     display: flex;

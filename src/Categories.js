@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 
+import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+
 const CategoryList = [
     'Bed',
     'Sofa', 
@@ -31,6 +35,49 @@ const CategoryListImgs = {
     'Lamp':'https://www.ikea.com/ext/ingkadam/m/8d87d58baac79e8/original/PH177990-crop001.jpg?f=xxl',
 }
 
+const itemData = [
+    {
+        img: 'https://www.ikea.com/us/en/images/products/moerbylanga-table-oak-veneer-brown-stained__1057785_ph177723_s5.jpg?f=xl',
+        title: 'Dining Table',
+        rows: 3,
+        cols: 2,
+    },
+    {
+        img: 'https://www.ikea.com/images/ekedalen-series-ece4eaa4dbbc8ce65ae013451cc0bcfa.jpg?f=l',
+        title: 'Dining Table',
+      },
+    {
+        img: 'https://www.ikea.com/us/en/images/products/lisabo-table-ash-veneer__0744784_pe743396_s5.jpg?f=xl',
+        title: 'Dining Table',
+    },
+    // {
+    //     img: 'https://www.ikea.com/us/en/images/products/ravaror-dining-table-oak-veneer__0930004_pe790568_s5.jpg?f=xl',
+    //     title: 'Dining Table',
+        
+    // },
+    {
+        img: 'https://www.ikea.com/us/en/images/products/voxloev-dining-table-light-bamboo__0997060_ph176798_s5.jpg?f=xl',
+        title: 'Dining Table',
+        rows: 2,
+        cols: 2,
+    },
+    // {
+    //     img: 'https://www.ikea.com/us/en/images/products/tarsele-extendable-table-oak-veneer-black__0944977_pe797515_s5.jpg?f=xl',
+    //     title: 'Dining Table',
+    //     // rows: 2,
+    //     // cols: 2,
+    // },
+]
+
+
+function srcset(image, size, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
 
 const Categories = ({products}) =>{
     const alphaCategoryList = CategoryList.sort((a, b) => {
@@ -46,43 +93,6 @@ const Categories = ({products}) =>{
 
     return(
         <div className="main-box">
-
-
-
-            {/* <div className="categories-container">
-                    {alphaCategoryList.map((category, idx) =>{
-                        if(idx < 3){
-                            return(
-                                <div className="categories-catergory-container">
-                                    <div className="categories-category-title">
-                                        {category}s
-                                    </div>
-                                    <div className="categories-category-sub">
-                                        <img className='categories-category-img' src={CategoryListImgs[category]} />
-                    
-                                        <div className="categories-category-sub-items">
-                                            {products.filter(product => product.category === category).map((product, idx) =>{
-                                                if(idx < 6){
-                                                    return(
-                                                        <div className="categories-category-sub-items-product-container">
-                                                            <Link to={`products/category/${category}/${product.id}`}>
-                                                            <img className="categories-category-sub-items-product-img" src={product.img}/>
-                                                            <div className="categories-category-sub-items-product-name">{product.name}</div>
-                                                            </Link>
-                                                        </div>
-                                                    )
-                                                }
-                                            })}
-                                        </div>
-                                    </div>
-        
-        
-                                    <div className="categories-border"></div>
-                                </div>  
-                            )
-                        }
-                    })}
-            </div> */}
 
             <div className='categories-card-container'>
                 <div className="categories-card-text">
@@ -103,11 +113,6 @@ const Categories = ({products}) =>{
                     Shop All Categories
                 </div>
             </div>
-
-
-
-
-
 
             <div>
                 <ul className='categories-ul'>
@@ -142,6 +147,23 @@ const Categories = ({products}) =>{
                 <div className="categories-border"></div>
             </div>
 
+            <ImageList
+            className="categories-imageList"
+            sx={{ width: '100%', height: 'auto' }}
+            variant="quilted"
+            cols={4}
+            rowHeight={200}
+            >
+            {itemData.map((item) => (
+                <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                <img
+                    {...srcset(item.img, 200, item.rows, item.cols)}
+                    alt={item.title}
+                    loading="lazy"
+                />
+                </ImageListItem>
+            ))}
+            </ImageList>
 
 
 
