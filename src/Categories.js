@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 
-import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
@@ -50,23 +49,12 @@ const itemData = [
         img: 'https://www.ikea.com/us/en/images/products/lisabo-table-ash-veneer__0744784_pe743396_s5.jpg?f=xl',
         title: 'Dining Table',
     },
-    // {
-    //     img: 'https://www.ikea.com/us/en/images/products/ravaror-dining-table-oak-veneer__0930004_pe790568_s5.jpg?f=xl',
-    //     title: 'Dining Table',
-        
-    // },
     {
         img: 'https://www.ikea.com/us/en/images/products/voxloev-dining-table-light-bamboo__0997060_ph176798_s5.jpg?f=xl',
         title: 'Dining Table',
         rows: 2,
         cols: 2,
     },
-    // {
-    //     img: 'https://www.ikea.com/us/en/images/products/tarsele-extendable-table-oak-veneer-black__0944977_pe797515_s5.jpg?f=xl',
-    //     title: 'Dining Table',
-    //     // rows: 2,
-    //     // cols: 2,
-    // },
 ]
 
 
