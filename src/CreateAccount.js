@@ -8,17 +8,12 @@ import Paper from '@mui/material/Paper';
 
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import PasswordIcon from '@mui/icons-material/Password';
 import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
 import EmailIcon from '@mui/icons-material/Email';
@@ -193,8 +188,6 @@ class createAccount extends Component{
                                 label="Confirm Password"
                                 />
                             </FormControl>
-                            {/* <button className='login-button' onClick={onSubmit}>Log In</button>
-                            <button className='login-button' onClick={toCreateAccount}>Create an Account</button> */}
 
 
                             <Button variant="contained"
@@ -225,8 +218,6 @@ class createAccount extends Component{
 
                             }}
                             onClick={toSignIn}>Sign In</Button>
-
-
 
                         </form>
 

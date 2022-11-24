@@ -8,17 +8,12 @@ import Paper from '@mui/material/Paper';
 
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import PasswordIcon from '@mui/icons-material/Password';
 import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -80,7 +75,6 @@ class LoginForm extends Component{
                 }}
                 >
                     <Paper className='login-container' elevation={9} >
-                        {/* <div className='login-container'> */}
                         <form className='login-form'>
 
                             <FormControl variant="standard">
@@ -134,10 +128,6 @@ class LoginForm extends Component{
                                 label="Password"
                                 />
                             </FormControl>
-                            {/* <button className='login-button' onClick={onSubmit}>Log In</button>
-                            <button className='login-button' onClick={toCreateAccount}>Create an Account</button> */}
-
-
 
                             <Button variant="contained"
                             sx={{
@@ -172,19 +162,7 @@ class LoginForm extends Component{
 
                         </form>
 
-
-
-                        
-
-
-
-
-
-
-
-
                         <img className='login-img' src='https://www.ikea.com/ext/ingkadam/m/582f3e4de2e87569/original/PH185949-crop001.jpg?f=xxxl'/>
-                        {/* </div> */}
                     </Paper>
                 </Box>
 
