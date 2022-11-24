@@ -25,6 +25,20 @@ app.get('/api/users', async (req, res, next)=>{
     }
 })
 
+app.post('/api/users', async (req, res, next)=>{
+    try{
+        const user = await User.create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email
+        })
+        res.send(user)
+    }
+    catch(err){
+        next(err)
+    }
+})
+
 
 app.put('/api/users/:id', async (req, res, next)=>{
     try{

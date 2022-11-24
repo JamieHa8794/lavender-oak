@@ -18,6 +18,7 @@ import Categories from './Categories';
 import Cart from './Cart';
 import LoginForm from './LoginForm';
 import EditProfile from './EditProfile';
+import CreateAccount from './CreateAccount';
 
 
 
@@ -49,6 +50,7 @@ class _App extends Component{
                     <Route path='/myProfile/editInfo' component={EditProfile} exact/>
 
                     <Route path='/login' component={LoginForm} exact/>
+                    <Route path='/createAccount' component={CreateAccount} exact/>
 
                     <Route path='/products' component={Products} exact/>
 

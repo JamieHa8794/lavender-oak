@@ -523,6 +523,7 @@ const users = [
   {
   'username': 'Chandy',
   'password': 'chandler_pw',
+  'email': 'chandler@gmail.com',
   'firstName': 'Chandler',
   'middleName': "M.",
   'lastName': "Bing",
@@ -534,6 +535,7 @@ const users = [
 {
   'username': 'MonicaG',
   'password': 'monica_pw',
+  'email': 'monica@gmail.com',
   'firstName': 'Monica',
   'middleName': "",
   'lastName': "Geller",
@@ -545,6 +547,7 @@ const users = [
 {
   'username': 'Joeyy',
   'password': 'joey_pw',
+  'email': 'joeyr@gmail.com',
   'firstName': 'Joey',
   'middleName': "",
   'lastName': "Tribianni",
@@ -556,6 +559,7 @@ const users = [
 {
   'username': 'Pheebs',
   'password': 'pheobe_pw',
+  'email': 'pheobe@gmail.com',
   'firstName': 'Pheobe',
   'middleName': "",
   'lastName': "Buffay",
@@ -567,6 +571,7 @@ const users = [
 {
   'username': 'Rosstepher',
   'password': 'ross_pw',
+  'email': 'ross@gmail.com',
   'firstName': 'Ross',
   'middleName': "",
   'lastName': "Geller",
@@ -578,6 +583,7 @@ const users = [
 {
   'username': 'Rache',
   'password': 'rachel_pw',
+  'email': 'rachel@gmail.com',
   'firstName': 'Rachel',
   'middleName': "Karen",
   'lastName': "Green",

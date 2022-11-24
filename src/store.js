@@ -13,7 +13,8 @@ const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 const CLEAR_CART = 'CLEAR_CART';
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
-const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
+const CREATE_USER = 'CREATE_USER';
+const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
 
 
@@ -32,6 +33,9 @@ const usersReducers = (state = [], action) =>{
     }
     if(action.type === UPDATE_USER_INFO){
         state = state.map(user => user.id !== action.user.id ? user : action.user)
+    }
+    if(action.type === CREATE_USER){
+        state = [...state, action.user]
     }
     return state;
 }
@@ -152,6 +156,12 @@ const _login = (auth) =>{
 const _logout = () =>{
     return{
         type: LOG_OUT,
+    }
+}
+
+const _createUser = () =>{
+    return{
+        type: CREATE_USER,
     }
 }
 
@@ -404,5 +414,15 @@ const logout = (history) =>{
     }
 }
 
+const createUser = (username, password, email, history) =>{
+    return async (dispatch)=>{
+        const user = (await (axios.post('/api/users', {username, password, email}))).data
+        dispatch(_createUser(user))
+        history.push('/login')
+    }
+}
+
+
+
 export default store;
-export {loading, loadUsers, updateUserInfo, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout}
+export {loading, loadUsers, updateUserInfo, loadProducts, loadCarts, addToCart, decreaseCart, increaseCart,  removeFromCart, exchangeToken, login, logout, createUser}

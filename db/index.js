@@ -13,11 +13,22 @@ const User = db.define('user', {
         primaryKey: true, 
         defaultValue: UUIDV4, 
     },
+    email:{
+        type: STRING,
+        validate:{
+            isEmail: true
+        },
+        allowNull: false,
+        unqiue: true,
+    },
     username: {
-        type: STRING
+        type: STRING,
+        allowNull: false,
+        unqiue: true,
     },
     password:{
-        type: STRING
+        type: STRING,
+        allowNull: false,
     },
     firstName: {
         type: STRING
@@ -146,6 +157,7 @@ const syncAndSeed = async () =>{
             User.create({
                 username: user.username,
                 password: user.password,
+                email: user.email,
                 firstName: user.firstName,
                 middleName: user.middleName,
                 lastName: user.lastName,

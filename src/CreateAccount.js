@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import {login} from './store'
+import {createUser} from './store'
 
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -21,21 +21,23 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import PasswordIcon from '@mui/icons-material/Password';
 import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
+import EmailIcon from '@mui/icons-material/Email';
 import Divider from '@mui/material/Divider';
 
-
-class LoginForm extends Component{
+class createAccount extends Component{
     constructor(){
         super();
         this.state={
             username: '',
             password: '',
+            confirmPassword: '',
+            email:'',
             showPassword: false
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.handleClickShowPassword = this.handleClickShowPassword.bind(this)
-        this.toCreateAccount = this.toCreateAccount.bind(this)
+        this.toSignIn = this.toSignIn.bind(this)
     }
     onChange(event){
         const change = this.state;
@@ -45,9 +47,14 @@ class LoginForm extends Component{
     onSubmit(event){
         event.preventDefault();
 
-        const {login, history} = this.props;
-        const credentials = this.state
-        login(credentials, history)
+        const {createUser, history} = this.props;
+        const {username, password, email, confirmPassword} = this.state
+        if(password === confirmPassword){
+            createUser(username, password, email, history)
+        }
+        else{
+            window.alert('passwords do not match')
+        }
     }
     handleClickShowPassword(){
         const {showPassword} = this.state
@@ -57,15 +64,15 @@ class LoginForm extends Component{
     handleMouseDownPassword(event){
         event.preventDefault();
     }
-    toCreateAccount(event){
+    toSignIn(event){
         event.preventDefault();
 
         const {history} = this.props;
-        history.push('/createAccount');
+        history.push('/login');
     }
 
     render(){
-        const {onSubmit, onChange, handleClickShowPassword, handleMouseDownPassword, toCreateAccount} = this
+        const {onSubmit, onChange, handleClickShowPassword, handleMouseDownPassword, toSignIn} = this
         return(
             <div className="main-box">
                 <Box
@@ -80,11 +87,29 @@ class LoginForm extends Component{
                 }}
                 >
                     <Paper className='login-container' elevation={9} >
-                        {/* <div className='login-container'> */}
+
+                        <img className='login-img' src='https://www.ikea.com/ext/ingkadam/m/18d994795b501bec/original/PH173608-crop001.jpg?f=xxxl'/>
+
                         <form className='login-form'>
 
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="input-with-icon-adornment">
+                                Email
+                                </InputLabel>
+                                <Input
+                                name='email' onChange={onChange}
+
+                                id="input-with-icon-adornment-email"
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                    <EmailIcon />
+                                    </InputAdornment>
+                                }
+                                />
+                            </FormControl>
+
+                            <FormControl variant="standard">
+                                <InputLabel htmlFor="input-with-icon-adornment-username">
                                 Username
                                 </InputLabel>
                                 <Input
@@ -134,11 +159,44 @@ class LoginForm extends Component{
                                 label="Password"
                                 />
                             </FormControl>
+                            <FormControl variant="standard">
+                                <InputLabel htmlFor="input-with-icon-adornment">
+                                Confirm Password
+                                </InputLabel>
+                                <Input
+                                name='confirmPassword' onChange={onChange}
+
+                                id="outlined-adornment-confirmPassword"
+
+                                type={this.state.showPassword ? 'text' : 'password'}
+
+                                value={this.state.confirmPassword}
+                                
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                    <LockIcon />
+                                    </InputAdornment>
+                                }
+                                
+                                endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                    >
+                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                                }
+                                label="Confirm Password"
+                                />
+                            </FormControl>
                             {/* <button className='login-button' onClick={onSubmit}>Log In</button>
                             <button className='login-button' onClick={toCreateAccount}>Create an Account</button> */}
 
 
-
                             <Button variant="contained"
                             sx={{
                                 backgroundColor: '#a09b4eec',
@@ -150,12 +208,11 @@ class LoginForm extends Component{
                                 marginBottom: '10px',
 
                             }}
-                            onClick={onSubmit}>Sign In
+                            onClick={onSubmit}>Create an Account
                             </Button>
 
                             <Divider>OR</Divider>
 
-
                             <Button variant="contained"
                             sx={{
                                 backgroundColor: '#a09b4eec',
@@ -167,24 +224,12 @@ class LoginForm extends Component{
                                 marginBottom: '10px',
 
                             }}
-                            onClick={toCreateAccount}>Create an Account
-                            </Button>
+                            onClick={toSignIn}>Sign In</Button>
+
+
 
                         </form>
 
-
-
-                        
-
-
-
-
-
-
-
-
-                        <img className='login-img' src='https://www.ikea.com/ext/ingkadam/m/582f3e4de2e87569/original/PH185949-crop001.jpg?f=xxxl'/>
-                        {/* </div> */}
                     </Paper>
                 </Box>
 
@@ -202,8 +247,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) =>{
     return{
-        login: (credentials, history) =>{
-            dispatch(login(credentials, history))
+        createUser: (username, password, email, history) =>{
+            dispatch(createUser(username, password, email, history))
         },
     }
 }
@@ -211,4 +256,4 @@ const mapDispatchToProps = (dispatch) =>{
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(createAccount)
