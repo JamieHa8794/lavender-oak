@@ -4,15 +4,29 @@
 }
 
 .login-container{
-    padding: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
     font-size: 16px;
 }
 .login-form{
     display: flex;
     flex-direction: column;
 
+    padding: 40px;
+    width: 50%;
+    height: auto;
 }
+.login-img{
+    width: 50%;
+    height: auto;
 
+    opacity: 85%;
+}
 
 
 body{
