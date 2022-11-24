@@ -20,7 +20,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import PasswordIcon from '@mui/icons-material/Password';
 import LockIcon from '@mui/icons-material/Lock';
-
+import Button from '@mui/material/Button';
 
 class LoginForm extends Component{
     constructor(){
@@ -33,6 +33,7 @@ class LoginForm extends Component{
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.handleClickShowPassword = this.handleClickShowPassword.bind(this)
+        this.toCreateAccount = this.toCreateAccount.bind(this)
     }
     onChange(event){
         const change = this.state;
@@ -56,6 +57,9 @@ class LoginForm extends Component{
     }
     toCreateAccount(event){
         event.preventDefault();
+
+        const {history} = this.props;
+        history.push('/createAccount');
     }
 
     render(){
@@ -128,8 +132,35 @@ class LoginForm extends Component{
                                 label="Password"
                                 />
                             </FormControl>
-                            <button onClick={onSubmit}>Log In</button>
-                            <button onClick={toCreateAccount}>Create an Account</button>
+                            {/* <button className='login-button' onClick={onSubmit}>Log In</button>
+                            <button className='login-button' onClick={toCreateAccount}>Create an Account</button> */}
+
+
+
+                            <Button variant="contained"
+                            sx={{
+                                backgroundColor: '#a09b4eec',
+                                '&:hover': {
+                                    backgroundColor: '#737839',
+                                    boxShadow: 'none',
+                                },
+                                marginTop: '10px'
+
+                            }}
+                            onClick={onSubmit}>Log In</Button>
+
+                            <Button variant="contained"
+                            sx={{
+                                backgroundColor: '#a09b4eec',
+                                '&:hover': {
+                                    backgroundColor: '#737839',
+                                    boxShadow: 'none',
+                                },
+                                marginTop: '10px'
+
+                            }}
+                            onClick={toCreateAccount}>Create an Account</Button>
+
                         </form>
 
 
