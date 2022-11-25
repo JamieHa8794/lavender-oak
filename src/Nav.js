@@ -18,9 +18,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import YardIcon from '@mui/icons-material/Yard';
 
-
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Shop', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 class Nav extends Component{
@@ -33,7 +33,7 @@ class Nav extends Component{
         this.onClick = this.onClick.bind(this)
         this.handleOpenNavMenu = this.handleOpenNavMenu.bind(this)
         this.handleCloseNavMenu = this.handleCloseNavMenu.bind(this)
-        this.handleOpenUserMenu = this.handleOpenUserMenu(this)
+        this.handleOpenUserMenu = this.handleOpenUserMenu.bind(this)
         this.handleCloseUserMenu = this.handleCloseUserMenu.bind(this)
     }
     onClick(){
@@ -77,10 +77,15 @@ class Nav extends Component{
         const {anchorElNav, anchorElUser} = this.state
 
         return(
-            <AppBar position="static">
+            <AppBar position="static"
+                sx={{
+                    backgroundColor: 'white',
+                    color: 'black'
+                }}
+            >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <YardIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -90,15 +95,14 @@ class Nav extends Component{
                         mr: 2,
                         display: { xs: 'none', md: 'flex' },
                         fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
+                        fontWeight: 600,
+                        letterSpacing: '.2rem',
                         color: 'inherit',
                         textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Lavander Oak
                     </Typography>
-
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                         size="large"
@@ -129,13 +133,15 @@ class Nav extends Component{
                         }}
                         >
                         {pages.map((page) => (
+                            // <Link to='/products'>
                             <MenuItem key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center">{page}</Typography>
+                            <Typography textAlign="center" color='black'>{page}</Typography>
                             </MenuItem>
+                            // </Link>
                         ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <YardIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -146,20 +152,20 @@ class Nav extends Component{
                         display: { xs: 'flex', md: 'none' },
                         flexGrow: 1,
                         fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
+                        fontWeight: 600,
+                        letterSpacing: '.2rem',
                         color: 'inherit',
                         textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Lavander Oak
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                         <Button
                             key={page}
                             onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
+                            sx={{ my: 2, color: 'black', display: 'block' }}
                         >
                             {page}
                         </Button>
