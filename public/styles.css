@@ -91,15 +91,15 @@ nav{
 
 }
 .home-card-hr{
-    border-bottom: solid black 2px;
-    
-    margin-left: 200px;
-    margin-bottom: 60px;
+    border-bottom: solid black 2.5px;
     margin-top: 20px;
+    margin-bottom: 30px;
+
+    align-self: center;
     
-    
-    width: 800px;
-    opacity: 10%;
+    width: 80%;
+
+    opacity: 15%;
 }
 
 
@@ -253,9 +253,10 @@ nav{
     border-bottom: solid black 2.5px;
     margin-top: 20px;
     margin-bottom: 30px;
-    margin-left: 200px;
 
-    width: 500px;
+    align-self: center;
+
+    width: 80%;
 
     opacity: 15%;
 }
@@ -349,10 +350,15 @@ nav{
 }
 
 .products-barrier{
-    margin-bottom: 25px;
-    border-bottom: solid black;
-    opacity: 25%;
-    width: 800px;
+    border-bottom: solid black 2.5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    align-self: center;
+    
+    width: 80%;
+
+    opacity: 15%;
 }
 
 .products-pageNumber-container{
