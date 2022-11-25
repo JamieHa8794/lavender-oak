@@ -19,6 +19,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import YardIcon from '@mui/icons-material/Yard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Divider from '@mui/material/Divider';
+
 
 const pages = ['Shop', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -76,16 +79,23 @@ class Nav extends Component{
         const {handleOpenNavMenu, handleCloseNavMenu, handleOpenUserMenu, handleCloseUserMenu} = this
         const {anchorElNav, anchorElUser} = this.state
 
+
+
+
+        if(Object.keys(auth).length === 0){
+
         return(
             <AppBar position="static"
                 sx={{
                     backgroundColor: 'white',
-                    color: 'black'
+                    color: '#9370DB'
                 }}
             >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                    <YardIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+
+                    <YardIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '2rem' }} />
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -103,6 +113,7 @@ class Nav extends Component{
                     >
                         Lavander Oak
                     </Typography>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                         size="large"
@@ -140,8 +151,12 @@ class Nav extends Component{
                             // </Link>
                         ))}
                         </Menu>
+
                     </Box>
-                    <YardIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                   
+                   
+                    <YardIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, fontSize: '2rem' }} />
+                    
                     <Typography
                         variant="h5"
                         noWrap
@@ -160,6 +175,7 @@ class Nav extends Component{
                     >
                         Lavander Oak
                     </Typography>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                         <Button
@@ -172,69 +188,171 @@ class Nav extends Component{
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                        </IconButton>
-                        </Tooltip>
-                        <Menu
-                        sx={{ mt: '45px' }}
-                        id="menu-appbar"
-                        anchorEl={anchorElUser}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}
-                        >
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center">{setting}</Typography>
-                            </MenuItem>
-                        ))}
-                        </Menu>
+                    <Box sx={{ flexGrow: 0, display:'flex', flexDirection: 'row'}}>
+                        <Link className='app-barlogin-link' to='/login'>
+                            <Button
+                                sx={{ my: 2, color: 'black', display: 'block', fontSize: '10px' }}
+                                >
+                                Log In
+                            </Button>
+                        </Link>
+
+                        <Divider orientation="vertical" variant="middle" flexItem />
+
+                        <Link className='app-barlogin-link' to='/createAccount'>
+                            <Button
+                                sx={{ my: 2, color: 'black', display: 'block', fontSize: '10px' }}
+                                >
+                                Create an Account
+                            </Button>
+                        </Link>
                     </Box>
+
+                    <Link to='/cart'>
+                        <ShoppingCartIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
+                    </Link>
                     </Toolbar>
                 </Container>
                 </AppBar>            
         )
+        }
+
+//IF USER IS LOGGED IN 
+
+        <AppBar position="static"
+        sx={{
+            backgroundColor: 'white',
+            color: '#9370DB'
+        }}
+    >
+        <Container maxWidth="xl">
+            <Toolbar disableGutters>
+            <YardIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '2rem' }} />
+            <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 600,
+                letterSpacing: '.2rem',
+                color: 'inherit',
+                textDecoration: 'none',
+                }}
+            >
+                Lavander Oak
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+                >
+                <MenuIcon />
+                </IconButton>
+                <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                }}
+                >
+                {pages.map((page) => (
+                    // <Link to='/products'>
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" color='black'>{page}</Typography>
+                    </MenuItem>
+                    // </Link>
+                ))}
+                </Menu>
+            </Box>
+           
+           
+            <YardIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, fontSize: '2rem' }} />
+            
+            <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href=""
+                sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 600,
+                letterSpacing: '.2rem',
+                color: 'inherit',
+                textDecoration: 'none',
+                }}
+            >
+                Lavander Oak
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {pages.map((page) => (
+                <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
+                >
+                    {page}
+                </Button>
+                ))}
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+                </Tooltip>
+                <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+                >
+                {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                ))}
+                </Menu>
+            </Box>
+                <Link to='/cart'>
+                <ShoppingCartIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
+                </Link>
+            </Toolbar>
+        </Container>
+        </AppBar>   
 
 
-
-
-
-        // if(Object.keys(auth).length === 0){
-        //     return(
-        //         <nav>
-        //         <img src='./public/logo.png' className='nav-logo'/>
-
-        //         <Link to='/'>Home</Link>
-        //         <Link to='/Products'>Products</Link>
-        //         <Link to='/Categories'>Categories</Link>
-        //         <Link to='/Login'>Login</Link>
-        //         <Link to='/Cart'>Cart</Link>
-        //     </nav>
-        //     )
-        // }
-        // return(
-        //     <nav>
-        //         <img src='./public/logo.png' className='nav-logo'/>
-
-        //         <Link to='/'>Home</Link>
-        //         <Link to='/Products'>Products</Link>
-        //         <Link to='/Categories'>Categories</Link>
-        //         <Link to='/MyProfile'>My Profile</Link>
-        //         <button onClick={onClick}>Log Out</button>
-        //         <Link to='/Cart'>Cart</Link>
-        //     </nav>
-        // )
     }
 }
 

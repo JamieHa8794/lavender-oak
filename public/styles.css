@@ -48,6 +48,9 @@ nav{
     height: 100px;
 
 }
+.app-barlogin-link{
+    text-decoration: none;
+}
 
 .main-box{
     margin-left: 100px;
