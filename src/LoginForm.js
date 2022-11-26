@@ -131,9 +131,9 @@ class LoginForm extends Component{
 
                             <Button variant="contained"
                             sx={{
-                                backgroundColor: '#a09b4eec',
+                                backgroundColor: '#b299e5',
                                 '&:hover': {
-                                    backgroundColor: '#737839',
+                                    backgroundColor: '#9370DB',
                                     boxShadow: 'none',
                                 },
                                 marginTop: '10px',
@@ -148,9 +148,9 @@ class LoginForm extends Component{
 
                             <Button variant="contained"
                             sx={{
-                                backgroundColor: '#a09b4eec',
+                                backgroundColor: '#b299e5',
                                 '&:hover': {
-                                    backgroundColor: '#737839',
+                                    backgroundColor: '#9370DB',
                                     boxShadow: 'none',
                                 },
                                 marginTop: '10px',
@@ -162,7 +162,7 @@ class LoginForm extends Component{
 
                         </form>
 
-                        <img className='login-img' src='https://www.ikea.com/ext/ingkadam/m/582f3e4de2e87569/original/PH185949-crop001.jpg?f=xxxl'/>
+                        <img className='login-img' src='https://www.ikea.com/ext/ingkadam/m/1216e28c8d27f812/original/PH175972-crop001.jpg?f=xl'/>
                     </Paper>
                 </Box>
 

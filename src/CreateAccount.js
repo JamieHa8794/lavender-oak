@@ -192,9 +192,9 @@ class createAccount extends Component{
 
                             <Button variant="contained"
                             sx={{
-                                backgroundColor: '#a09b4eec',
+                                backgroundColor: '#b299e5',
                                 '&:hover': {
-                                    backgroundColor: '#737839',
+                                    backgroundColor: '#9370DB',
                                     boxShadow: 'none',
                                 },
                                 marginTop: '10px',
@@ -208,9 +208,9 @@ class createAccount extends Component{
 
                             <Button variant="contained"
                             sx={{
-                                backgroundColor: '#a09b4eec',
+                                backgroundColor: '#b299e5',
                                 '&:hover': {
-                                    backgroundColor: '#737839',
+                                    backgroundColor: '#9370DB',
                                     boxShadow: 'none',
                                 },
                                 marginTop: '10px',
