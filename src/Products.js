@@ -74,7 +74,7 @@ const Products = ({products, match:{params}, history}) =>{
 
 
 
-
+                <div className='products-title'>Shop All Products</div>
                 <div className='products-barrier'></div>
 
                 {/* <div className='products-pageNumber-container'>

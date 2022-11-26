@@ -98,7 +98,7 @@ const Categories = ({products}) =>{
 
             <div className="categories-text-container">
                 <div className="categories-text-heading">
-                    Shop All Categories
+                    Shop By Categories
                 </div>
             </div>
 

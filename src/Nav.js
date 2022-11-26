@@ -19,7 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import YardIcon from '@mui/icons-material/Yard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Divider from '@mui/material/Divider';
 
 
@@ -212,7 +212,7 @@ class Nav extends Component{
                     </Box>
 
                     <Link to='/cart'>
-                        <ShoppingCartIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
+                        <ShoppingCartOutlinedIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
                     </Link>
                     </Toolbar>
                 </Container>
@@ -363,7 +363,7 @@ class Nav extends Component{
                         </Menu>
                     </Box>
                     <Link to='/cart'>
-                    <ShoppingCartIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
+                    <ShoppingCartOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '2rem', color: '#9370DB'}}/>
                     </Link>
                 </Toolbar>
             </Container>
