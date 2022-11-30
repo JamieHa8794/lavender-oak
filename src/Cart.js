@@ -10,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Paper from '@mui/material/Paper';
 
 class Cart extends Component{
     constructor(){
@@ -19,6 +21,7 @@ class Cart extends Component{
         this.add = this.add.bind(this);
         this.removeFromCart = this.removeFromCart.bind(this);
         this.checkOut = this.checkOut.bind(this);
+        this.goShop = this.goShop.bind(this);
     }
     subtract(event){
         const {carts, history, decreaseCart} = this.props;
@@ -47,9 +50,15 @@ class Cart extends Component{
 
         history.push('/checkOut')
     }
+    goShop(event){
+        const {history} = this.props;
+
+
+        history.push('/Categories')
+    }
     render(){
         const {carts, products, auth} = this.props;
-        const {subtract, add, removeFromCart, checkOut} = this
+        const {subtract, add, removeFromCart, checkOut, goShop} = this
 
         const userId = auth.id;
 
@@ -58,8 +67,24 @@ class Cart extends Component{
 
         if(cartItems.length === 0 || products.length === 0 ){
             return(
-                <div>
-                    Cart is empty
+                <div className="main-box">
+                    <Paper elevation={3} >
+                        <div className='cart-empty-container'>
+                            {/* <div className='cart-empty-heading'>
+                                Shopping Cart
+                            </div> */}
+                            <img className='cart-empty-img' src='./public/empty-bag-2.png'/>
+                            <div className='cart-empty-message-heading'>
+                                Your Shopping Cart is Empty!
+                            </div>
+                            <div className='cart-empty-message'>
+                                Looks like you haven't added anything to your cart yet...
+                            </div>
+                            <button className='cart-empty-button' onClick={goShop}>
+                               Continue Shopping
+                            </button>
+                        </div>
+                    </Paper>
                 </div>
             )
         }
@@ -88,8 +113,8 @@ class Cart extends Component{
 
         if(cartItems.length == 0){
             return(
-                <div>
-                    Cart is empty
+                <div className="main-box">
+                    
                 </div>
             )
         }

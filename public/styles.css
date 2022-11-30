@@ -437,6 +437,48 @@ nav{
 
 
 
+
+.cart-empty-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart-empty-heading{
+    font-size: 40px;
+    font-family: fantasy;
+}
+.cart-empty-img{
+    width: 350px;
+    height: auto;
+    margin: 20px;
+}
+.cart-empty-message-heading{
+    font-size: 35px;
+}
+.cart-empty-message{
+    font-size: 16px;
+    margin: 10px;
+}
+.cart-empty-button{
+    width: 350px;
+    height: 40px;
+
+    margin: 20px;
+    font-size: 20px;
+    font-weight: thin;
+
+    border-radius: 10px;
+    border: none;
+
+
+    background-color: #9370DB;
+    color: white
+}
+
+
+
+
 .cart-container{
     display: flex;
     flex-direction: row;

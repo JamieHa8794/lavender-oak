@@ -144,7 +144,7 @@ class Nav extends Component{
                         }}
                         >
                         {pages.map((page) => (
-                            <Link  className='app-bar-link' to={`/${page}`}>
+                            <Link  className='app-bar-link' to={`/${page}`} key={page}>
                             <MenuItem key={page} onClick={handleCloseNavMenu}>
                             <Typography textAlign="center" color='black'>{page}</Typography>
                             </MenuItem>
@@ -178,7 +178,7 @@ class Nav extends Component{
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                        <Link  className='app-bar-link' to={`/${page}`}>
+                        <Link  className='app-bar-link' to={`/${page}`} key={page} >
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
@@ -278,7 +278,7 @@ class Nav extends Component{
                         }}
                         >
                         {pages.map((page) => (
-                            <Link  className='app-bar-link' to={`/${page}`}>
+                            <Link  className='app-bar-link' to={`/${page}`} key={page}>
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center" color='black'>{page}</Typography>
                                 </MenuItem>
@@ -310,7 +310,7 @@ class Nav extends Component{
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                        <Link  className='app-bar-link' to={`/${page}`}>
+                        <Link  className='app-bar-link' to={`/${page}`} key={page}>
 
                         <Button
                             key={page}
