@@ -584,3 +584,54 @@ nav{
     height: 150px;
 
 }
+
+
+.myProfile-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 20px;
+}
+.myProfile-header{
+    font-size: 30px;
+    font-family: fantasy;
+}
+.myProfile-personal-detail-container{
+    padding: 20px;
+}
+.myProfile-personal-detail-header{
+    font-size: 20px;
+}
+.myProfile-personal-detail-container-sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+
+    padding: 20px;
+}
+
+
+
+.myProfile-sub-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.myProfile-contact-info-container{
+    padding: 20px;
+}
+.myProfile-contact-info-header{
+    font-size: 20px;
+}
+.myProfile-contact-info-container-sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+
+    padding: 20px;
+}
