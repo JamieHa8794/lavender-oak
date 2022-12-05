@@ -73,14 +73,14 @@ class Nav extends Component{
     };
 
     render(){
-        const {auth} = this.props.state;
+        const {auth, users} = this.props.state;
         const {onClick} = this
         
         const {handleOpenNavMenu, handleCloseNavMenu, handleOpenUserMenu, handleCloseUserMenu} = this
         const {anchorElNav, anchorElUser} = this.state
 
-
-
+        const user = users.find(user => user.id === auth.id);
+        
 
         if(Object.keys(auth).length === 0){
 
@@ -325,7 +325,7 @@ class Nav extends Component{
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                            <Avatar src="/static/images/avatar/2.jpg" />
                         </IconButton>
                         </Tooltip>
                         <Menu

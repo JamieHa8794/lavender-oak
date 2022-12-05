@@ -34,12 +34,12 @@ const MyProfile = ({users, auth}) =>{
                 
                     <div className="myProfile-header">My Profile</div>
                     <Link className='myProfile-edit-link' to='/myProfile/editInfo'>Edit Personal Info</Link>
-                    <div className="myProfile-personal-detail-container">
-                        <div className="myProfile-personal-detail-header">
+                    <div className="myProfile-detail-container">
+                        <div className="myProfile-info-header">
                             Personal Details
                         </div>
                         <Divider/>
-                        <div className="myProfile-personal-detail-container-sub">
+                        <div className="myProfile-info-container-sub">
                             <TextField
                                 className="myProfile-info"
                                 id="first-name-read-only-input"
@@ -76,12 +76,12 @@ const MyProfile = ({users, auth}) =>{
                             />
                         </div>
                     </div>
-                    <div className="myProfile-contact-info-container">
-                        <div className="myProfile-contact-info-header">
+                    <div className="myProfile-detail-container">
+                        <div className="myProfile-info-header">
                             Contact Info
                             </div>
                         <Divider/>
-                        <div className="myProfile-contact-info-container-sub">
+                        <div className="myProfile-info-container-sub">
 
                         <TextField
                                 className="myProfile-info"
@@ -94,6 +94,25 @@ const MyProfile = ({users, auth}) =>{
                                 sx={{margin: 1}}
                                 variant="filled"                            
                             />
+                            <TextField
+                                className="myProfile-info"
+                                id="streetAddress-read-only-input"
+                                label="Email"
+                                defaultValue={user.email}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                                sx={{margin: 1}}
+                                variant="filled"                            
+                            />
+                        </div>
+                    </div>
+                    <div className="myProfile-detail-container">
+                        <div className="myProfile-info-header">
+                            Address
+                            </div>
+                        <Divider/>
+                        <div className="myProfile-info-container-sub">
                             <TextField
                                 className="myProfile-info"
                                 id="streetAddress-read-only-input"

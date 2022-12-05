@@ -595,38 +595,19 @@ nav{
 .myProfile-header{
     font-size: 30px;
     font-family: fantasy;
+
+    width: fit-content;
 }
-.myProfile-personal-detail-container{
+.myProfile-edit-link{
+    width: fit-content;
+}
+.myProfile-detail-container{
     padding: 20px;
 }
-.myProfile-personal-detail-header{
+.myProfile-info-header{
     font-size: 20px;
 }
-.myProfile-personal-detail-container-sub{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-
-
-
-    padding: 20px;
-}
-
-
-
-.myProfile-sub-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.myProfile-contact-info-container{
-    padding: 20px;
-}
-.myProfile-contact-info-header{
-    font-size: 20px;
-}
-.myProfile-contact-info-container-sub{
+.myProfile-info-container-sub{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
