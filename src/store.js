@@ -188,10 +188,10 @@ const loadUsers =  () =>{
     }
 }
 
-const updateUserInfo = (history, firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode) =>{
+const updateUserInfo = (history, firstName, middleName, lastName, phoneNumber, email, streetAddress, city, zipCode) =>{
     return async (dispatch, getState)=>{
         const userId = getState().auth.id;
-        const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, streetAddress, city, zipCode})).data;
+        const user = (await axios.put(`/api/users/${userId}`, {firstName, middleName, lastName, phoneNumber, email, streetAddress, city, zipCode})).data;
         dispatch(_updateUserId(user))
         dispatch(_login(user))
         history.push('/myProfile');
@@ -211,11 +211,14 @@ const loadCarts = () =>{
     return async (dispatch, getState) =>{
         if(!getState().auth.id){
             const carts = dispatch(getLocalCart())
+            console.log(carts)
             await dispatch(_loadCarts(carts))
         }
         else{
             const userId = getState().auth.id;
             const carts = (await axios.get(`/api/carts/${userId}`)).data;
+            console.log('userId',userId)
+            console.log('carts', )
             await dispatch(_loadCarts(carts));
         }
     }

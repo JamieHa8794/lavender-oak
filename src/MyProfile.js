@@ -41,6 +41,7 @@ const MyProfile = ({users, auth}) =>{
                         <Divider/>
                         <div className="myProfile-info-container-sub">
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="first-name-read-only-input"
                                 label="First Name"
@@ -53,6 +54,7 @@ const MyProfile = ({users, auth}) =>{
                                 variant="filled"                            
                             />
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="middle-name-read-only-input"
                                 label="Middle Name"
@@ -64,6 +66,7 @@ const MyProfile = ({users, auth}) =>{
                                 variant="filled"                            
                             />
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="last-name-read-only-input"
                                 label="Last Name"
@@ -84,6 +87,7 @@ const MyProfile = ({users, auth}) =>{
                         <div className="myProfile-info-container-sub">
 
                         <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="phoneNumber-read-only-input"
                                 label="Phone Number"
@@ -95,6 +99,7 @@ const MyProfile = ({users, auth}) =>{
                                 variant="filled"                            
                             />
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="streetAddress-read-only-input"
                                 label="Email"
@@ -114,6 +119,7 @@ const MyProfile = ({users, auth}) =>{
                         <Divider/>
                         <div className="myProfile-info-container-sub">
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="streetAddress-read-only-input"
                                 label="Street Address"
@@ -125,6 +131,7 @@ const MyProfile = ({users, auth}) =>{
                                 variant="filled"                            
                             />
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="city-read-only-input"
                                 label="City"
@@ -136,6 +143,7 @@ const MyProfile = ({users, auth}) =>{
                                 variant="filled"                            
                             />
                             <TextField
+                                disabled
                                 className="myProfile-info"
                                 id="zipcode-read-only-input"
                                 label="Zipcode"
