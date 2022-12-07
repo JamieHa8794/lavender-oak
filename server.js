@@ -48,7 +48,8 @@ app.put('/api/users/:id', async (req, res, next)=>{
             firstName: req.body.firstName,
             middleName: req.body.middleName, 
             lastName: req.body.lastName, 
-            phoneNumber: req.body.phoneNumber, 
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
             streetAddress: req.body.streetAddress, 
             city: req.body.city, 
             zipCode: req.body.zipCode

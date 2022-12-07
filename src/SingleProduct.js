@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {addToCart, increaseCart, updateCart} from './store'
 
 
+import Button from '@mui/material/Button';
 
 class SingleProduct extends Component{
     constructor(props){
@@ -56,7 +57,21 @@ class SingleProduct extends Component{
                     <div className='single-product-short_description'>
                         {product.short_description}
                     </div>
-                <button onClick={onClick} className='single-product-add-to-cart'>Add to Cart</button>
+                <Button
+                    variant="contained"
+                    onClick={onClick}
+                            sx={{
+                                backgroundColor: '#b299e5',
+                                '&:hover': {
+                                    backgroundColor: '#9370DB',
+                                    boxShadow: 'none',
+                                },
+                                marginTop: '10px',
+                                marginBottom: '10px',
+
+                            }}>
+                        Add to Cart
+                    </Button>
                 </div>
             </div>
         </div>

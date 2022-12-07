@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Footer = () =>{
@@ -64,9 +65,9 @@ const Footer = () =>{
 
             {/* Legal*/}
             <div>
-                <div>
+                <Link to='/footer-ourlocations'>
                     Our Locations
-                </div>
+                </Link>
                 <div>
                     <a href=''>
                         
