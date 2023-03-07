@@ -196,7 +196,7 @@ class Cart extends Component{
                                 Shipping: $49.99
                             </div>
                             <div>
-                                Total: {sum ? `$${((sum * 1.08875).toFixed(2)*1)+(49.99*1)}` : 0}
+                                Total: {sum ? `$${(((sum * 1.08875).toFixed(2)*1)+(49.99*1)).toFixed(2)}` : 0}
                             </div>
                     </div>
                     <Button 

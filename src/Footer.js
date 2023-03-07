@@ -9,7 +9,7 @@ const Footer = () =>{
 
             
             {/* Help */}
-            <div>
+            {/* <div>
                 <div>
                     Help
                 </div>
@@ -24,10 +24,10 @@ const Footer = () =>{
                         
                     </a>
                 </div>
-            </div>
+            </div> */}
 
             {/* Shop and Learn */}
-            <div>
+            {/* <div>
                 <div>
                     Help
                 </div>
@@ -42,10 +42,10 @@ const Footer = () =>{
                         
                     </a>
                 </div>
-            </div>
+            </div> */}
 
             {/* About Ikea*/}
-            <div>
+            {/* <div>
                 <div>
                     Help
                 </div>
@@ -60,12 +60,12 @@ const Footer = () =>{
                         
                     </a>
                 </div>
-            </div>
+            </div> */}
 
 
             {/* Legal*/}
             <div>
-                <Link to='/footer-ourlocations'>
+                {/* <Link to='/footer-ourlocations'>
                     Our Locations
                 </Link>
                 <div>
@@ -78,7 +78,7 @@ const Footer = () =>{
                     <a href=''>
                         
                     </a>
-                </div>
+                </div> */}
             </div>
         </div>
     )
