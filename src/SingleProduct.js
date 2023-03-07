@@ -3,14 +3,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {addToCart, increaseCart, updateCart} from './store'
 
+import MoreInfo from './MoreInfo';
+
 
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+
 
 class SingleProduct extends Component{
     constructor(props){
         super(props)
 
         this.onClick = this.onClick.bind(this)
+        this.goShop = this.goShop.bind(this);
+
     }
 
     onClick(){
@@ -21,19 +27,39 @@ class SingleProduct extends Component{
         addToCart(productId)
 
     }
+    goShop(event){
+        const {history} = this.props;
+
+
+        history.push('/')
+    }
     render(){
         const {products, match} = this.props
-        const {onClick} = this
+        const {onClick, goShop} = this
 
         const productId = match.params.id;
         const product = products.find(product => product.id === productId)
+        // const product = false
 
         if(!product){
+            console.log('here')
             return(
-            <div>
-                Whoops nothing to see here...
-                <Link to='/products'>Go back to all products...</Link>
-            </div>
+                <div className="main-box">
+                    <Paper elevation={3} >
+                        <div className='error-container'>
+                            <img className='error-img' src='./public/error404.png'/>
+                            <div className='error-message-heading'>
+                                Whoops..
+                            </div>
+                            <div className='error-message'>
+                                Something is missing here...
+                            </div>
+                            <button className='error-button' onClick={goShop}>
+                               Continue Shopping
+                            </button>
+                        </div>
+                    </Paper>
+                </div>
             )
         }   
 
@@ -74,6 +100,7 @@ class SingleProduct extends Component{
                     </Button>
                 </div>
             </div>
+            <MoreInfo />
         </div>
         )
     }

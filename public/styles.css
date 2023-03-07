@@ -627,3 +627,42 @@ nav{
 
     padding: 20px;
 }
+
+
+.error-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.error-heading{
+    font-size: 40px;
+    font-family: monospace;
+}
+.error-img{
+    width: 375px;
+    height: auto;
+    margin: 20px;
+}
+.error-message-heading{
+    font-size: 35px;
+}
+.error-message{
+    font-size: 16px;
+    margin: 10px;
+}
+.error-button{
+    width: 350px;
+    height: 40px;
+
+    margin: 20px;
+    font-size: 20px;
+    font-weight: thin;
+
+    border-radius: 10px;
+    border: none;
+
+
+    background-color: #9370DB;
+    color: white
+}

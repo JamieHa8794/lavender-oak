@@ -67,16 +67,19 @@ const MoreInfo = () =>{
             <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel4bh-content"
-                    id="panel4bh-header"
+                    aria-controls="panel3bh-content"
+                    id="panel3bh-header"
                 >
                     <Typography sx={{ width: '33%', flexShrink: 0 }}>
-
+                        Material
+                    </Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
-                    </Typography>
+                        <Typography>
+                            {faker.lorem.paragraphs(2)}
+                        </Typography>
                 </AccordionDetails>
             </Accordion>
             </div>
