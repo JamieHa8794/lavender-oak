@@ -23,7 +23,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Divider from '@mui/material/Divider';
 
 
-const pages = ['Products', 'Categories', 'Blog'];
+const pages = ['Products', 'Categories'];
 const settings = ['Profile', 'Logout'];
 
 class Nav extends Component{
