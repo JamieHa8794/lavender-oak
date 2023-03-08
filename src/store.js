@@ -159,9 +159,10 @@ const _logout = () =>{
     }
 }
 
-const _createUser = () =>{
+const _createUser = (user) =>{
     return{
         type: CREATE_USER,
+        user
     }
 }
 
@@ -420,6 +421,7 @@ const logout = (history) =>{
 const createUser = (username, password, email, history) =>{
     return async (dispatch)=>{
         const user = (await (axios.post('/api/users', {username, password, email}))).data
+        console.log(user)
         dispatch(_createUser(user))
         history.push('/login')
     }
