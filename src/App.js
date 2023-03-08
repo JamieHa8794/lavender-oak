@@ -19,7 +19,7 @@ import Cart from './Cart';
 import LoginForm from './LoginForm';
 import EditProfile from './EditProfile';
 import CreateAccount from './CreateAccount';
-
+import CheckOut from './CheckOut';
 
 
 class _App extends Component{
@@ -64,6 +64,8 @@ class _App extends Component{
 
 
                     <Route path='/categories' component={Categories} exact/>
+
+                    <Route path='/checkout' component={CheckOut} exact/>
 
                     <Route path='/cart' component={Cart} exact/>
 

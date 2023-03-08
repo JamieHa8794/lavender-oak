@@ -48,7 +48,7 @@ class Cart extends Component{
         const {history} = this.props;
 
 
-        history.push('/checkOut')
+        history.push('/checkout')
     }
     goShop(event){
         const {history} = this.props;
