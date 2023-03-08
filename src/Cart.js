@@ -63,7 +63,7 @@ class Cart extends Component{
         const userId = auth.id;
 
         const cartItems = carts;
-        
+        g
 
         if(cartItems.length === 0 || products.length === 0 ){
             return(
