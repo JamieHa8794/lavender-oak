@@ -73,7 +73,7 @@ class Cart extends Component{
                             {/* <div className='cart-empty-heading'>
                                 Shopping Cart
                             </div> */}
-                            <img className='cart-empty-img' src='./public/empty-bag-2.png'/>
+                            <img className='cart-empty-img' src='/public/empty-bag-2.png'/>
                             <div className='cart-empty-message-heading'>
                                 Your Shopping Cart is Empty!
                             </div>
